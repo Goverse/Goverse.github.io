@@ -1,0 +1,152 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>蓝牙 | Goverse&#39;Blog | Think more and different</title>
+
+  
+
+  
+  <meta name="description" content="引言这是第一次开发蓝牙相关项目，遇到了很多问题，也走了很多弯路。特以此文，总结自己在蓝牙开发中学到的知识和经验。
+项目简介：国外定制的便携式导航产品，系统为安卓系统，功能包括DVR，蓝牙，地图，导航等。我们只负责硬件以及DVR和蓝牙模块。（吐槽一下，客户的UI设计真是丑，还有它的地图，感觉是10年前的产品，真怀疑这东西能卖出去，看来老外和咱们的思维还是差别蛮大的。）其中蓝牙的功能需求：连接/断开设备，单人/多人通话，获取通讯录等。">
+  
+
+  
+  
+  <meta name="keywords" content="工作">
+  
+
+  <meta id="viewport" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+  <meta property="og:title" content="蓝牙"/>
+
+  <meta property="og:site_name" content="Goverse&#39;Blog"/>
+
+  
+  <meta property="og:image" content="/favicon.ico"/>
+  
+
+  <link href="/favicon.ico" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="Goverse&#39;Blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+</head>
+
+
+<body>
+<div class="blog">
+  <div class="content">
+
+    <header>
+  <div class="site-branding">
+    <h1 class="site-title">
+      <a href="/">Goverse&#39;Blog</a>
+    </h1>
+    <p class="site-description">Think more and different</p>
+  </div>
+  <nav class="site-navigation">
+    <ul>
+      
+        <li><a href="/">主页</a></li>
+      
+        <li><a href="/archives">归档</a></li>
+      
+        <li><a href="/categories">分类</a></li>
+      
+        <li><a href="/tags">标签</a></li>
+      
+        <li><a href="/about">关于</a></li>
+      
+    </ul>
+  </nav>
+</header>
+
+    <main class="site-main posts-loop">
+    <article>
+
+  
+    
+    <h3 class="article-title"><span>蓝牙</span></h3>
+    
+  
+
+  <div class="article-top-meta">
+    <span class="posted-on">
+      <a href="/posts/study2017/07/10/蓝牙.html" rel="bookmark">
+        <time class="entry-date published" datetime="2017-07-10T15:00:00.000Z">
+          2017-07-10
+        </time>
+      </a>
+    </span>
+  </div>
+
+
+  
+
+  <div class="article-content">
+    <div class="entry">
+      
+        <h3 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h3><p>这是第一次开发蓝牙相关项目，遇到了很多问题，也走了很多弯路。特以此文，总结自己在蓝牙开发中学到的知识和经验。</p>
+<h3 id="项目简介："><a href="#项目简介：" class="headerlink" title="项目简介："></a>项目简介：</h3><p>国外定制的便携式导航产品，系统为安卓系统，功能包括DVR，蓝牙，地图，导航等。我们只负责硬件以及DVR和蓝牙模块。（吐槽一下，客户的UI设计真是丑，还有它的地图，感觉是10年前的产品，真怀疑这东西能卖出去，看来老外和咱们的思维还是差别蛮大的。）其中蓝牙的功能需求：连接/断开设备，单人/多人通话，获取通讯录等。<br><a id="more"></a></p>
+<h3 id="蓝牙方案："><a href="#蓝牙方案：" class="headerlink" title="蓝牙方案："></a>蓝牙方案：</h3><p>创杰的IS2020S芯片。</p>
+<h3 id="软件与硬件"><a href="#软件与硬件" class="headerlink" title="软件与硬件"></a>软件与硬件</h3><p>还记得当硬件同事递给我设备开发板时，他告诉我蓝牙芯片是怎么样，通过啥与主板连接，那几根不同颜色的线分别是做什么用的，用了大量的硬件的词汇。我去，我当时真是一脸懵逼，心很虚，在想“他在哔哔啥，说的我咋什么都听不懂，是不是我太菜了，这些我到底应不应该懂的，汗…”。在我假装听懂后，才反应过来，我们是没法直接交流的，我根本不知道他在说什么，虽然听起来很厉害。正常来讲，软件和硬件之间会有BSP工程师，他们会负责底层与上层的衔接，然而这次项目没有BSP工程师，我们需要直接与硬件沟通，而我又是第一次与硬件同事合作，所以自然懵逼。看来，也要学习一下基础的硬件知识，至少能给人家回一两句意思意思，要不然又要露怯了。</p>
+<h3 id="UART与I2C"><a href="#UART与I2C" class="headerlink" title="UART与I2C"></a>UART与I2C</h3><p>蓝牙是块独立的芯片，它是怎么与CPU或MCU连接通信的呢？我经常听到硬件同事说到串口与I2C，这里简单的了解了下。首先要从总线说起。</p>
+<blockquote>
+<p>总线是计算机各种功能部件之间传送信息的公共通信干线，它是cpu、内存、输入、输出设备传递信息的公用通道，主机的各个部件通过总线相连接，外部设备通过相应的接口电路再与总线相连接，从而形成了计算机硬件系统。</p>
+</blockquote>
+<p>很显然，我们需要做的是将蓝牙芯片接入总线。而总线又分为内部总线和外部总线，蓝牙芯片应该属于系统组件，因此只要我们的蓝牙芯片接入内部总线就可以与CPU通信了。那么UART和I2C是什么呢？它们就是芯片与总线连接的接口。这些接口分为串行和并行的，像UART，I2C还有SPI都是常用的串行接口，关于它们的具体原理和区别就不再深究。现在总算知道蓝牙芯片是怎么与CPU连接通信的了，它是通过UART接口与内部总线连接做到的。</p>
+<h3 id="TX和RX"><a href="#TX和RX" class="headerlink" title="TX和RX"></a>TX和RX</h3><p>观察蓝牙芯片与主板连接的地方，发现并不是通过一根线连接而是有三根不同颜色的线。这三根分别是UART的TX引脚，RX引脚和VCC供电引脚。RX引脚的作用是接收数据，TX引脚的作用是发送数据。同时，蓝牙芯片的TX，RX必须要和URAT接口的TX，RX对应，否则收发数据就会有异常。此外，使用UART串口还需要配置波特率、数据位、停止位和奇偶校验等。在读取蓝牙芯片数据是否正常时，可以先通过串口转USB小板与电脑连接，在电脑中打开串口调试工具进行调试，没问题后再将蓝牙芯片与主板相连，运行程序。</p>
+<h3 id="HSP-HFP-A2DP"><a href="#HSP-HFP-A2DP" class="headerlink" title="HSP,HFP,A2DP"></a>HSP,HFP,A2DP</h3><h3 id="AT指令"><a href="#AT指令" class="headerlink" title="AT指令"></a>AT指令</h3><h3 id="获取通讯录"><a href="#获取通讯录" class="headerlink" title="获取通讯录"></a>获取通讯录</h3><h3 id="多人通话"><a href="#多人通话" class="headerlink" title="多人通话"></a>多人通话</h3><h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>在做硬件相关项目时，公司肯定会尽量选取最便宜的物料，以节省成本。比如说这款蓝牙模块，就是因为成本低替换了之前的方案。但有时这样做就会造成问题，很有可能便宜的硬件上存在设计缺陷，而此时只能在软件层面上去弥补硬件的错误，虽节省了硬件的成本，但增加了软件的开发难度和工作量，这点很恶心。</p>
+
+      
+    </div>
+
+  </div>
+
+  <div class="article-footer">
+    <div class="article-meta pull-left">
+
+    
+      
+
+    <span class="post-categories">
+      <i class="icon-categories"></i>
+        <a href="/categories/study/">学习</a>
+    </span>
+    
+
+    
+    
+
+    <span class="post-tags">
+      <i class="icon-tags"></i>
+        <a href="/tags/工作/">工作</a>
+    </span>
+    
+
+    </div>
+
+    
+  </div>
+</article>
+
+
+    </main>
+
+    <footer class="site-footer">
+  <p class="site-info">
+    Proudly powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and
+    Theme by <a href="https://github.com/CodeDaraW/Hacker" target="_blank">Hacker</a>
+    </br>
+    
+    &copy; 2017 Goverse&#39;Blog
+    
+  </p>
+</footer>
+    
+  </div>
+</div>
+</body>
+</html>
