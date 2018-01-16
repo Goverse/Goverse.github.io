@@ -63,13 +63,13 @@
 
   
     
-    <h3 class="article-title"><a href="/技术/2017/12/18/架构.html"><span>架构</span></a></h3>
+    <h3 class="article-title"><a href="/tech/index.html"><span>架构</span></a></h3>
     
   
 
   <div class="article-top-meta">
     <span class="posted-on">
-      <a href="/技术/2017/12/18/架构.html" rel="bookmark">
+      <a href="/tech/index.html" rel="bookmark">
         <time class="entry-date published" datetime="2017-12-18T03:43:00.000Z">
           2017-12-18
         </time>
@@ -100,7 +100,7 @@
 
     <span class="post-categories">
       <i class="icon-categories"></i>
-        <a href="/categories/技术/">技术</a>
+        <a href="/categories/tech/">技术</a>
     </span>
     
 
@@ -118,13 +118,13 @@
 
   
     
-    <h3 class="article-title"><a href="/技术/2017/10/21/DBFlow.html"><span>DBFlow</span></a></h3>
+    <h3 class="article-title"><a href="/tech/index.html"><span>dbflow</span></a></h3>
     
   
 
   <div class="article-top-meta">
     <span class="posted-on">
-      <a href="/技术/2017/10/21/DBFlow.html" rel="bookmark">
+      <a href="/tech/index.html" rel="bookmark">
         <time class="entry-date published" datetime="2017-10-21T12:17:00.000Z">
           2017-10-21
         </time>
@@ -155,7 +155,7 @@
 
     <span class="post-categories">
       <i class="icon-categories"></i>
-        <a href="/categories/技术/">技术</a>
+        <a href="/categories/tech/">技术</a>
     </span>
     
 
@@ -173,13 +173,13 @@
 
   
     
-    <h3 class="article-title"><a href="/技术/2017/10/15/BLE.html"><span>BLE</span></a></h3>
+    <h3 class="article-title"><a href="/tech/index.html"><span>ble</span></a></h3>
     
   
 
   <div class="article-top-meta">
     <span class="posted-on">
-      <a href="/技术/2017/10/15/BLE.html" rel="bookmark">
+      <a href="/tech/index.html" rel="bookmark">
         <time class="entry-date published" datetime="2017-10-15T04:45:00.000Z">
           2017-10-15
         </time>
@@ -194,8 +194,21 @@
     <div class="entry">
       
         <blockquote>
-<p>People only judge, they don’t care</p>
+<p>蓝牙低能耗(BLE)技术是低成本、短距离、可互操作的鲁棒性无线技术.</p>
 </blockquote>
+<h3 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h3><p>有机会参与到公司的手表手环项目，公司的产品有小黑系列的手表和Now系列的手环，主要功能有计步，睡眠监测，运动数据统计，心率检测，闹钟，信息推送等。本文将会介绍，我在开发手表手环项目时，对于蓝牙BLE技术的总结和积累（仅限于安卓平台）。</p>
+<h3 id="BLE与标准蓝牙"><a href="#BLE与标准蓝牙" class="headerlink" title="BLE与标准蓝牙"></a>BLE与标准蓝牙</h3><blockquote>
+<p>之前有写过一篇文章《蓝牙》，在里边介绍了我第一次进行蓝牙相关功能开发的总结，那么传统蓝牙和低功耗蓝牙之间是什么关系？</p>
+</blockquote>
+<p>首先蓝牙协议从产生到现在经历了很多的版本，我们平时所说的传统蓝牙或经典蓝牙指的是版本在v1.1~3.0的蓝牙协议，而低功耗蓝牙对应的蓝牙协议版本则为v4.0/4.1/4.2。所以低功耗蓝牙是在标准蓝牙的基础上产生的，它的出现就是要解决如何在移动端设备数据传输中降低功耗，现在广泛应用于智能设备、计步器、传感器物联网等领域。</p>
+<p>经典蓝牙支持更多的协议，比如说音频（HFP/HSP, A2DP）和数据（SPP, HID, OPP, PBAP）等，而BLE不支持音频协议的传输，因为它低功耗的特性，也导致它的传输速度会受到限制。所以BLE不能完全取代标准蓝牙，现在手机端的解决方案一般是既支持标准蓝牙也支持低功耗蓝牙，即蓝牙双模。</p>
+<p>在Android4.3的系统中，安卓也引入了BLE的支持，提供了相关接口用来开发BLE相关的应用，手表手环的开发也是基于此。</p>
+<h3 id="BLE协议栈"><a href="#BLE协议栈" class="headerlink" title="BLE协议栈"></a>BLE协议栈</h3><h3 id="BLE模式"><a href="#BLE模式" class="headerlink" title="BLE模式"></a>BLE模式</h3><h3 id="ANCS"><a href="#ANCS" class="headerlink" title="ANCS"></a>ANCS</h3><p>ANCS通过蓝牙BLE 4.0实现，仅支持iPhone 4S及以上且系统版本在IOS 7以上的手机，同时在外设端需要支持蓝牙4.0协议。</p>
+<p>1、外设端进行广播，手机打开蓝牙，搜索外设，连接外设，之后进行绑定（这很重要，否则无法接收通知）</p>
+<p>2、外设在连接建立后需要监听手机上的ANCS Service中的Notification Source</p>
+<p>3、当有通知时，手机会给外设发消息，说明是哪个应用的通知</p>
+<p>4、如果外设想进一步获取通知的详情，就往Control Point写控制信息，获取详情</p>
+<p>5、详情会通过Data Source发过来</p>
 
       
     </div>
@@ -210,7 +223,7 @@
 
     <span class="post-categories">
       <i class="icon-categories"></i>
-        <a href="/categories/技术/">技术</a>
+        <a href="/categories/tech/">技术</a>
     </span>
     
 
@@ -228,13 +241,13 @@
 
   
     
-    <h3 class="article-title"><a href="/技术/2017/07/10/蓝牙.html"><span>蓝牙</span></a></h3>
+    <h3 class="article-title"><a href="/tech/bluetooth.html"><span>蓝牙</span></a></h3>
     
   
 
   <div class="article-top-meta">
     <span class="posted-on">
-      <a href="/技术/2017/07/10/蓝牙.html" rel="bookmark">
+      <a href="/tech/bluetooth.html" rel="bookmark">
         <time class="entry-date published" datetime="2017-07-10T15:00:00.000Z">
           2017-07-10
         </time>
@@ -263,7 +276,7 @@
 
     <span class="post-categories">
       <i class="icon-categories"></i>
-        <a href="/categories/技术/">技术</a>
+        <a href="/categories/tech/">技术</a>
     </span>
     
 
@@ -272,7 +285,7 @@
 
     <span class="post-tags">
       <i class="icon-tags"></i>
-        <a href="/tags/工作/">工作</a>
+        <a href="/tags/work/">工作</a>
     </span>
     
 
@@ -288,69 +301,13 @@
 
   
     
-    <h3 class="article-title"><a href="/read/2017/07/08/王小波.html"><span>王小波</span></a></h3>
+    <h3 class="article-title"><a href="/read/luxun.html"><span>鲁迅</span></a></h3>
     
   
 
   <div class="article-top-meta">
     <span class="posted-on">
-      <a href="/read/2017/07/08/王小波.html" rel="bookmark">
-        <time class="entry-date published" datetime="2017-07-08T03:00:00.000Z">
-          2017-07-08
-        </time>
-      </a>
-    </span>
-  </div>
-
-
-  
-
-  <div class="article-content">
-    <div class="entry">
-      
-        <blockquote>
-<p>一想到你，我这张丑脸上就泛起微笑。</p>
-</blockquote>
-<p>大学的时候读过王小波的《黄金时代》，书里的内容很有趣，有点像文革时期的“吐槽”。一直想有时间再读读他的书，不给过了这么久，之前看过的也忘了很多，所以打算重新读一遍《黄金时代》，然后再读他的《白银时代》、《青铜时代》、《黑铁时代》。</p>
-<h3 id="《黄金时代》"><a href="#《黄金时代》" class="headerlink" title="《黄金时代》"></a>《黄金时代》</h3><h3 id="《白银时代》"><a href="#《白银时代》" class="headerlink" title="《白银时代》"></a>《白银时代》</h3><h3 id="《青铜时代》"><a href="#《青铜时代》" class="headerlink" title="《青铜时代》"></a>《青铜时代》</h3><h3 id="《黑铁时代》"><a href="#《黑铁时代》" class="headerlink" title="《黑铁时代》"></a>《黑铁时代》</h3>
-      
-    </div>
-
-  </div>
-
-  <div class="article-footer">
-    <div class="article-meta pull-left">
-
-    
-      
-
-    <span class="post-categories">
-      <i class="icon-categories"></i>
-        <a href="/categories/read/">阅读</a>
-    </span>
-    
-
-    
-
-    </div>
-
-    
-  </div>
-</article>
-
-
-
-  <article>
-
-  
-    
-    <h3 class="article-title"><a href="/read/2017/07/08/鲁迅.html"><span>鲁迅</span></a></h3>
-    
-  
-
-  <div class="article-top-meta">
-    <span class="posted-on">
-      <a href="/read/2017/07/08/鲁迅.html" rel="bookmark">
+      <a href="/read/luxun.html" rel="bookmark">
         <time class="entry-date published" datetime="2017-07-08T03:00:00.000Z">
           2017-07-08
         </time>
@@ -401,13 +358,69 @@
 
   
     
-    <h3 class="article-title"><a href="/life/2017/06/30/毕业一年.html"><span>毕业一年</span></a></h3>
+    <h3 class="article-title"><a href="/read/wangxiaobo.html"><span>王小波</span></a></h3>
     
   
 
   <div class="article-top-meta">
     <span class="posted-on">
-      <a href="/life/2017/06/30/毕业一年.html" rel="bookmark">
+      <a href="/read/wangxiaobo.html" rel="bookmark">
+        <time class="entry-date published" datetime="2017-07-08T03:00:00.000Z">
+          2017-07-08
+        </time>
+      </a>
+    </span>
+  </div>
+
+
+  
+
+  <div class="article-content">
+    <div class="entry">
+      
+        <blockquote>
+<p>一想到你，我这张丑脸上就泛起微笑。</p>
+</blockquote>
+<p>大学的时候读过王小波的《黄金时代》，书里的内容很有趣，有点像文革时期的“吐槽”。一直想有时间再读读他的书，不给过了这么久，之前看过的也忘了很多，所以打算重新读一遍《黄金时代》，然后再读他的《白银时代》、《青铜时代》、《黑铁时代》。</p>
+<h3 id="《黄金时代》"><a href="#《黄金时代》" class="headerlink" title="《黄金时代》"></a>《黄金时代》</h3><h3 id="《白银时代》"><a href="#《白银时代》" class="headerlink" title="《白银时代》"></a>《白银时代》</h3><h3 id="《青铜时代》"><a href="#《青铜时代》" class="headerlink" title="《青铜时代》"></a>《青铜时代》</h3><h3 id="《黑铁时代》"><a href="#《黑铁时代》" class="headerlink" title="《黑铁时代》"></a>《黑铁时代》</h3>
+      
+    </div>
+
+  </div>
+
+  <div class="article-footer">
+    <div class="article-meta pull-left">
+
+    
+      
+
+    <span class="post-categories">
+      <i class="icon-categories"></i>
+        <a href="/categories/read/">阅读</a>
+    </span>
+    
+
+    
+
+    </div>
+
+    
+  </div>
+</article>
+
+
+
+  <article>
+
+  
+    
+    <h3 class="article-title"><a href="/life/index.html"><span>毕业一年</span></a></h3>
+    
+  
+
+  <div class="article-top-meta">
+    <span class="posted-on">
+      <a href="/life/index.html" rel="bookmark">
         <time class="entry-date published" datetime="2017-06-29T16:00:00.000Z">
           2017-06-30
         </time>
@@ -448,7 +461,7 @@
 
     <span class="post-tags">
       <i class="icon-tags"></i>
-        <a href="/tags/随感/">随感</a><a href="/tags/工作/">工作</a>
+        <a href="/tags/essay/">随感</a><a href="/tags/work/">工作</a>
     </span>
     
 
@@ -464,13 +477,13 @@
 
   
     
-    <h3 class="article-title"><a href="/life/2017/05/02/五一“劳动“节.html"><span>五一“劳动“节</span></a></h3>
+    <h3 class="article-title"><a href="/life/mayday.html"><span>五一劳动节</span></a></h3>
     
   
 
   <div class="article-top-meta">
     <span class="posted-on">
-      <a href="/life/2017/05/02/五一“劳动“节.html" rel="bookmark">
+      <a href="/life/mayday.html" rel="bookmark">
         <time class="entry-date published" datetime="2017-05-02T04:36:00.000Z">
           2017-05-02
         </time>
@@ -510,7 +523,7 @@
 
     <span class="post-tags">
       <i class="icon-tags"></i>
-        <a href="/tags/假日/">假日</a>
+        <a href="/tags/holiday/">假日</a>
     </span>
     
 
@@ -526,13 +539,13 @@
 
   
     
-    <h3 class="article-title"><a href="/study/2017/04/23/粤语学习【三】.html"><span>粤语学习【三】</span></a></h3>
+    <h3 class="article-title"><a href="/study/Cantonese3.html"><span>粤语学习【3】</span></a></h3>
     
   
 
   <div class="article-top-meta">
     <span class="posted-on">
-      <a href="/study/2017/04/23/粤语学习【三】.html" rel="bookmark">
+      <a href="/study/Cantonese3.html" rel="bookmark">
         <time class="entry-date published" datetime="2017-04-23T14:31:00.000Z">
           2017-04-23
         </time>
@@ -572,7 +585,7 @@
 
     <span class="post-tags">
       <i class="icon-tags"></i>
-        <a href="/tags/粤语/">粤语</a>
+        <a href="/tags/cantonese/">粤语</a>
     </span>
     
 
@@ -588,13 +601,13 @@
 
   
     
-    <h3 class="article-title"><a href="/study/2017/04/16/粤语学习【二】.html"><span>粤语学习【二】</span></a></h3>
+    <h3 class="article-title"><a href="/study/Cantonese2.html"><span>粤语学习【2】</span></a></h3>
     
   
 
   <div class="article-top-meta">
     <span class="posted-on">
-      <a href="/study/2017/04/16/粤语学习【二】.html" rel="bookmark">
+      <a href="/study/Cantonese2.html" rel="bookmark">
         <time class="entry-date published" datetime="2017-04-16T04:36:00.000Z">
           2017-04-16
         </time>
@@ -634,7 +647,7 @@
 
     <span class="post-tags">
       <i class="icon-tags"></i>
-        <a href="/tags/粤语/">粤语</a>
+        <a href="/tags/cantonese/">粤语</a>
     </span>
     
 
