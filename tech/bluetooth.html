@@ -107,7 +107,53 @@
 <li>PBAP，电话号码簿访问协议（PhonebookAccess Profile）</li>
 </ul>
 <h3 id="UART-Protocol"><a href="#UART-Protocol" class="headerlink" title="UART_Protocol"></a>UART_Protocol</h3><p>既然蓝牙芯片是通过串口与程序进行数据通信，那么它们之间必然会有一套协议，定义了如何操作蓝牙，以及通知蓝牙状态的改变等。<br>这套协议由蓝牙芯片的厂商提供，软件这边只需要读写串口，并按照规则解析即可。</p>
-<p>具体协议如下：<br>|            | HEAD  |  HEAD  |      MID      |          DATA           |    CRC     |<br>| :——–: | :—: | :—-: | :———–: | :———————: | :——–: |<br>|            | START | LENGTH |    OP Code    |        PARAMETER        |   CHKSUM   |<br>|  BYTE NO   |   0   |  1~2   |       3       |          4~XX           | Length + 3 |<br>| SIZE(BYTE) |   1   |   2    |       1       |           0~            |     1      |<br>|   VALUE    | 0xAA  |   1~   | Command/Event | Command/Event Parameter | check sum  |</p>
+<p>具体协议如下：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">TYPE</th>
+<th style="text-align:center">HEAD</th>
+<th style="text-align:center">HEAD</th>
+<th style="text-align:center">MID</th>
+<th style="text-align:center">DATA</th>
+<th style="text-align:center">CRC</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center">START</td>
+<td style="text-align:center">LENGTH</td>
+<td style="text-align:center">OP Code</td>
+<td style="text-align:center">PARAMETER</td>
+<td style="text-align:center">CHKSUM </td>
+</tr>
+<tr>
+<td style="text-align:center"> BYTE NO</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1~2</td>
+<td style="text-align:center">3</td>
+<td style="text-align:center">4~XX</td>
+<td style="text-align:center">Length + 3 </td>
+</tr>
+<tr>
+<td style="text-align:center"> SIZE(BYTE)</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">0~</td>
+<td style="text-align:center">1 </td>
+</tr>
+<tr>
+<td style="text-align:center"> VALUE</td>
+<td style="text-align:center">0xAA</td>
+<td style="text-align:center">1~</td>
+<td style="text-align:center">Command/Event</td>
+<td style="text-align:center">Command/Event Parameter</td>
+<td style="text-align:center">check sumxs </td>
+</tr>
+</tbody>
+</table>
 <h3 id="获取通讯录"><a href="#获取通讯录" class="headerlink" title="获取通讯录"></a>获取通讯录</h3><p>因为不支持PBAP协议，所以只能按照厂商提供的获取通讯录的命令进行操作，于是就遇到了很多的问题。<br>比如说：</p>
 <ol>
 <li>获取通讯录的过程非常繁琐，需要分别请求手机卡上的通讯录和手机存储的通讯录，每次请求之前要先用命令查询通讯录的数量，还要设置文本编码。</li>
@@ -124,7 +170,7 @@
 <p>于是，我们请教了蓝牙芯片的技术支持，在他们测试后同样得出了一样的结论，并且告诉我们在设计蓝牙多人通话的时候没有考虑到那么多，真是WTF！！！</p>
 <p>但是项目已经开始进行，芯片也已经确定，只能再想办法，后来我们想到，“既然蓝牙厂商封装的协议不稳定，干脆直接使用蓝牙原生支持的指令集来开发”。</p>
 <p>通过查找和测试，我们选择了AT+CLCC这条指令，发送后蓝牙芯片就会返回当前通话信息，包含通话的数量，通话的状态，一切又变得简单起来，我们只需要在通话状态改变时主动发送CLCC命令查询一下的当前的通话信息就行了，因为查询都是实时的，所以可以很及时的通知给程序，做相应的切换。</p>
-<p>好闲，总算解决了，不过要吐槽下他们的技术支持，没什么卵用。</p>
+<p>好险，总算解决了，不过要吐槽下他们的技术支持，没什么卵用。</p>
 <h3 id="AT指令"><a href="#AT指令" class="headerlink" title="AT指令"></a>AT指令</h3><p>话又说回来，啥是AT指令？<br>AT指令最早是应用于终端设备与PC应用之间的连接与通信的指令，主要用来控制和电信功能有关的模块，像MODEM、GSM，可以通过串口发送命令来控制电话功能，上网等。它的优点是命令简单易懂，并且采用标准串口来收发AT命令，使开发变得简单。<br>像蓝牙芯片，使用的是HFP协议栈中支持的AT指令，完成对手机呼叫、短信、电话本数据等功能。</p>
 <p>下面是几个用到的AT指令：</p>
 <ol>
