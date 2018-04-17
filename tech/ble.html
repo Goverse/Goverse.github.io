@@ -1,0 +1,306 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>BLE | Goverse&#39;Blog | Think more and different</title>
+
+  
+
+  
+  <meta name="description" content="蓝牙低能耗(BLE)技术是低成本、短距离、可互操作的鲁棒性无线技术.
+
+引言有机会参与到公司的手表手环项目，公司的产品有小黑系列的手表和Now系列的手环，主要功能有计步，睡眠监测，运动数据统计，心率检测，闹钟，信息推送等。本文将会介绍，我在开发手表手环项目时，对于蓝牙BLE技术的总结和积累（仅限于安卓平台）。
+BLE与标准蓝牙
+之前有写过一篇文章《蓝牙》，在里边介绍了我第一次进行蓝牙相关功能开发的总结，那么传统蓝牙和低功耗蓝牙之间是什么关系？它们的开发有没有什么区别？">
+  
+
+  
+  
+  <meta name="keywords" content="">
+  
+
+  <meta id="viewport" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+  <meta property="og:title" content="BLE"/>
+
+  <meta property="og:site_name" content="Goverse&#39;Blog"/>
+
+  
+  <meta property="og:image" content="/favicon.ico"/>
+  
+
+  <link href="/favicon.ico" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="Goverse&#39;Blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+</head>
+
+
+<body>
+<div class="blog">
+  <div class="content">
+
+    <header>
+  <div class="site-branding">
+    <h1 class="site-title">
+      <a href="/">Goverse&#39;Blog</a>
+    </h1>
+    <p class="site-description">Think more and different</p>
+  </div>
+  <nav class="site-navigation">
+    <ul>
+      
+        <li><a href="/">主页</a></li>
+      
+        <li><a href="/archives">归档</a></li>
+      
+        <li><a href="/categories">分类</a></li>
+      
+        <li><a href="/tags">标签</a></li>
+      
+        <li><a href="/about">关于</a></li>
+      
+    </ul>
+  </nav>
+</header>
+
+    <main class="site-main posts-loop">
+    <article>
+
+  
+    
+    <h3 class="article-title"><span>BLE</span></h3>
+    
+  
+
+  <div class="article-top-meta">
+    <span class="posted-on">
+      <a href="/tech/ble.html" rel="bookmark">
+        <time class="entry-date published" datetime="2017-10-15T04:45:00.000Z">
+          2017-10-15
+        </time>
+      </a>
+    </span>
+  </div>
+
+
+  
+
+  <div class="article-content">
+    <div class="entry">
+      
+        <script src="/assets/js/APlayer.min.js"> </script><blockquote>
+<p>蓝牙低能耗(BLE)技术是低成本、短距离、可互操作的鲁棒性无线技术.</p>
+</blockquote>
+<h3 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h3><p>有机会参与到公司的手表手环项目，公司的产品有小黑系列的手表和Now系列的手环，主要功能有计步，睡眠监测，运动数据统计，心率检测，闹钟，信息推送等。本文将会介绍，我在开发手表手环项目时，对于蓝牙BLE技术的总结和积累（仅限于安卓平台）。</p>
+<h3 id="BLE与标准蓝牙"><a href="#BLE与标准蓝牙" class="headerlink" title="BLE与标准蓝牙"></a>BLE与标准蓝牙</h3><blockquote>
+<p>之前有写过一篇文章《蓝牙》，在里边介绍了我第一次进行蓝牙相关功能开发的总结，那么传统蓝牙和低功耗蓝牙之间是什么关系？它们的开发有没有什么区别？</p>
+</blockquote>
+  <a id="more"></a>
+<p>首先蓝牙协议从产生到现在经历了很多的版本，我们平时所说的传统蓝牙或经典蓝牙指的是版本在v1.1~3.0的蓝牙协议，而低功耗蓝牙对应的蓝牙协议版本则为v4.0/4.1/4.2。所以低功耗蓝牙是在标准蓝牙的基础上产生的，它的出现就是要解决如何在移动端设备数据传输中降低功耗，现在广泛应用于智能设备、计步器、传感器物联网等领域。</p>
+<p>经典蓝牙支持更多的协议，比如说音频（HFP/HSP, A2DP）和数据（SPP, HID, OPP, PBAP）等，而BLE不支持音频协议的传输，因为它低功耗的特性，也导致它的传输速度会受到限制。所以BLE不能完全取代标准蓝牙，现在手机端的解决方案一般是既支持标准蓝牙也支持低功耗蓝牙，即蓝牙双模。</p>
+<p>在Android4.3的系统中，安卓也引入了BLE的支持，提供了相关接口用来开发BLE相关的应用，手表手环的开发也是基于此。</p>
+<h3 id="BLE协议栈"><a href="#BLE协议栈" class="headerlink" title="BLE协议栈"></a>BLE协议栈</h3><p>在开发之前，先来了解一下BLE的协议栈，它分为主机(Host)和控制器(Controller)。<br>控制器主要包括以下几层：</p>
+<ol>
+<li>物理层(Physical Layer)<br>BLE传输的物理信道，工作频段。</li>
+<li>链路层(Link Layer)<br>用于控制设备的射频状态。</li>
+<li>主机接口层(HCI)<br>为主机和控制器之间提供标准通信接口。</li>
+</ol>
+<p>主机主要包括以下几层：</p>
+<ol>
+<li>逻辑链路控制及自适应协议层(Logical Link Control and Adaptation Protocol)<br>作用：为上层提供数据封装服务，允许逻辑上的点对点数据通信。 </li>
+<li>安全管理层(Security Manager)<br>作用：定义了配对和秘钥分配方式，并为协议栈其他层与另一个设备之间的安全连接和数据交换提供服务。</li>
+<li>属性协议层(Attribute protocol)<br>作用：定义了属性的数据结构，包括：属性值，UUID，Handle，是协议栈上层通信的基础。</li>
+<li>通用属性配置文件层(Generic Attribute profile)<br>作用： 基于ATT协议，规定了配置文件(profile)的结构，包括Service,Charcteristic,Descriptor组成，并用于连接设备之间的数据通信。</li>
+<li>通用访问配置文件层(Generic Access Profile)<br>作用：用来控制设备连接和广播。</li>
+</ol>
+<p>协议栈的每一层都涉及到很多设计和技术细节，这里不展开。只着重说下与上层关系最近的通用属性配置文件层(即：GATT)和通用访问配置文件层(即：GAP)。</p>
+<h3 id="通用属性配置文件层-GAP"><a href="#通用属性配置文件层-GAP" class="headerlink" title="通用属性配置文件层(GAP)"></a>通用属性配置文件层(GAP)</h3><blockquote>
+<p>GAP定义了设备如何广播、扫描、发现和建立连接，以及配置工作角色（Role）、可发现性、广播数据内容和安全相关的参数。</p>
+</blockquote>
+<ol>
+<li>设备角色      </li>
+</ol>
+<p>GAP定义了四种角色，分别是：</p>
+<ul>
+<li>Broadcaster: 发送广播的设备，不可连接</li>
+<li>Observer：接收广播的设备，不发起建立连接</li>
+<li>Peripheral：外围设备，可连接的广播设备</li>
+<li>Central：中心设备，扫描广播设备并发起连接</li>
+</ul>
+<ol>
+<li><p>广播数据               </p>
+<p>在GAP中外围设备通过两种方式向外广播数据： Advertising Data Payload（广播数据）和 Scan Response Data Payload（扫描回复）。这里广播数据是必需的，因为外设必需不停的向外广播，让中心设备知道它的存在。扫描回复是可选的，中心设备可以向外设请求扫描回复，这里包含一些设备额外的信息，例如设备的名字。大部分情况下，外设通过广播自己来让中心设备发现自己，并建立GATT连接，从而进行更多的数据交换。也有些情况是不需要连接的，只要外设广播自己的数据即可。用这种方式主要目的是让外围设备，把自己的信息发送给多个中心设备。</p>
+</li>
+</ol>
+<p>常见的Broadcaster与Observer关系的设备，比如一些支持BLE的传感器，它们将数据发到接收设备上就不需要建立连接。<br>而像智能手表手环这种，需要建立连接才能通信的设备就属于Central和Peripheral的关系。</p>
+<p>那么在中心设备通过GAP发现外围设备并建立连接后，它们是如何开始进行数据通信的？这时就要看通用属性配置文件层(GATT)的了。</p>
+<h3 id="通用访问配置文件层-GATT"><a href="#通用访问配置文件层-GATT" class="headerlink" title="通用访问配置文件层(GATT)"></a>通用访问配置文件层(GATT)</h3><blockquote>
+<p>通用属性 (GATT) 定义了一种面向蓝牙LE设备的分层数据结构。</p>
+</blockquote>
+<ol>
+<li><p>设备角色<br>当两个设备建立连接，通过GATT进行通信时，分别会有服务端和客户端两个角色。(GATT角色中的服务端和客户端与GAP定义的外围设备和中心设备没有对应关系,是独立的概念，外围设备和中心设备都既可以做Server，也可以做Client)。此外，GATT连接时独占的，当一个BLE外设被一个中心设备连接后，它会马上停止广播，对其它设备变为不可见。</p>
+</li>
+<li><p>层次结构<br><img src="https://www.bluetooth.com/~/media/images/page-content/gatt%20profile%20hierarchy.ashx?la=en&amp;hash=5809F05343EB927D9E9680E4CA70556B4ED69A67" alt="GATT Profile Hierarchy"></p>
+</li>
+</ol>
+<ul>
+<li>profile位于层次结构的最顶层，是一组服务的集合，这些服务被人为地组合起来并定义成一个特定的使用场景，用来声明一个低功耗蓝牙设备可以做的事情。</li>
+<li>service由characteristics和对其他service的references组成。</li>
+<li>characteristics包括类型（表现为 UUID）、值、一组指示characteristics所支持操作的属性以及一组与安全相关的权限。还可能包括一个或多个descriptors与所拥有characteristics包括类型相关的元数据或配置标志。</li>
+</ul>
+<ol>
+<li>通信过程<br>GATT的通信主要是对特性，描述符的读写过程。<br>GATT建立连接后，首先会发现并连接服务，当连接上需要通信的服务后，客户端便可以对特性进行读取写入的操作，服务端会根据请求属性的权限给客户端作出回应。</li>
+</ol>
+<h3 id="安卓BLE"><a href="#安卓BLE" class="headerlink" title="安卓BLE"></a>安卓BLE</h3><p>在了解BLE协议栈的原理和结构后，终于可以进行开发工作了。以下会以手表手环的开发来介绍BLE在安卓平台的应用，以及如何设计和封装一个BLE类库。</p>
+<ol>
+<li><p>功能需求(手表手环)<br>手机APP与手表手环进行数据通信的过程如下：<br>首先手机端app进行蓝牙搜索，搜索到目标设备后进行连接。<br>连接成功后，便可以将储存在设备上的运动数据同步到手机端，然后在本地解析或上传服务器进行解析，最终在APP上进行展示。<br>手机端APP可以完成同步时间，设置闹钟，设置表盘，固件升级，设置日程提醒等功能，通过将指令发往设备，完成操作。<br>此外，手表手环还可以接收来自手机的消息通知，这个的原理是，手机端APP会运行一个BLE service，并开启通知，设备作为客户端可以接收到通知并完成展示。</p>
+</li>
+<li><p>Android API</p>
+</li>
+</ol>
+<ul>
+<li><p>BluetoothManager</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">High level manager used to obtain an instance of a BluetoothAdapter and to conduct overall Bluetooth Management.</div></pre></td></tr></table></figure>
+</li>
+<li><p>BluetoothAdapter</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Represents the local device Bluetooth adapter. The BluetoothAdapter.lets you perform fundamental Bluetooth tasks, such as initiate device discovery, query a list of bonded (paired) devices,instantiate a BluetoothDevice using a known MAC address, and create a BluetoothServerSocket to listen for connection requests from other devices, and start a scan for Bluetooth LE devices.</div></pre></td></tr></table></figure>
+</li>
+<li><p>BluetoothGatt</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Public API for the Bluetooth GATT Profile.</div><div class="line">This class provides Bluetooth GATT functionality to enable communication with Bluetooth Smart or Smart Ready devices.</div></pre></td></tr></table></figure>
+</li>
+<li><p>BluetoothGattServer</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Public API for the Bluetooth GATT Profile server role.</div><div class="line">This class provides Bluetooth GATT server role functionality, allowing applications to create Bluetooth Smart services and characteristics.</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="BLEScanner"><a href="#BLEScanner" class="headerlink" title="BLEScanner"></a>BLEScanner</h3><blockquote>
+<p>该类封装了扫描蓝牙设备的功能。</p>
+</blockquote>
+<p>安卓分别提供了扫描经典蓝牙和低功耗蓝牙的API。       </p>
+<ol>
+<li>扫描设备(传统蓝牙)</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">// 注册广播</div><div class="line">private void registerDiscoverReceiver() &#123;</div><div class="line">        IntentFilter filter = new IntentFilter();</div><div class="line">        filter.addAction(BluetoothDevice.ACTION_FOUND);</div><div class="line">        filter.addAction(BluetoothAdapter.ACTION_DISCOVERY_FINISHED);</div><div class="line">        mContext.registerReceiver(mDeviceReceiver, filter);</div><div class="line">    &#125;</div><div class="line">// 扫描</div><div class="line">mBluetoothAdapter.startDiscovery();</div><div class="line"></div><div class="line">// 广播接收者</div><div class="line">private BroadcastReceiver mDeviceReceiver = new BroadcastReceiver() &#123;</div><div class="line"></div><div class="line">        @Override</div><div class="line">        public void onReceive(Context context, Intent intent) &#123;</div><div class="line">            String action = intent.getAction();</div><div class="line">            if (BluetoothDevice.ACTION_FOUND.equals(action)) &#123;</div><div class="line">                BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);</div><div class="line">                if (device.getType() == BluetoothDevice.DEVICE_TYPE_LE) &#123;</div><div class="line">                    short rssi = intent.getShortExtra(BluetoothDevice.EXTRA_RSSI, (short)-60);</div><div class="line">                    if(mOnScanedListener != null) mOnScanedListener.onScaned(new Device(device.getName(), device.getAddress(), rssi));</div><div class="line">                &#125;</div><div class="line">            &#125; else if (BluetoothAdapter.ACTION_DISCOVERY_FINISHED.equals(action)) &#123;</div><div class="line"></div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;;</div><div class="line"></div><div class="line">// 停止扫描</div><div class="line">mContext.unregisterReceiver(mDeviceReceiver);</div><div class="line">mBluetoothAdapter.cancelDiscovery();</div></pre></td></tr></table></figure>
+<ol>
+<li>扫描设备(低功耗蓝牙)，旧API</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">// 扫描</div><div class="line">mBluetoothAdapter.startLeScan(mLeScanCallback);</div><div class="line"></div><div class="line">// 扫描回调 LeScanCallback</div><div class="line">private BluetoothAdapter.LeScanCallback mLeScanCallback = new BluetoothAdapter.LeScanCallback() &#123;</div><div class="line"></div><div class="line">        @Override</div><div class="line">        public void onLeScan(final BluetoothDevice bluetoothDevice, final int i, final byte[] bytes) &#123;</div><div class="line">            if(mOnScanedListener != null) &#123;</div><div class="line">                mHandler.post(new Runnable() &#123;</div><div class="line">                    @Override</div><div class="line">                    public void run() &#123;</div><div class="line">                        mOnScanedListener.onScaned(new Device(parseDeviceName(bytes), bluetoothDevice.getAddress(), i));</div><div class="line">                    &#125;</div><div class="line">                &#125;);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;;</div><div class="line">// 停止扫描</div><div class="line">mBluetoothAdapter.stopLeScan(mLeScanCallback);</div></pre></td></tr></table></figure>
+<ol>
+<li>扫描设备(低功耗蓝牙)，新API</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">// 扫描</div><div class="line">private void startNewLeScan() &#123;</div><div class="line">        BluetoothLeScanner bluetoothLeScanner = mBluetoothAdapter.getBluetoothLeScanner();</div><div class="line">        mScanCallback = new ScanCallback() &#123;</div><div class="line">            @Override</div><div class="line">            public void onScanResult(int callbackType, ScanResult result) &#123;</div><div class="line">                super.onScanResult(callbackType, result);</div><div class="line">                BluetoothDevice device = result.getDevice();</div><div class="line">                if(mOnScanedListener != null) mOnScanedListener.onScaned(new Device(device.getName(), device.getAddress(), result.getRssi()));</div><div class="line">            &#125;</div><div class="line">        &#125;;</div><div class="line">        ScanSettings.Builder builder = new ScanSettings.Builder();</div><div class="line">        builder.setScanMode(SCAN_MODE_LOW_LATENCY);</div><div class="line">        bluetoothLeScanner.startScan(null, builder.build(), mScanCallback);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">// 停止扫描</div><div class="line">    private void stopNewLeScan() &#123;</div><div class="line">        BluetoothLeScanner bluetoothLeScanner = mBluetoothAdapter.getBluetoothLeScanner();</div><div class="line">        if (bluetoothLeScanner != null) &#123;</div><div class="line">            bluetoothLeScanner.stopScan(mScanCallback);</div><div class="line">        &#125;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<h3 id="Channel"><a href="#Channel" class="headerlink" title="Channel"></a>Channel</h3><blockquote>
+<p>这里我在建立GATT连接的基础上,将”对Charististic的操作抽象成为一个Channel”。共有三种类型：READ,WRITE,NOTIFICATION。</p>
+</blockquote>
+<ol>
+<li>ChannelAttribute<br>每个Channel所有拥有的属性值，包括service uuid, charististic uuid, descriptor uuid,这样可以保证GATT客户端找到服务端的Charististic。</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">public ChannelAttribute(UUID service, UUID chars, UUID descriptor) &#123;</div><div class="line"></div><div class="line">        this.service = service;</div><div class="line">        this.chars = chars;</div><div class="line">        this.descriptor = descriptor;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<ol>
+<li>ReadChannel<br>可读的Channel, 向服务端的Charististic读取数据。</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">public boolean read(OnReadListener onReadListener)</div></pre></td></tr></table></figure>
+<ol>
+<li>WriteChannel<br>可写的Channel, 向服务端的Charististic写入数据。</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">public boolean write(byte[] data, OnWriteListener onWriteListener)</div></pre></td></tr></table></figure>
+<ol>
+<li>NotificationChannel<br>通知的Channel, 向客户端的Charististic通知数据。</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">public interface OnNotificationListener &#123;</div><div class="line">    public void onNotificationRecieved(byte[] data);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="BLEClient"><a href="#BLEClient" class="headerlink" title="BLEClient"></a>BLEClient</h3><p>封装GATT客户端的操作，提供接口如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">/**</div><div class="line"> * connect</div><div class="line"> * @param macAddress macAddress</div><div class="line"> */</div><div class="line">void connect(String macAddress);</div><div class="line"></div><div class="line">/**</div><div class="line"> * disconnect</div><div class="line"> */</div><div class="line">void disconnect();</div><div class="line"></div><div class="line">/**</div><div class="line"> * add NotificationChannel</div><div class="line"> */</div><div class="line">void addNotificationChannel(UUID service, UUID chars, UUID des, NotificationChannel.OnNotificationListener onNotificaionListener);</div><div class="line"></div><div class="line"></div><div class="line">/**</div><div class="line"> * add ReadChannel</div><div class="line"> */</div><div class="line">ReadChannel addReadChannel(UUID service, UUID chars);</div><div class="line"></div><div class="line"></div><div class="line">/**</div><div class="line"> * add WriteChannel</div><div class="line"> */</div><div class="line">WriteChannel addWriteChannel(UUID service, UUID chars);</div></pre></td></tr></table></figure>
+<h3 id="BLEServer"><a href="#BLEServer" class="headerlink" title="BLEServer"></a>BLEServer</h3><p>封装所有GATT服务端的操作，提供接口如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div></pre></td><td class="code"><pre><div class="line">/**</div><div class="line"> * 打开服务</div><div class="line"> */</div><div class="line">public void openServer() &#123;</div><div class="line">    mBluetoothGattServer = mBluetoothManager.openGattServer(mContext, mBluetoothGattServerCallback);</div><div class="line">&#125;</div><div class="line"></div><div class="line">/**</div><div class="line"> * 关闭服务</div><div class="line"> */</div><div class="line">public void closeServer() &#123;</div><div class="line">    if(mBluetoothGattServer != null)&#123;</div><div class="line">        mBluetoothGattServer.clearServices();</div><div class="line">        mBluetoothGattServer.close();</div><div class="line">        mBluetoothGattServer = null;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"> /**</div><div class="line"> * 连接设备</div><div class="line"> * @param macAddress 设备mac</div><div class="line"> * @param autoConnect 自动连接</div><div class="line"> */</div><div class="line">public void connect(String macAddress, boolean autoConnect) &#123;</div><div class="line">    BluetoothDevice device =</div><div class="line">            BluetoothAdapter.getDefaultAdapter().getRemoteDevice(macAddress);</div><div class="line">    mBluetoothGattServer.connect(device, autoConnect);</div><div class="line">&#125;</div><div class="line"></div><div class="line">/**</div><div class="line"> * 断开连接</div><div class="line"> * @param macAddress 设备mac</div><div class="line"> */</div><div class="line">public void disconnect(String macAddress)&#123;</div><div class="line">    if(mBluetoothGattServer != null)&#123;</div><div class="line">        BluetoothDevice device =</div><div class="line">                BluetoothAdapter.getDefaultAdapter().getRemoteDevice(macAddress);</div><div class="line">        mBluetoothGattServer.cancelConnection(device);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">/**</div><div class="line"> * 添加服务</div><div class="line"> * @param customService customService</div><div class="line"> */</div><div class="line">public void addService(CustomService customService) &#123;</div><div class="line">    if (mBluetoothGattServer != null) &#123;</div><div class="line">        mBluetoothGattServer.addService(customService);</div><div class="line">        customService.setBleServer(this);</div><div class="line">        addServerListener(customService);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="CustomService"><a href="#CustomService" class="headerlink" title="CustomService"></a>CustomService</h3><p>封装GATT service</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line">@Override</div><div class="line">public void onCharacteristicWriteRequest(BluetoothDevice device,</div><div class="line">                                         int requestId,</div><div class="line">                                         BluetoothGattCharacteristic characteristic,</div><div class="line">                                         boolean preparedWrite,</div><div class="line">                                         boolean responseNeeded,</div><div class="line">                                         int offset,</div><div class="line">                                         byte[] value) &#123;</div><div class="line">    Log.d(TAG, &quot;onCharacteristicWriteRequest:&quot; + device.getAddress() + &quot;---charUUID:&quot; + characteristic.getUuid());</div><div class="line">    characteristic.setValue(value);</div><div class="line">    sendCharResSuccess(device, requestId, offset, characteristic);</div><div class="line">    ResponseData reponseData = fetchResponseData(value, characteristic.getUuid());</div><div class="line">    if (null == reponseData || null == reponseData.getValue()) &#123;</div><div class="line">        return;</div><div class="line">    &#125;</div><div class="line">    List&lt;byte[]&gt; mtus = spiltToMTUs(reponseData.getValue(), getMtuSize());</div><div class="line">    for (int i = 0; i &lt; mtus.size(); i ++) &#123;</div><div class="line">        writeCharacteristicChanged(device, reponseData.getCharUuid(), mtus.get(i));</div><div class="line">    &#125;</div><div class="line">    onResponseNotified();</div><div class="line">&#125;</div><div class="line"></div><div class="line">/**</div><div class="line"> * GATT服务端获取请求数据</div><div class="line"> * @param requestValue requestValue</div><div class="line"> * @param charUuid charUuid</div><div class="line"> * @return byte[]</div><div class="line"> */</div><div class="line">protected abstract ResponseData fetchResponseData(byte[] requestValue, UUID charUuid);</div><div class="line"></div><div class="line">/**</div><div class="line"> * onResponseNotified</div><div class="line"> */</div><div class="line">protected abstract void onResponseNotified();</div><div class="line"></div><div class="line">/**</div><div class="line"> * MTU大小，默认不分割</div><div class="line"> * @return int</div><div class="line"> */</div><div class="line">public int getMtuSize() &#123;</div><div class="line">    return Integer.MAX_VALUE;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="ANCS-苹果通知中心服务"><a href="#ANCS-苹果通知中心服务" class="headerlink" title="ANCS(苹果通知中心服务)"></a>ANCS(苹果通知中心服务)</h4><blockquote>
+<p>ANCS服务是为了周边设备通过低功耗蓝牙获取实时通知而产生的机制。</p>
+</blockquote>
+<ol>
+<li>手表手环肯定是支持苹果和安卓双系统的，而苹果的消息通知机制是通过ANCS通知，那么如何统一安卓和ios端的消息通知呢？</li>
+</ol>
+<p>其实ANCS它本身就是GATT的一个子集,和GATT service完全兼容，所以我们只需要在安卓端APP上模拟一个ANCS服务就好了，这样设备端固件无需修改。 </p>
+<ol>
+<li>Charististic<br>ANCS有以下三个主要的Charististic<br>Notification Source: UUID 9FBF120D-6301-42D9-8C58-25E699A21DBD<br>通知源，权限是可通知，作用：通知基本的信息<br>Control Point: UUID 69D1D8F3-45E1-49A8-9821-9BBDFDAAD9D9<br>控制点，权限是可写入，可响应，作用：请求详细信息<br>Data Source: UUID 22EAC6E9-24D6-4BB5-BE44-B36ACE7C7BFB<br>数据源，权限是可通知，作用：通知详细的信息</li>
+</ol>
+<h3 id="遇到的问题"><a href="#遇到的问题" class="headerlink" title="遇到的问题"></a>遇到的问题</h3><ol>
+<li>扫描速度慢<br>当使用新的BLE 扫描接口扫描时，速度总是很慢，后来反编译NRF Connect工具时才知道原因，需要设置扫描的模式，这会影响到扫描结果上报的时间：</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">之前调用：</div><div class="line">        bluetoothLeScanner.startScan(mScanCallback);</div><div class="line">优化后调用：</div><div class="line">        ScanSettings.Builder builder = new ScanSettings.Builder();</div><div class="line">        builder.setScanMode(SCAN_MODE_LOW_LATENCY);</div><div class="line">        bluetoothLeScanner.startScan(null, builder.build(), mScanCallback);</div></pre></td></tr></table></figure>
+<p>此外还需要注意的点是：不应该在扫描的回调方法或者回调线程中做太多的事，这也会影响到扫描结果的速度。</p>
+<ol>
+<li>断开连接，onConnectionStateChange回调不来</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">之前调用：</div><div class="line">        mBluetoothGatt.disconnect();</div><div class="line">        mBluetoothGatt.close();</div><div class="line">        mBluetoothGatt = null;</div></pre></td></tr></table></figure>
+<p>因为断开后直接close释放了资源，所以不会来回调。正确做法是只调用disconnect，在回调中释放资源。</p>
+<ol>
+<li>BluetoothGattCallback 容易出现status 133</li>
+</ol>
+<p>再次连接上次连接的设备时，最好调用BluetoothGatt的close()释放掉之前的连接资源。还有就是mBluetoothGatt的相关操作，做好放到主线程去做。</p>
+<ol>
+<li>通知数据出错<br>这个问题出现在BluetoothGattCallback的方法里做通知Listener，外边收到的数据总是有些不对，最后收到的数据是相同的。</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">@Override public void onCharacteristicChanged(BluetoothGatt gatt,</div><div class="line">                                    BluetoothGattCharacteristic characteristic) &#123;</div><div class="line">   super.onCharacteristicChanged(gatt, characteristic);</div><div class="line">   Log.d(TAG, &quot;onCharacteristicChanged&quot;);</div><div class="line">   notifyOnNotificationListener(characteristic.getService().getUid(), characteristic.getUuid(), characteristic.getValue());</div><div class="line">&#125;</div><div class="line">   </div><div class="line">错误回调：</div><div class="line">        private void notifyOnNotificationListener(final BluetoothGattCharacteristic characteristic)</div><div class="line">  </div><div class="line">修改后：</div><div class="line">        private void notifyOnNotificationListener(final UUID service, final UUID chars, final byte[] value)</div></pre></td></tr></table></figure>
+<p>一开始回调方法的参数是BluetoothGattCharacteristic，它是个对象的引用，当回调来的太快时，因为回调出去的是characteristic的值，如果每次characteristic是相同的话，那么前边的值会被后边覆盖掉，也就导致后边收到的数据都相同，解决方法直接改为基本类型。这个低级错误真的是不应该啊。</p>
+<h3 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h3><p>第一次开发可穿戴设备还是挺兴奋的，并且对蓝牙BLE的研究我也很有兴趣。不过蓝牙还是有很多坑，需要多测试多调，才能将连接，通信优化的很好。<br>对于公司的手表手环，我有件事印象很深，还记得在去年年会上，没见过几次面的大老板说：我们就要做那些大公司不屑于做的领域，虽然现在是亏钱的，积累做几年，等到穿戴设备真正好用的时候，那时我们已经有了很多经验，领先别人很多。老板还是很有远见的，穿戴设备在未来肯定会有更大需求，现在技术发展那么快，说不定以后手表手环能有啥功能，如果现在不去积累技术，那么以后肯定连个参与的机会都没有，我也希望公司的产品能越做越好。</p>
+<p>项目地址：<a href="https://github.com/Goverse/LibLinker" target="_blank" rel="external">https://github.com/Goverse/LibLinker</a></p>
+<p>本文参考：<a href="www.bluetooth.com">www.bluetooth.com</a></p>
+
+      
+    </div>
+
+  </div>
+
+  <div class="article-footer">
+    <div class="article-meta pull-left">
+
+    
+      
+
+    <span class="post-categories">
+      <i class="icon-categories"></i>
+        <a href="/categories/tech/">技术</a>
+    </span>
+    
+
+    
+
+    </div>
+
+    
+  </div>
+</article>
+
+
+    </main>
+
+    <footer class="site-footer">
+  <p class="site-info">
+    Proudly powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and
+    Theme by <a href="https://github.com/CodeDaraW/Hacker" target="_blank">Hacker</a>
+    </br>
+    
+    &copy; 2018 Goverse&#39;Blog
+    
+  </p>
+</footer>
+    
+  <script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?bf97bef94fa19c674f5640f47e01d001";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+  })();
+  </script>
+
+
+
+  </div>
+</div>
+</body>
+</html>
