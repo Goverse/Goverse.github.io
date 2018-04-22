@@ -158,26 +158,6 @@
 
     
   <url>
-    <loc>http://goverse.me/study/index.html</loc>
-    <lastmod>2018-02-03T02:45:14.651Z</lastmod>
-    <data>
-        <display>
-        <title>股票</title>
-        <pubTime>2017-03-04T01:36:00.000Z</pubTime>
-        
-        <tag>理财</tag>
-         
-         
-           
-             
-              <breadCrumb title="学习" url="http://goverse.me/categories/study/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://goverse.me/life/21.html</loc>
     <lastmod>2018-01-21T16:09:23.234Z</lastmod>
     <data>
@@ -303,9 +283,9 @@
         <title>实习日志</title>
         <pubTime>2015-08-02T06:49:00.000Z</pubTime>
         
-        <tag>随感</tag>
-         
         <tag>工作</tag>
+         
+        <tag>随感</tag>
          
          
            
@@ -425,9 +405,9 @@
         <title>毕业一年</title>
         <pubTime>2017-06-29T16:00:00.000Z</pubTime>
         
-        <tag>随感</tag>
-         
         <tag>工作</tag>
+         
+        <tag>随感</tag>
          
          
            
