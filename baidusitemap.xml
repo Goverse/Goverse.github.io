@@ -4,8 +4,304 @@
 
     
   <url>
+    <loc>http://goverse.me/tech/annotation.html</loc>
+    <lastmod>2018-04-22T09:58:59.666Z</lastmod>
+    <data>
+        <display>
+        <title>Annotation</title>
+        <pubTime>2016-08-18T12:10:00.000Z</pubTime>
+        
+        <tag>工作</tag>
+         
+         
+           
+             
+              <breadCrumb title="技术" url="http://goverse.me/categories/tech/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://goverse.me/tech/aoa.html</loc>
+    <lastmod>2018-04-22T09:56:27.037Z</lastmod>
+    <data>
+        <display>
+        <title>AOA</title>
+        <pubTime>2018-04-18T04:11:00.000Z</pubTime>
+        
+        <tag>USB</tag>
+         
+         
+           
+             
+              <breadCrumb title="技术" url="http://goverse.me/categories/tech/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://goverse.me/tech/linker_loader.html</loc>
+    <lastmod>2018-04-22T09:55:47.038Z</lastmod>
+    <data>
+        <display>
+        <title>Linker and Loader</title>
+        <pubTime>2018-04-10T13:30:00.000Z</pubTime>
+        
+        <tag>C++</tag>
+         
+         
+           
+             
+              <breadCrumb title="技术" url="http://goverse.me/categories/tech/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://goverse.me/tech/audiotrack.html</loc>
+    <lastmod>2018-04-22T09:55:20.715Z</lastmod>
+    <data>
+        <display>
+        <title>AudioTrack</title>
+        <pubTime>2018-03-27T08:29:00.000Z</pubTime>
+        
+        <tag>工作</tag>
+         
+         
+           
+             
+              <breadCrumb title="技术" url="http://goverse.me/categories/tech/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://goverse.me/tech/mediacodec.html</loc>
+    <lastmod>2018-04-22T09:55:03.951Z</lastmod>
+    <data>
+        <display>
+        <title>MediaCodec</title>
+        <pubTime>2018-03-18T22:30:00.000Z</pubTime>
+        
+        <tag>decode</tag>
+         
+         
+           
+             
+              <breadCrumb title="技术" url="http://goverse.me/categories/tech/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://goverse.me/tech/screencap.html</loc>
+    <lastmod>2018-04-22T09:54:32.049Z</lastmod>
+    <data>
+        <display>
+        <title>ScreenCap</title>
+        <pubTime>2018-03-05T10:30:00.000Z</pubTime>
+        
+        <tag>工作</tag>
+         
+         
+           
+             
+              <breadCrumb title="技术" url="http://goverse.me/categories/tech/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://goverse.me/tech/git.html</loc>
+    <lastmod>2018-04-22T09:53:57.797Z</lastmod>
+    <data>
+        <display>
+        <title>Git</title>
+        <pubTime>2016-11-14T15:50:00.000Z</pubTime>
+        
+        <tag>工作</tag>
+         
+         
+           
+             
+              <breadCrumb title="技术" url="http://goverse.me/categories/tech/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://goverse.me/tech/volatile.html</loc>
+    <lastmod>2018-04-22T09:53:25.458Z</lastmod>
+    <data>
+        <display>
+        <title>volatile</title>
+        <pubTime>2016-09-21T00:30:00.000Z</pubTime>
+        
+        <tag>工作</tag>
+         
+         
+           
+             
+              <breadCrumb title="技术" url="http://goverse.me/categories/tech/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://goverse.me/tech/skinchange.html</loc>
+    <lastmod>2018-04-22T09:52:38.972Z</lastmod>
+    <data>
+        <display>
+        <title>SkinChange</title>
+        <pubTime>2017-03-11T10:30:00.000Z</pubTime>
+        
+        <tag>工作</tag>
+         
+         
+           
+             
+              <breadCrumb title="技术" url="http://goverse.me/categories/tech/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://goverse.me/tech/jni.html</loc>
+    <lastmod>2018-04-22T09:51:54.923Z</lastmod>
+    <data>
+        <display>
+        <title>JNI</title>
+        <pubTime>2017-11-08T09:30:00.000Z</pubTime>
+        
+        <tag>C++</tag>
+         
+         
+           
+             
+              <breadCrumb title="技术" url="http://goverse.me/categories/tech/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://goverse.me/tech/0XFF.html</loc>
+    <lastmod>2018-04-22T09:48:21.361Z</lastmod>
+    <data>
+        <display>
+        <title>0XFF</title>
+        <pubTime>2017-06-03T10:30:00.000Z</pubTime>
+        
+        <tag>工作</tag>
+         
+         
+           
+             
+              <breadCrumb title="技术" url="http://goverse.me/categories/tech/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://goverse.me/read/luxun.html</loc>
+    <lastmod>2018-04-22T09:44:44.353Z</lastmod>
+    <data>
+        <display>
+        <title>鲁迅</title>
+        <pubTime>2017-10-01T03:00:00.000Z</pubTime>
+        
+         
+           
+             
+              <breadCrumb title="阅读" url="http://goverse.me/categories/read/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://goverse.me/tech/ota.html</loc>
+    <lastmod>2018-04-22T09:44:14.137Z</lastmod>
+    <data>
+        <display>
+        <title>OTA</title>
+        <pubTime>2017-02-13T10:30:00.000Z</pubTime>
+        
+        <tag>工作</tag>
+         
+         
+           
+             
+              <breadCrumb title="技术" url="http://goverse.me/categories/tech/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://goverse.me/tech/aar.html</loc>
+    <lastmod>2018-04-22T09:42:51.963Z</lastmod>
+    <data>
+        <display>
+        <title>AAR</title>
+        <pubTime>2018-03-31T20:47:00.000Z</pubTime>
+        
+        <tag>打包</tag>
+         
+         
+           
+             
+              <breadCrumb title="技术" url="http://goverse.me/categories/tech/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://goverse.me/tech/mvp.html</loc>
+    <lastmod>2018-04-22T09:42:22.345Z</lastmod>
+    <data>
+        <display>
+        <title>MVP</title>
+        <pubTime>2017-12-18T03:43:00.000Z</pubTime>
+        
+         
+           
+             
+              <breadCrumb title="技术" url="http://goverse.me/categories/tech/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://goverse.me/tech/ble.html</loc>
-    <lastmod>2018-04-22T06:07:39.316Z</lastmod>
+    <lastmod>2018-04-22T09:40:16.102Z</lastmod>
     <data>
         <display>
         <title>BLE</title>
@@ -22,11 +318,91 @@
 
     
   <url>
-    <loc>http://goverse.me/tech/bluetooth.html</loc>
-    <lastmod>2018-04-17T15:34:48.506Z</lastmod>
+    <loc>http://goverse.me/tech/androidutils.html</loc>
+    <lastmod>2018-04-22T09:39:03.234Z</lastmod>
     <data>
         <display>
-        <title>蓝牙</title>
+        <title>AndroidUtils</title>
+        <pubTime>2017-05-08T04:30:00.000Z</pubTime>
+        
+        <tag>工作</tag>
+         
+         
+           
+             
+              <breadCrumb title="技术" url="http://goverse.me/categories/tech/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://goverse.me/tech/singleton.html</loc>
+    <lastmod>2018-04-22T09:23:40.925Z</lastmod>
+    <data>
+        <display>
+        <title>Singleton</title>
+        <pubTime>2016-08-02T23:00:00.000Z</pubTime>
+        
+        <tag>设计模式</tag>
+         
+         
+           
+             
+              <breadCrumb title="技术" url="http://goverse.me/categories/tech/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://goverse.me/tech/weixin.html</loc>
+    <lastmod>2018-04-22T09:23:19.566Z</lastmod>
+    <data>
+        <display>
+        <title>Weixin</title>
+        <pubTime>2017-02-27T10:59:00.000Z</pubTime>
+        
+        <tag>工作</tag>
+         
+         
+           
+             
+              <breadCrumb title="技术" url="http://goverse.me/categories/tech/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://goverse.me/tech/floating_window.html</loc>
+    <lastmod>2018-04-22T09:22:10.248Z</lastmod>
+    <data>
+        <display>
+        <title>Floating window</title>
+        <pubTime>2017-02-10T09:23:00.000Z</pubTime>
+        
+        <tag>工作</tag>
+         
+         
+           
+             
+              <breadCrumb title="技术" url="http://goverse.me/categories/tech/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://goverse.me/tech/bluetooth.html</loc>
+    <lastmod>2018-04-22T09:21:13.411Z</lastmod>
+    <data>
+        <display>
+        <title>Bluetooth</title>
         <pubTime>2017-07-10T15:00:00.000Z</pubTime>
         
         <tag>工作</tag>
@@ -42,28 +418,8 @@
 
     
   <url>
-    <loc>http://goverse.me/tech/git.html</loc>
-    <lastmod>2018-04-17T15:26:46.549Z</lastmod>
-    <data>
-        <display>
-        <title>Git</title>
-        <pubTime>2017-07-21T05:50:00.000Z</pubTime>
-        
-        <tag>工作</tag>
-         
-         
-           
-             
-              <breadCrumb title="技术" url="http://goverse.me/categories/tech/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://goverse.me/life/fitness.html</loc>
-    <lastmod>2018-04-16T14:51:19.732Z</lastmod>
+    <lastmod>2018-04-22T09:12:45.825Z</lastmod>
     <data>
         <display>
         <title>健身</title>
@@ -82,17 +438,19 @@
 
     
   <url>
-    <loc>http://goverse.me/read/luxun.html</loc>
-    <lastmod>2018-03-28T15:31:55.823Z</lastmod>
+    <loc>http://goverse.me/tech/asr.html</loc>
+    <lastmod>2018-04-22T09:09:29.157Z</lastmod>
     <data>
         <display>
-        <title>鲁迅</title>
-        <pubTime>2017-07-08T03:00:00.000Z</pubTime>
+        <title>ASR</title>
+        <pubTime>2017-02-01T10:30:00.000Z</pubTime>
         
+        <tag>工作</tag>
+         
          
            
              
-              <breadCrumb title="阅读" url="http://goverse.me/categories/read/"/>
+              <breadCrumb title="技术" url="http://goverse.me/categories/tech/"/>
           
         </display>
     </data>
@@ -318,26 +676,6 @@
 
     
   <url>
-    <loc>http://goverse.me/tech/annotation.html</loc>
-    <lastmod>2018-01-16T14:43:57.147Z</lastmod>
-    <data>
-        <display>
-        <title>注解赋值</title>
-        <pubTime>2016-08-18T12:10:00.000Z</pubTime>
-        
-        <tag>工作</tag>
-         
-         
-           
-             
-              <breadCrumb title="技术" url="http://goverse.me/categories/tech/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://goverse.me/life/graduation.html</loc>
     <lastmod>2018-01-16T14:43:17.050Z</lastmod>
     <data>
@@ -353,44 +691,6 @@
            
              
               <breadCrumb title="生活" url="http://goverse.me/categories/life/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://goverse.me/tech/index.html</loc>
-    <lastmod>2018-01-16T14:24:15.643Z</lastmod>
-    <data>
-        <display>
-        <title>架构</title>
-        <pubTime>2017-12-18T03:43:00.000Z</pubTime>
-        
-         
-           
-             
-              <breadCrumb title="技术" url="http://goverse.me/categories/tech/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://goverse.me/tech/index.html</loc>
-    <lastmod>2018-01-16T14:23:59.953Z</lastmod>
-    <data>
-        <display>
-        <title>单例</title>
-        <pubTime>2016-08-02T23:00:00.000Z</pubTime>
-        
-        <tag>设计模式</tag>
-         
-         
-           
-             
-              <breadCrumb title="技术" url="http://goverse.me/categories/tech/"/>
           
         </display>
     </data>

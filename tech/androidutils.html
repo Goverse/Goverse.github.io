@@ -1,0 +1,181 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>AndroidUtils | Goverse&#39;Blog | Think more and different</title>
+
+  
+
+  
+  <meta name="description" content="引言这是我个人开发的Andorid开发的工具类库。虽然网上有很多开源的工具类库，但大多用起来总差点意思，有的功能太简单，有的封装的又太复杂，无法完全满足自己的定制化需求，所以干脆自己写个方便使用的工具类库。">
+  
+
+  
+  
+  <meta name="keywords" content="工作">
+  
+
+  <meta id="viewport" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+  <meta property="og:title" content="AndroidUtils"/>
+
+  <meta property="og:site_name" content="Goverse&#39;Blog"/>
+
+  
+  <meta property="og:image" content="/favicon.ico"/>
+  
+
+  <link href="/favicon.ico" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="Goverse&#39;Blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        }
+      else {
+          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+</head>
+
+
+<body>
+<div class="blog">
+  <div class="content">
+
+    <header>
+  <div class="site-branding">
+    <h1 class="site-title">
+      <a href="/">Goverse&#39;Blog</a>
+    </h1>
+    <p class="site-description">Think more and different</p>
+  </div>
+  <nav class="site-navigation">
+    <ul>
+      
+        <li><a href="/">主页</a></li>
+      
+        <li><a href="/archives">归档</a></li>
+      
+        <li><a href="/categories">分类</a></li>
+      
+        <li><a href="/tags">标签</a></li>
+      
+        <li><a href="/about">关于</a></li>
+      
+    </ul>
+  </nav>
+</header>
+
+    <main class="site-main posts-loop">
+    <article>
+
+  
+    
+    <h3 class="article-title"><span>AndroidUtils</span></h3>
+    
+  
+
+  <div class="article-top-meta">
+    <span class="posted-on">
+      <a href="/tech/androidutils.html" rel="bookmark">
+        <time class="entry-date published" datetime="2017-05-08T04:30:00.000Z">
+          2017-05-08
+        </time>
+      </a>
+    </span>
+  </div>
+
+
+  
+
+  <div class="article-content">
+    <div class="entry">
+      
+        <script src="/assets/js/APlayer.min.js"> </script><h3 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h3><p>这是我个人开发的Andorid开发的工具类库。虽然网上有很多开源的工具类库，但大多用起来总差点意思，有的功能太简单，有的封装的又太复杂，无法完全满足自己的定制化需求，所以干脆自己写个方便使用的工具类库。<br><a id="more"></a></p>
+<h3 id="LogUtil"><a href="#LogUtil" class="headerlink" title="LogUtil"></a>LogUtil</h3><p>Android的Log系统已经很方便，但是为了控制更好的控制日志的打印，比如开关Log，写文件等，还是很有必要封装一下。</p>
+<h4 id="1-初始化"><a href="#1-初始化" class="headerlink" title="1. 初始化"></a>1. 初始化</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">LogConfig logConfig = new LogConfig.Builder()</div><div class="line">                    .writeToFile(boolean isWrite)//设置是否写入文件</div><div class="line">                    .showLog(boolean isShow)//设置是否显示Log</div><div class="line">                    .setLogLevel(int logLevel)//设置打印级别</div><div class="line">                    .setLogFilePath(String logFilePath)//设置文件路径</div><div class="line">                    .build();</div><div class="line">LogUtil.init(logConfig);</div></pre></td></tr></table></figure>
+<h4 id="2-写入文件"><a href="#2-写入文件" class="headerlink" title="2. 写入文件"></a>2. 写入文件</h4><p>当开发时遇到不方便打印Log调试时，可以将其写入到文件中，此时可以设置：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">writeToFile(boolean isWrite)//设置是否写入文件</div></pre></td></tr></table></figure>
+<p>假设打印的Log较多，我只想写入部分的Log到文件中，那么可以这样设置：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">//先设置不写入文件，过滤到其他的Log</div><div class="line">writeToFile(false)</div><div class="line">//通过设置打印级别过滤不同等级的Log</div><div class="line">setLogLevel(Log.VERBOSE)</div><div class="line">//@param forceWrite 设为true, 可以强制写入文件</div><div class="line">//在需写入Log的地方，调用该类型方法。</div><div class="line">public static void v(String tag, String message, boolean forceWrite)</div></pre></td></tr></table></figure>
+<h4 id="3-代码结构"><a href="#3-代码结构" class="headerlink" title="3. 代码结构"></a>3. 代码结构</h4><ul>
+<li>LogConfig 日志的初始化设置</li>
+<li>interface ILogger 定义了Log不同级别的打印接口</li>
+<li>FileLogger 继承自ILogger，实现了日志的写入文件</li>
+<li>PrintLogger 继承自ILogger,实现了日志的打印</li>
+<li>LogUtil 对外提供打印功能</li>
+</ul>
+
+      
+    </div>
+
+  </div>
+
+  <div class="article-footer">
+    <div class="article-meta pull-left">
+
+    
+      
+
+    <span class="post-categories">
+      <i class="icon-categories"></i>
+        <a href="/categories/tech/">技术</a>
+    </span>
+    
+
+    
+    
+
+    <span class="post-tags">
+      <i class="icon-tags"></i>
+        <a href="/tags/work/">工作</a>
+    </span>
+    
+
+    </div>
+
+    
+  </div>
+</article>
+
+
+    </main>
+
+    <footer class="site-footer">
+  <p class="site-info">
+    Proudly powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and
+    Theme by <a href="https://github.com/CodeDaraW/Hacker" target="_blank">Hacker</a>
+    </br>
+    
+    &copy; 2018 Goverse&#39;Blog
+    
+  </p>
+</footer>
+    
+  <script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?bf97bef94fa19c674f5640f47e01d001";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+  })();
+  </script>
+
+
+
+  </div>
+</div>
+</body>
+</html>

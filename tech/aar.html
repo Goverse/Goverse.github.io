@@ -1,0 +1,178 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>AAR | Goverse&#39;Blog | Think more and different</title>
+
+  
+
+  
+  <meta name="description" content="The ‘aar’ bundle is the binary distribution of an Android Library Project.
+
+引言最近一段时间经历的几个项目都有一个共同点，就是客户希望将我们已有的app集成到他们的app中，(真是想吐槽，现在的客户连代码都不想写了，真是越来越懒了)。所以，我们这边只能将现有的app以aar包的形式提供给客户，在打包的过程中，遇到了很多问题(那么多module,那么多依赖，编译起来，你懂得，总会有奇奇怪怪的问题)。这篇文章就记录了我遇到的问题以及如何解决它，这样以后再遇到类似问题，可以少浪费些时间。">
+  
+
+  
+  
+  <meta name="keywords" content="打包">
+  
+
+  <meta id="viewport" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+  <meta property="og:title" content="AAR"/>
+
+  <meta property="og:site_name" content="Goverse&#39;Blog"/>
+
+  
+  <meta property="og:image" content="/favicon.ico"/>
+  
+
+  <link href="/favicon.ico" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="Goverse&#39;Blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        }
+      else {
+          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+</head>
+
+
+<body>
+<div class="blog">
+  <div class="content">
+
+    <header>
+  <div class="site-branding">
+    <h1 class="site-title">
+      <a href="/">Goverse&#39;Blog</a>
+    </h1>
+    <p class="site-description">Think more and different</p>
+  </div>
+  <nav class="site-navigation">
+    <ul>
+      
+        <li><a href="/">主页</a></li>
+      
+        <li><a href="/archives">归档</a></li>
+      
+        <li><a href="/categories">分类</a></li>
+      
+        <li><a href="/tags">标签</a></li>
+      
+        <li><a href="/about">关于</a></li>
+      
+    </ul>
+  </nav>
+</header>
+
+    <main class="site-main posts-loop">
+    <article>
+
+  
+    
+    <h3 class="article-title"><span>AAR</span></h3>
+    
+  
+
+  <div class="article-top-meta">
+    <span class="posted-on">
+      <a href="/tech/aar.html" rel="bookmark">
+        <time class="entry-date published" datetime="2018-03-31T20:47:00.000Z">
+          2018-04-01
+        </time>
+      </a>
+    </span>
+  </div>
+
+
+  
+
+  <div class="article-content">
+    <div class="entry">
+      
+        <script src="/assets/js/APlayer.min.js"> </script><blockquote>
+<p>The ‘aar’ bundle is the binary distribution of an Android Library Project.</p>
+</blockquote>
+<h3 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h3><p>最近一段时间经历的几个项目都有一个共同点，就是客户希望将我们已有的app集成到他们的app中，(真是想吐槽，现在的客户连代码都不想写了，真是越来越懒了)。所以，我们这边只能将现有的app以aar包的形式提供给客户，在打包的过程中，遇到了很多问题(那么多module,那么多依赖，编译起来，你懂得，总会有奇奇怪怪的问题)。这篇文章就记录了我遇到的问题以及如何解决它，这样以后再遇到类似问题，可以少浪费些时间。<br><a id="more"></a></p>
+<h3 id="jar与aar"><a href="#jar与aar" class="headerlink" title="jar与aar"></a>jar与aar</h3><p>jar包是java开发中最常用打包代码的形式，但是jar中只包含有class文件和清单文件，当我们需要打包资源文件时便无法满足需求。而aar包弥补了这个缺点，它包含libs,assets,jni,res等目录下的所有资源，很方便集成到项目中。(此外，无论是打包jar还是aar都只能打包项目中我们自己的代码，如果依赖第三方的类库，仍需额外的引入。)</p>
+<h3 id="打包aar"><a href="#打包aar" class="headerlink" title="打包aar"></a>打包aar</h3><p>在android studio中，找到Gradle视图，执行build中的assemble方法即可生成aar包，输出目录为/build/outputs/aar。注意打包aar的module类型必须为library,如果需要将application类型的Project打包成aar，应该把application修改为library，再进行编译打包。</p>
+<h3 id="多Module依赖"><a href="#多Module依赖" class="headerlink" title="多Module依赖"></a>多Module依赖</h3><h3 id="Maven依赖"><a href="#Maven依赖" class="headerlink" title="Maven依赖"></a>Maven依赖</h3><h3 id="遇到问题"><a href="#遇到问题" class="headerlink" title="遇到问题"></a>遇到问题</h3><h4 id="1-修改Module类型"><a href="#1-修改Module类型" class="headerlink" title="1. 修改Module类型"></a>1. 修改Module类型</h4><p>将Module的类型由application修改为library会遇到资源Id报错的情况，这是因为在application中，资源文件Id是final类型的，而library中的资源文件Id不再是final类型的，所以在switch-case或其他View注入的框架中使用了资源Id，就会报错，修改方法很简单，只需要使用if-else替代switch-case即可，而使用注入框架的地方，可以改回findViewById的形式。</p>
+<p> java.lang.NoSuchFieldError: No field progress_tip_text of type I in class Lcom/baidu/carlife/R$id; or its superclasses (declaration of ‘com.baidu.carlife.R$id’ appears in /data/app/com.yftech.carlifeDemo-1/base.apk)<br>                                                         at com.baidu.carlife.view.dialog.CommonProgressDialog.initView(CommonProgressDialog.java:76)<br>                                                         at com.baidu.carlife.core.screen.BaseDialog.<init>(BaseDialog.java:81)<br>                                                         at com.baidu.carlife.view.dialog.BaseDialog.<init>(BaseDialog.java:25)<br>                                                         at com.baidu.carlife.view.dialog.BaseDialog.<init>(BaseDialog.java:20)<br>                                                         at com.baidu.carlife.view.dialog.BaseDialog.<init>(BaseDialog.java:16)</init></init></init></init></p>
+<pre><code>资源文件名相同导致
+</code></pre>
+      
+    </div>
+
+  </div>
+
+  <div class="article-footer">
+    <div class="article-meta pull-left">
+
+    
+      
+
+    <span class="post-categories">
+      <i class="icon-categories"></i>
+        <a href="/categories/tech/">技术</a>
+    </span>
+    
+
+    
+    
+
+    <span class="post-tags">
+      <i class="icon-tags"></i>
+        <a href="/tags/打包/">打包</a>
+    </span>
+    
+
+    </div>
+
+    
+  </div>
+</article>
+
+
+    </main>
+
+    <footer class="site-footer">
+  <p class="site-info">
+    Proudly powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and
+    Theme by <a href="https://github.com/CodeDaraW/Hacker" target="_blank">Hacker</a>
+    </br>
+    
+    &copy; 2018 Goverse&#39;Blog
+    
+  </p>
+</footer>
+    
+  <script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?bf97bef94fa19c674f5640f47e01d001";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+  })();
+  </script>
+
+
+
+  </div>
+</div>
+</body>
+</html>
