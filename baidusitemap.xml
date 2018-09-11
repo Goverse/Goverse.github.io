@@ -4,6 +4,170 @@
 
     
   <url>
+    <loc>http://goverse.me/life/fitness.html</loc>
+    <lastmod>2018-09-11T15:49:27.133Z</lastmod>
+    <data>
+        <display>
+        <title>健身</title>
+        <pubTime>2017-01-22T03:56:00.000Z</pubTime>
+        
+        <tag>健身</tag>
+         
+         
+           
+             
+              <breadCrumb title="随感" url="http://goverse.me/categories/life/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://goverse.me/read/liucixin.html</loc>
+    <lastmod>2018-09-11T15:32:25.101Z</lastmod>
+    <data>
+        <display>
+        <title>刘慈欣</title>
+        <pubTime>2018-06-02T11:20:00.000Z</pubTime>
+        
+         
+           
+             
+              <breadCrumb title="阅读" url="http://goverse.me/categories/read/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://goverse.me/life/index.html</loc>
+    <lastmod>2018-09-11T15:26:51.400Z</lastmod>
+    <data>
+        <display>
+        <title>Hello,World</title>
+        <pubTime>2015-07-01T05:29:07.000Z</pubTime>
+        
+        <tag>随感</tag>
+         
+         
+           
+             
+              <breadCrumb title="随感" url="http://goverse.me/categories/life/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://goverse.me/life/internship.html</loc>
+    <lastmod>2018-09-11T15:25:51.914Z</lastmod>
+    <data>
+        <display>
+        <title>实习日志</title>
+        <pubTime>2015-08-02T06:49:00.000Z</pubTime>
+        
+        <tag>工作</tag>
+         
+        <tag>随感</tag>
+         
+         
+           
+             
+              <breadCrumb title="随感" url="http://goverse.me/categories/life/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://goverse.me/life/21.html</loc>
+    <lastmod>2018-09-11T15:25:35.540Z</lastmod>
+    <data>
+        <display>
+        <title>二十一</title>
+        <pubTime>2015-11-16T13:06:00.000Z</pubTime>
+        
+        <tag>随感</tag>
+         
+         
+           
+             
+              <breadCrumb title="随感" url="http://goverse.me/categories/life/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://goverse.me/life/index.html</loc>
+    <lastmod>2018-09-11T15:25:18.513Z</lastmod>
+    <data>
+        <display>
+        <title>毕业一年</title>
+        <pubTime>2017-06-29T16:00:00.000Z</pubTime>
+        
+        <tag>工作</tag>
+         
+        <tag>随感</tag>
+         
+         
+           
+             
+              <breadCrumb title="随感" url="http://goverse.me/categories/life/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://goverse.me/life/graduation.html</loc>
+    <lastmod>2018-09-11T15:25:10.389Z</lastmod>
+    <data>
+        <display>
+        <title>毕业</title>
+        <pubTime>2016-06-29T16:00:00.000Z</pubTime>
+        
+        <tag>随感</tag>
+         
+        <tag>毕业</tag>
+         
+         
+           
+             
+              <breadCrumb title="随感" url="http://goverse.me/categories/life/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://goverse.me/life/mayday.html</loc>
+    <lastmod>2018-09-11T15:24:37.143Z</lastmod>
+    <data>
+        <display>
+        <title>五一劳动节</title>
+        <pubTime>2017-05-02T04:36:00.000Z</pubTime>
+        
+        <tag>假日</tag>
+         
+         
+           
+             
+              <breadCrumb title="随感" url="http://goverse.me/categories/life/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://goverse.me/tech/annotation.html</loc>
     <lastmod>2018-04-22T09:58:59.666Z</lastmod>
     <data>
@@ -418,26 +582,6 @@
 
     
   <url>
-    <loc>http://goverse.me/life/fitness.html</loc>
-    <lastmod>2018-04-22T09:12:45.825Z</lastmod>
-    <data>
-        <display>
-        <title>健身</title>
-        <pubTime>2017-01-22T03:56:00.000Z</pubTime>
-        
-        <tag>健身</tag>
-         
-         
-           
-             
-              <breadCrumb title="生活" url="http://goverse.me/categories/life/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://goverse.me/tech/asr.html</loc>
     <lastmod>2018-04-22T09:09:29.157Z</lastmod>
     <data>
@@ -516,46 +660,6 @@
 
     
   <url>
-    <loc>http://goverse.me/life/21.html</loc>
-    <lastmod>2018-01-21T16:09:23.234Z</lastmod>
-    <data>
-        <display>
-        <title>二十一</title>
-        <pubTime>2015-11-16T13:06:00.000Z</pubTime>
-        
-        <tag>随感</tag>
-         
-         
-           
-             
-              <breadCrumb title="生活" url="http://goverse.me/categories/life/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://goverse.me/life/index.html</loc>
-    <lastmod>2018-01-16T15:11:13.066Z</lastmod>
-    <data>
-        <display>
-        <title>Hello,World</title>
-        <pubTime>2015-07-01T05:29:07.000Z</pubTime>
-        
-        <tag>随感</tag>
-         
-         
-           
-             
-              <breadCrumb title="生活" url="http://goverse.me/categories/life/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://goverse.me/read/wangxiaobo.html</loc>
     <lastmod>2018-01-16T14:47:08.721Z</lastmod>
     <data>
@@ -567,26 +671,6 @@
            
              
               <breadCrumb title="阅读" url="http://goverse.me/categories/read/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://goverse.me/life/mayday.html</loc>
-    <lastmod>2018-01-16T14:47:00.333Z</lastmod>
-    <data>
-        <display>
-        <title>五一劳动节</title>
-        <pubTime>2017-05-02T04:36:00.000Z</pubTime>
-        
-        <tag>假日</tag>
-         
-         
-           
-             
-              <breadCrumb title="生活" url="http://goverse.me/categories/life/"/>
           
         </display>
     </data>
@@ -634,28 +718,6 @@
 
     
   <url>
-    <loc>http://goverse.me/life/internship.html</loc>
-    <lastmod>2018-01-16T14:44:39.572Z</lastmod>
-    <data>
-        <display>
-        <title>实习日志</title>
-        <pubTime>2015-08-02T06:49:00.000Z</pubTime>
-        
-        <tag>工作</tag>
-         
-        <tag>随感</tag>
-         
-         
-           
-             
-              <breadCrumb title="生活" url="http://goverse.me/categories/life/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://goverse.me/study/Cantonese1.html</loc>
     <lastmod>2018-01-16T14:44:14.613Z</lastmod>
     <data>
@@ -669,50 +731,6 @@
            
              
               <breadCrumb title="学习" url="http://goverse.me/categories/study/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://goverse.me/life/graduation.html</loc>
-    <lastmod>2018-01-16T14:43:17.050Z</lastmod>
-    <data>
-        <display>
-        <title>毕业</title>
-        <pubTime>2016-06-29T16:00:00.000Z</pubTime>
-        
-        <tag>随感</tag>
-         
-        <tag>毕业</tag>
-         
-         
-           
-             
-              <breadCrumb title="生活" url="http://goverse.me/categories/life/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://goverse.me/life/index.html</loc>
-    <lastmod>2018-01-16T14:23:43.175Z</lastmod>
-    <data>
-        <display>
-        <title>毕业一年</title>
-        <pubTime>2017-06-29T16:00:00.000Z</pubTime>
-        
-        <tag>工作</tag>
-         
-        <tag>随感</tag>
-         
-         
-           
-             
-              <breadCrumb title="生活" url="http://goverse.me/categories/life/"/>
           
         </display>
     </data>
