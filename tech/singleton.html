@@ -171,23 +171,22 @@
     <script src="//cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/leancloud-storage/dist/av-min.js"></script>
     <script src='//cdn.jsdelivr.net/npm/valine/dist/Valine.min.js'></script>
-    <script>
-        new Valine({
-            el: '#vcomments',
-            appId: 'zqMC1nUx49CRvrVNiC2i5jMz-gzGzoHsz',
-            appKey: 'KNWfOWw8fHOfdmHFQdkKa8C7',
-            notify:false,
-            verify:false,
-            visitor:true,
-            avatar:'mm',
-            placeholder: '请输入评论~'
-        })
-    </script>
     <div
         id="vcomments"
         style="margin-top:20px;"
         ></div>
-
+        <script>
+            new Valine({
+                el: '#vcomments',
+                appId: 'zqMC1nUx49CRvrVNiC2i5jMz-gzGzoHsz',
+                appKey: 'KNWfOWw8fHOfdmHFQdkKa8C7',
+                notify:false,
+                verify:false,
+                visitor:true,
+                avatar:'mm',
+                placeholder: '请输入评论~'
+            })
+        </script>
   
 </article>
 
