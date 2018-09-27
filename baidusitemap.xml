@@ -4,6 +4,26 @@
 
     
   <url>
+    <loc>http://goverse.me/tech/0XFF.html</loc>
+    <lastmod>2018-09-27T02:19:11.316Z</lastmod>
+    <data>
+        <display>
+        <title>0XFF</title>
+        <pubTime>2017-06-03T10:30:00.000Z</pubTime>
+        
+        <tag>工作</tag>
+         
+         
+           
+             
+              <breadCrumb title="技术" url="http://goverse.me/categories/tech/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://goverse.me/life/fitness.html</loc>
     <lastmod>2018-09-11T15:49:27.133Z</lastmod>
     <data>
@@ -356,26 +376,6 @@
         <pubTime>2017-11-08T09:30:00.000Z</pubTime>
         
         <tag>C++</tag>
-         
-         
-           
-             
-              <breadCrumb title="技术" url="http://goverse.me/categories/tech/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://goverse.me/tech/0XFF.html</loc>
-    <lastmod>2018-04-22T09:48:21.361Z</lastmod>
-    <data>
-        <display>
-        <title>0XFF</title>
-        <pubTime>2017-06-03T10:30:00.000Z</pubTime>
-        
-        <tag>工作</tag>
          
          
            

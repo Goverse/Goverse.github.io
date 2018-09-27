@@ -8,7 +8,10 @@
   
 
   
-  <meta name="description" content="">
+  <meta name="description" content="在处理字节数据时，我们经常会看到’&amp;amp; 0xFF’的操作
+
+比如下边的代码：
+1234567891011121314//将二进制数组转换成十六进制字符串public static String parseBytesToHexStr(byte buf[]) &amp;#123;    StringBuf">
   
 
   
@@ -69,8 +72,6 @@
       
         <li><a href="/categories">分类</a></li>
       
-        <li><a href="/tags">标签</a></li>
-      
         <li><a href="/about">关于</a></li>
       
     </ul>
@@ -102,7 +103,20 @@
   <div class="article-content">
     <div class="entry">
       
-        <script src="/assets/js/APlayer.min.js"> </script>
+        <script src="/assets/js/APlayer.min.js"> </script><blockquote>
+<p>在处理字节数据时，我们经常会看到’&amp; 0xFF’的操作</p>
+</blockquote>
+<p>比如下边的代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">//将二进制数组转换成十六进制字符串</div><div class="line">public static String parseBytesToHexStr(byte buf[]) &#123;</div><div class="line">    StringBuffer sb = new StringBuffer();</div><div class="line">    for (int i = 0; i &lt; buf.length; i++) &#123;</div><div class="line">        int num = buf[i] &amp; 0xFF;</div><div class="line">        String hex = Integer.toHexString(num);</div><div class="line">        if (hex.length() == 1) &#123;</div><div class="line">            hex = &apos;0&apos; + hex;</div><div class="line">        &#125;</div><div class="line">            sb.append(hex.toUpperCase());</div><div class="line">        &#125;</div><div class="line">        return sb.toString();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>分析这一行：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">int num = buf[i] &amp; 0xFF;</div></pre></td></tr></table></figure>
+<p>这行代码的功能很简单，是将字节类型的buf[i]转换成int类型的变量，但是0xFF和buf[i]同样为一个字节，且二进制表达为1111 1111，如果进行与运算，应该会保持buf[i]值不变才对，为啥还需要做0xFF的操作呢？</p>
+<h4 id="字节扩展"><a href="#字节扩展" class="headerlink" title="字节扩展"></a>字节扩展</h4><p>因为buf[i]只占一个字节，所以当它转换为四个字节的int类型时，系统会自动为它扩充字节。众所周知，计算机中的数字都是以补码进行存储计算的，而扩充字节也是基于补码为基础扩充的。当负数由短字节扩充到长字节时，因为负数的补码符号位为1，系统会将扩充的高位都置为1，那么就会导致扩充后的补码值是与原补码值不一致。(正数的原码，补码，反码都为自己本身；<br>负数的反码为原码除了符号位之外作取反运算，补码为反码作+1运算。)</p>
+<h4 id="amp-0xFF"><a href="#amp-0xFF" class="headerlink" title="&amp;0xFF"></a>&amp;0xFF</h4><p>通过将扩充后的值进行&amp;0xFF后，补齐的高位都会被置为0，这样就可以保持该补码仍与扩充前的补码相同，正常进行计算了。</p>
+<h4 id="举例说明："><a href="#举例说明：" class="headerlink" title="举例说明："></a>举例说明：</h4><p>如果buf[i]值为0x17,二进制为0001 0001，补码为0001 0001，将它转成int后，即为0000 0000 0000 0000 0000 0000 0001 0001，补码大小不变。</p>
+<p>但是，java中，基本类型都是有符号数，所以buf[i]可能为一个负数。</p>
+<p>如果buf[i]值为0x-17,二进制为1001 0001，补码为1110 1111，将它转成int后，即为1111 1111 1111 1111 1111 1111 1110 1111，此时补码发生了变化。进行&amp;0xFF后，补码为：0000 0000 0000 0000 0000 0000 1110 1111，与原补码相同。</p>
+
       
     </div>
 
@@ -144,29 +158,28 @@
   </div>
 
   
+                <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/leancloud-storage/dist/av-min.js"></script>
+<script src='//cdn.jsdelivr.net/npm/valine/dist/Valine.min.js'></script>
+<div
+		id="vcomments"
+		style="margin-top:20px;"
+		></div>
+		<script>
+				new Valine({
+						el: '#vcomments',
+						appId: 'zqMC1nUx49CRvrVNiC2i5jMz-gzGzoHsz',
+						appKey: 'KNWfOWw8fHOfdmHFQdkKa8C7',
+						notify: false,
+						verify: false,
+						visitor: true, // 阅读量统计
+						avatar: 'mm',
+						placeholder: '请输入评论~'
+				})
+		</script>
 
-  
-    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
-    <script src="//cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
-    <script src="//cdn.jsdelivr.net/npm/leancloud-storage/dist/av-min.js"></script>
-    <script src='//cdn.jsdelivr.net/npm/valine/dist/Valine.min.js'></script>
-    <div
-        id="vcomments"
-        style="margin-top:20px;"
-        ></div>
-        <script>
-            new Valine({
-                el: '#vcomments',
-                appId: 'zqMC1nUx49CRvrVNiC2i5jMz-gzGzoHsz',
-                appKey: 'KNWfOWw8fHOfdmHFQdkKa8C7',
-                notify: false,
-                verify: false,
-                visitor: true, // 阅读量统计
-                avatar: 'mm',
-                placeholder: '请输入评论~'
-            })
-        </script>
-  
+              
 </article>
 
     </main>
