@@ -161,9 +161,6 @@
 <p>蓝牙低能耗(BLE)技术是低成本、短距离、可互操作的鲁棒性无线技术.</p>
 </blockquote>
 <h3 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h3><p>有机会参与到公司的手表手环项目，其主要功能有计步，睡眠监测，运动数据统计，心率检测，闹钟，信息推送等。本文将会介绍，我在开发手表手环项目时，对于蓝牙BLE技术的总结和积累（仅限于安卓平台）。</p>
-<h3 id="BLE与标准蓝牙"><a href="#BLE与标准蓝牙" class="headerlink" title="BLE与标准蓝牙"></a>BLE与标准蓝牙</h3><blockquote>
-<p>之前有写过一篇文章《蓝牙》，在里边介绍了我第一次进行蓝牙相关功能开发的总结，那么传统蓝牙和低功耗蓝牙之间是什么关系？它们的开发有没有什么区别？</p>
-</blockquote>
       
     </div>
 
@@ -276,62 +273,13 @@
   <div class="article-content">
     <div class="entry">
       
-        <script src="/assets/js/APlayer.min.js"> </script><blockquote>
+        <blockquote>
 <p>ProGuard is the most popular optimizer for Java bytecode. It makes your Java and Android applications up to 90% smaller and up to 20% faster. ProGuard also provides minimal protection against reverse engineering by obfuscating the names of classes, fields and methods.</p>
 </blockquote>
 <h3 id="为啥要混淆"><a href="#为啥要混淆" class="headerlink" title="为啥要混淆"></a>为啥要混淆</h3><ol>
 <li>Mobile applications are vulnerable(易受攻击的)</li>
 <li>Protect your apps against reverse engineering</li>
-<li>Protect your applications from dynamic analysis and live attacks</li>
-</ol>
-<h3 id="Android混淆"><a href="#Android混淆" class="headerlink" title="Android混淆"></a>Android混淆</h3><blockquote>
-<p>Protecting Android applications and SDKs against reverse engineering and hacking</p>
-</blockquote>
-<ol>
-<li>Code hardening<blockquote>
-<p>DexGuard prevents attackers from gaining insight into(研究，洞察) your source code and modify it or extract valuable information from it. DexGuard offers:</p>
-</blockquote>
-</li>
-</ol>
-<ul>
-<li>Obfuscation of arithmetic instructions, control flow, native code and library names, resources and SDK method calls</li>
-<li>Encryption of classes, strings, assets, resource files and native libraries</li>
-<li>Code packing of all combined bytecode</li>
-</ul>
-<ol>
-<li>Runtime Application Self-Protection (RASP)<blockquote>
-<p>DexGuard enables your applications to protect themselves against real-time attacks. This prevents attackers from gathering knowledge about their behavior and modifying it at runtime. DexGuard offers:</p>
-</blockquote>
-</li>
-</ol>
-<ul>
-<li>Detection of debugging tools, emulators, rooted devices, hooking frameworks, root cloaking(遮盖,掩盖) frameworks and tampering(篡改,窜改)</li>
-<li>SSL pinning and Webview SSL pinning</li>
-<li>Certificate checks</li>
-</ul>
-<ol>
-<li>Code optimization<blockquote>
-<p>DexGuard reduces the size of your applications and improves their performance. It provides:</p>
-</blockquote>
-</li>
-</ol>
-<ul>
-<li>Removal of redundant code, logging code and metadata, unused resources and native libraries</li>
-<li>Code and resource optimization</li>
-</ul>
-<h3 id="混淆配置"><a href="#混淆配置" class="headerlink" title="混淆配置"></a>混淆配置</h3><h4 id="1-开启混淆"><a href="#1-开启混淆" class="headerlink" title="1.开启混淆"></a>1.开启混淆</h4><p>在buildTypes中打开minifyEnabled，即可开启混淆。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">release &#123;</div><div class="line">            minifyEnabled true //开启混淆</div><div class="line">            shrinkResources true //资源压缩</div><div class="line">            proguardFiles getDefaultProguardFile(&apos;proguard-android.txt&apos;) ,&apos;proguard-rules.pro&apos;</div><div class="line">            consumerProguardFile &apos;proguard-rules.pro&apos;</div><div class="line">            signingConfig signingConfigs.platform</div><div class="line">        &#125;</div></pre></td></tr></table></figure></p>
-<h4 id="2-混淆语法"><a href="#2-混淆语法" class="headerlink" title="2. 混淆语法"></a>2. 混淆语法</h4><ul>
-<li>keep    保留类和类中的成员，防止被混淆或者移除<br> keepnames    保留类和类中的成员，防止被混淆，但是当成员没有被引用时会被移除<br>  keepclassmembers    只保留类中的成员，防止他们被混淆或者移除<br>  keepclassmembersnames    * 只保留类中的成员，防止他们被混淆或者移除，但是当类中的成员没有被引用时还是会被移除<br>  keepclasseswithmembers    保留类和类中的成员，前提是指明的类中必须含有该成员，没有的话还是会被混淆<br>  keepclasseswithmembersnames    保留类和类中的成员，前提是指明的类中必须含有该成员，没有的话还是会被混淆。需要注意的是没有被引用的成员会被移除</li>
-</ul>
-<h4 id="3-和-和"><a href="#3-和-和" class="headerlink" title="3. *和**和{*;}"></a>3. *和**和{*;}</h4><ul>
-<li>-keep class com.xxx.* 只可以匹配com.xxx包下的类</li>
-<li>-keep class com.xxx.** 可以匹配com.xxx包下的子包和类</li>
-<li>-keep class com.xxx.*{*;} 可以防止类的成员不被混淆</li>
-</ul>
-<h4 id="4-基本指令"><a href="#4-基本指令" class="headerlink" title="4. 基本指令"></a>4. 基本指令</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line">设置混淆的压缩比率 0 ~ 7</div><div class="line">-optimizationpasses 5</div><div class="line"></div><div class="line">混淆后类名都为小写   Aa aA</div><div class="line">-dontusemixedcaseclassnames</div><div class="line"></div><div class="line">指定不去忽略非公共库的类</div><div class="line">-dontskipnonpubliclibraryclasses</div><div class="line"></div><div class="line">不做预校验的操作</div><div class="line">-dontpreverify</div><div class="line"></div><div class="line">混淆时不记录日志</div><div class="line">-verbose</div><div class="line"></div><div class="line">混淆采用的算法.</div><div class="line">-optimizations !code/simplification/arithmetic,!field/*,!class/merging/*</div><div class="line"></div><div class="line">保留代码行号，方便异常信息的追踪</div><div class="line">-keepattributes SourceFile,LineNumberTable</div><div class="line"></div><div class="line">dump文件列出apk包内所有class的内部结构</div><div class="line">-dump class_files.txt        </div><div class="line"></div><div class="line">seeds.txt文件列出未混淆的类和成员</div><div class="line">-printseeds seeds.txt</div><div class="line"></div><div class="line">usage.txt文件列出从apk中删除的代码</div><div class="line">-printusage unused.txt</div><div class="line"></div><div class="line">mapping文件列出混淆前后的映射</div><div class="line">-printmapping mapping.txt</div></pre></td></tr></table></figure>
-<h4 id="5-常用配置"><a href="#5-常用配置" class="headerlink" title="5. 常用配置"></a>5. 常用配置</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div></pre></td><td class="code"><pre><div class="line">//android组件</div><div class="line">-keep public class * extends android.app.Activity</div><div class="line">-keep public class * extends android.app.Application</div><div class="line">-keep public class * extends android.app.Service</div><div class="line">-keep public class * extends android.content.BroadcastReceiver</div><div class="line">-keep public class * extends android.content.ContentProvider</div><div class="line">-keep public class * extends android.app.backup.BackupAgentHelper</div><div class="line">-keep public class * extends android.preference.Preference</div><div class="line">-keep public class com.android.vending.licensing.ILicensingService</div><div class="line">#不提示V4包下错误警告</div><div class="line">-dontwarn android.support.v4.**</div><div class="line">#保持下面的V4兼容包的类不被混淆</div><div class="line">-keep class android.support.v4.**&#123;*;&#125;</div><div class="line">//本地方法</div><div class="line">-keepclasseswithmembernames class * &#123;</div><div class="line">        native &lt;methods&gt;;</div><div class="line">&#125;</div><div class="line">//自定义控件</div><div class="line">-keep public class * extends android.view.View&#123;</div><div class="line">    *** get*();</div><div class="line">    void set*(***);</div><div class="line">    public &lt;init&gt;(android.content.Context);</div><div class="line">    public &lt;init&gt;(android.content.Context,</div><div class="line">                                android.util.AttributeSet);</div><div class="line">    public &lt;init&gt;(android.content.Context,</div><div class="line">                                android.util.AttributeSet,int);</div><div class="line">&#125;</div><div class="line">//枚举类</div><div class="line"> -keepclassmembers enum * &#123;</div><div class="line">    public static **[] values();</div><div class="line">    public static ** valueOf(java.lang.String);</div><div class="line"> &#125;</div><div class="line">//序列化类</div><div class="line">//不混淆Parcelable和它的实现子类，还有Creator成员变量</div><div class="line">-keep class * implements android.os.Parcelable &#123;</div><div class="line">  public static final android.os.Parcelable$Creator *;</div><div class="line">&#125;</div><div class="line"></div><div class="line">//不混淆Serializable和它的实现子类、其成员变量</div><div class="line">-keepclassmembers class * implements java.io.Serializable &#123;</div><div class="line">    static final long serialVersionUID;</div><div class="line">    private static final java.io.ObjectStreamField[] serialPersistentFields;</div><div class="line">    private void writeObject(java.io.ObjectOutputStream);</div><div class="line">    private void readObject(java.io.ObjectInputStream);</div><div class="line">    java.lang.Object writeReplace();</div><div class="line">    java.lang.Object readResolve();</div><div class="line">&#125;</div><div class="line">//JSON类的构造函数</div><div class="line">使用GSON、fastjson等框架时，所写的JSON对象类不混淆，否则无法将JSON解析成对应的对象</div><div class="line">-keepclassmembers class * &#123;</div><div class="line">    public &lt;init&gt;(org.json.JSONObject);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p><strong>本文参考：</strong><a href="https://www.guardsquare.com" target="_blank" rel="external">https://www.guardsquare.com</a></p>
-
+<li>Protect your applications from dynamic analysis and live attacks
       
     </div>
 
@@ -457,7 +405,7 @@
         <script src="/assets/js/APlayer.min.js"> </script><blockquote>
 <p>一想到你，我这张丑脸上就泛起微笑。</p>
 </blockquote>
-<p>大学的时候读过王小波的《黄金时代》，书里的内容很有趣，有点像文革时期的“吐槽”。一直想有时间再读读他的书，不给过了这么久，之前看过的也忘了很多，所以打算重新读一遍《黄金时代》，然后再读他的《白银时代》、《青铜时代》、《黑铁时代》。</p>
+<p>大学的时候读过王小波的《黄金时代》，书里的内容很有趣，有点像文革时期的“吐槽”。一直想有时间再读读他的书，不过过了这么久，之前看过的也忘了很多，所以打算重新读一遍《黄金时代》，然后再读他的《白银时代》、《青铜时代》、《黑铁时代》。</p>
 <h3 id="《黄金时代》"><a href="#《黄金时代》" class="headerlink" title="《黄金时代》"></a>《黄金时代》</h3><h3 id="《白银时代》"><a href="#《白银时代》" class="headerlink" title="《白银时代》"></a>《白银时代》</h3><h3 id="《青铜时代》"><a href="#《青铜时代》" class="headerlink" title="《青铜时代》"></a>《青铜时代》</h3><h3 id="《黑铁时代》"><a href="#《黑铁时代》" class="headerlink" title="《黑铁时代》"></a>《黑铁时代》</h3>
       
     </div>
@@ -492,13 +440,13 @@
 
   
     
-    <h3 class="article-title"><a href="/life/index.html"><span>毕业一年</span></a></h3>
+    <h3 class="article-title"><a href="/life/graduation1year.html"><span>毕业一年</span></a></h3>
     
   
 
   <div class="article-top-meta">
     <span class="posted-on">
-      <a href="/life/index.html" rel="bookmark">
+      <a href="/life/graduation1year.html" rel="bookmark">
         <time class="entry-date published" datetime="2017-06-29T16:00:00.000Z">
           2017-06-30
         </time>

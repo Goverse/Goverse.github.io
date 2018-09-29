@@ -8,9 +8,10 @@
   
 
   
-  <meta name="description" content="本文参考： 
+  <meta name="description" content="The only valid mesurement of code quality : WTFs/Minute.
 
-《Clean Code:A Handbook of Agile Software Craftsmanship》—Robert C. Martin">
+引言作为一只经验尚浅的程序猿，我经常会思考如何提升自己的编程水平，写出好的代码。
+在日常开发中，我们通常会接触到别人写的代码，如果这部分代码是很复杂，难以理解的，那么维护它的人无疑会带着沉重和悲怆的心情在心里面默默的诅咒。但是，如果这部分代码是清晰简单的，那么维护它的人的心情也会变得顺畅，可见好的代码不仅能够使程序提高效率更能使人舒服。">
   
 
   
@@ -102,9 +103,23 @@
   <div class="article-content">
     <div class="entry">
       
-        <script src="/assets/js/APlayer.min.js"> </script><center><iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="530" height="86" align="middle" src="//music.163.com/outchain/player?type=2&id=26641341&auto=1&height=66"></iframe></center>
+        <script src="/assets/js/APlayer.min.js"> </script><center><iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="530" height="86" align="middle" src="//music.163.com/outchain/player?type=2&id=26641341&auto=0&height=66"></iframe></center>
 
-<p><strong>本文参考：</strong> </p>
+<blockquote>
+<p>The only valid mesurement of code quality : WTFs/Minute.</p>
+</blockquote>
+<h3 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h3><p>作为一只经验尚浅的程序猿，我经常会思考如何提升自己的编程水平，写出好的代码。</p>
+<p>在日常开发中，我们通常会接触到别人写的代码，如果这部分代码是很复杂，难以理解的，那么维护它的人无疑会带着沉重和悲怆的心情在心里面默默的诅咒。但是，如果这部分代码是清晰简单的，那么维护它的人的心情也会变得顺畅，可见好的代码不仅能够使程序提高效率更能使人舒服。</p>
+<a id="more"></a>
+<p>那么，什么样的代码才是好的代码呢？对于这一点，我的认识是，好的代码必定是反复思考的结果，它不一定很复杂，但应该是逻辑清晰，结构简单的，不仅容易复用而且对未来的扩展有一定的前瞻性。</p>
+<p>也因此，我认为一个软件的构建过程应该是这样，在良好的架构下，由众多简单逻辑的小组件构成，这些小组件可以相互组合成更大的组件，同样也是逻辑简单的。不过，事实上，我们经常看到的代码要么是过度设计或者根本没有设计的，它们不仅一开始就复杂，不简洁，当与其他类似模块协同工作后其复杂度更是加倍，难以理解。</p>
+<p>那么如何才能写出好的代码呢？<br>是做出很多酷炫的功能吗？还是写个几万几十万行的代码，等待灵感的出现？肯定这些都不是。</p>
+<p>我认为最有效的方式应该是，多参考优秀的代码设计，并在此基础上，设计出满足当前需求的代码。</p>
+<p>有时候，在我们思考过后，脑袋里有了思绪，但是无法在代码中实现。就好比中学时期的语文作文，对于同样的题目我绞尽脑汁也想不出满分作文那样优美的金句。出现这个问题时，语文老师经常会给我们推荐优秀的作文或者作文片段，让我们记住并在自己的作文中加以利用。同样对于编程，我们也可以通过学习和记忆优秀的代码片段或者代码结构，提高自己的编程水平。</p>
+<p>在这篇文章中，我会不断更新自己见到的优秀的代码设计，多多总结，提高自己的代码质量。</p>
+<h3 id="设计原则-Design-Principle"><a href="#设计原则-Design-Principle" class="headerlink" title="设计原则(Design Principle)"></a>设计原则(Design Principle)</h3><p>首先我想总结下面向对象的设计原则，这些原则在编程实践中起着相当重要的作用，是我们必须掌握的基础。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">Single Responsibility Principle　 : 单一职责原则</div><div class="line">Liskov Substitution Principle     : 里氏替换原则</div><div class="line">Dependence Inversion Principle    : 依赖倒置原则</div><div class="line">Interface Segregation Principle   : 接口隔离原则</div><div class="line">Law of Demeter　　　　            : 迪米特法则</div><div class="line">Open Closed Principle             : 开闭原则</div></pre></td></tr></table></figure></p>
+<h3 id="设计模式-Design-patterns"><a href="#设计模式-Design-patterns" class="headerlink" title="设计模式(Design patterns)"></a>设计模式(Design patterns)</h3><p>设计模式正是前人对于代码设计经验的总结，站在巨人的肩膀上学习能够快速的提高我们的编程水平。这一章，我会总结部分设计模式的最佳实践代码。</p>
+<h4 id="State-Pattern"><a href="#State-Pattern" class="headerlink" title="State Pattern"></a>State Pattern</h4><h4 id="Chain-of-Responsibility-Pattern"><a href="#Chain-of-Responsibility-Pattern" class="headerlink" title="Chain of Responsibility Pattern"></a>Chain of Responsibility Pattern</h4><p><strong>本文参考：</strong> </p>
 <ol>
 <li>《Clean Code:A Handbook of Agile Software Craftsmanship》—Robert C. Martin</li>
 </ol>
@@ -150,6 +165,14 @@
   </div>
 
   
+                <div class="reward">
+       <div class="reward-button">赏 <span class="reward-code">
+        <span class="wechat-code"> <img class="wechat-img wdp-appear" src="http://onvs4ak5i.bkt.clouddn.com/wechat_donate.jpeg"><b>微信打赏</b> </span>
+       </div>
+      <p class="reward-notice">打赏1元，感激不尽!</p>
+</div>
+
+              
                 <!-- 添加Valine评论 -->
 <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
 <script src="//cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
@@ -168,7 +191,7 @@
 						verify: false,
 						visitor: true, // 阅读量统计
 						avatar: 'mm',
-						placeholder: '请输入评论~'
+						placeholder: '来吧，一起讨论讨论，共同进步~~~'
 				})
 		</script>
 <!-- 添加Valine评论 -->
