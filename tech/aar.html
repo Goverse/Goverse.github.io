@@ -107,11 +107,25 @@
 </blockquote>
 <h3 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h3><p>最近一段时间经历的几个项目都有一个共同点，就是客户希望将我们已有的app集成到他们的app中，(真是想吐槽，现在的客户连代码都不想写了，真是越来越懒了)。所以，我们这边只能将现有的app以aar包的形式提供给客户，在打包的过程中，遇到了很多问题(那么多module,那么多依赖，编译起来，你懂得，总会有奇奇怪怪的问题)。这篇文章就记录了我遇到的问题以及如何解决它，这样以后再遇到类似问题，可以少浪费些时间。<br><a id="more"></a></p>
 <h3 id="jar与aar"><a href="#jar与aar" class="headerlink" title="jar与aar"></a>jar与aar</h3><p>jar包是java开发中最常用打包代码的形式，但是jar中只包含有class文件和清单文件，当我们需要打包资源文件时便无法满足需求。而aar包弥补了这个缺点，它包含libs,assets,jni,res等目录下的所有资源，很方便集成到项目中。(此外，无论是打包jar还是aar都只能打包项目中我们自己的代码，如果依赖第三方的类库，仍需额外的引入。)</p>
-<h3 id="打包aar"><a href="#打包aar" class="headerlink" title="打包aar"></a>打包aar</h3><p>在android studio中，找到Gradle视图，执行build中的assemble方法即可生成aar包，输出目录为/build/outputs/aar。注意打包aar的module类型必须为library,如果需要将application类型的Project打包成aar，应该把application修改为library，再进行编译打包。</p>
-<h3 id="多Module依赖"><a href="#多Module依赖" class="headerlink" title="多Module依赖"></a>多Module依赖</h3><h3 id="Maven依赖"><a href="#Maven依赖" class="headerlink" title="Maven依赖"></a>Maven依赖</h3><h3 id="遇到问题"><a href="#遇到问题" class="headerlink" title="遇到问题"></a>遇到问题</h3><h4 id="1-修改Module类型"><a href="#1-修改Module类型" class="headerlink" title="1. 修改Module类型"></a>1. 修改Module类型</h4><p>将Module的类型由application修改为library会遇到资源Id报错的情况，这是因为在application中，资源文件Id是final类型的，而library中的资源文件Id不再是final类型的，所以在switch-case或其他View注入的框架中使用了资源Id，就会报错，修改方法很简单，只需要使用if-else替代switch-case即可，而使用注入框架的地方，可以改回findViewById的形式。</p>
-<p> java.lang.NoSuchFieldError: No field progress_tip_text of type I in class Lcom/baidu/carlife/R$id; or its superclasses (declaration of ‘com.baidu.carlife.R$id’ appears in /data/app/com.yftech.carlifeDemo-1/base.apk)<br>                                                         at com.baidu.carlife.view.dialog.CommonProgressDialog.initView(CommonProgressDialog.java:76)<br>                                                         at com.baidu.carlife.core.screen.BaseDialog.<init>(BaseDialog.java:81)<br>                                                         at com.baidu.carlife.view.dialog.BaseDialog.<init>(BaseDialog.java:25)<br>                                                         at com.baidu.carlife.view.dialog.BaseDialog.<init>(BaseDialog.java:20)<br>                                                         at com.baidu.carlife.view.dialog.BaseDialog.<init>(BaseDialog.java:16)</init></init></init></init></p>
-<pre><code>资源文件名相同导致
-</code></pre>
+<h3 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h3><h4 id="1-compileSdkVersion"><a href="#1-compileSdkVersion" class="headerlink" title="1. compileSdkVersion"></a>1. compileSdkVersion</h4><p>当我们将打包后的aar作为sdk提供给其他人使用时，首先要配置的就是安卓的compileSdkVersion,minSdkVersion,targetSdkVersion等版本，要保证和宿主app的版本一致或者是它的全集，这样可以避免使用不同的api以及提前处理好高版本动态申请权限的问题。</p>
+<h4 id="2-abiFilters"><a href="#2-abiFilters" class="headerlink" title="2. abiFilters"></a>2. abiFilters</h4><p>假如打包的module中使用到了jniLibs时，那么aar中提供的so库的平台版本也要和主工程中需要的平台版本保持一致或者比它更多，否则主工程中会出现找不到本地代码的情况。</p>
+<h4 id="3-gradle-version"><a href="#3-gradle-version" class="headerlink" title="3. gradle version"></a>3. gradle version</h4><p>除了安卓代码编译的相关版本，还要尽量统一gradle，build-tool等版本，避免一些奇怪的问题。</p>
+<h4 id="4-module-type"><a href="#4-module-type" class="headerlink" title="4. module type"></a>4. module type</h4><p>打包aar的module类型必须为library,如果需要将application类型的Project打包成aar，应该把application修改为library，再进行编译打包。</p>
+<h4 id="5-AndroidManifest"><a href="#5-AndroidManifest" class="headerlink" title="5. AndroidManifest"></a>5. AndroidManifest</h4><p><application>标签的属性比如：name,theme,icon等在打包之前可以删去，最终编译主工程时清单文件会合并，重复的属性可能会报错。</application></p>
+<h4 id="6-resourceId"><a href="#6-resourceId" class="headerlink" title="6. resourceId"></a>6. resourceId</h4><p>假如module中的资源文件和主工程中的资源文件命名相同，可能会出现找不到资源的情况，所以aar中的资源文件应该与主工程的有所区分，建议加上前缀。将application类型的module改为library后，R文件的resourceId的类型不再为final类型，所以当有使用到switch-case语句或者是一些UI注入的框架时会发生报错，需要使用if-else代替。</p>
+<h3 id="打包aar"><a href="#打包aar" class="headerlink" title="打包aar"></a>打包aar</h3><p>在android studio中，找到Gradle视图，执行build中的assemble方法即可生成aar包，输出目录为/build/outputs/aar。</p>
+<h4 id="1-多Module依赖"><a href="#1-多Module依赖" class="headerlink" title="1.多Module依赖"></a>1.多Module依赖</h4><p>当打包的module依赖多个本地module时，可以顺着依赖的关系找到依赖末端的module，先将其编译成aar，或者当module中只有代码的时候可以编成jar包，然后将打包后的文件拷贝到依赖它的module中，如果gradle中有引用第三方的库，也需要将其拷贝到依赖的module中，以此类推，直到打包最后一个module为止。其中，查找类库依赖可以使用命令<strong>gradlew dependencies</strong>或者在gradle的help窗口，点击dependencise方法，然后可以在输出窗口看到生成的依赖树。</p>
+<h4 id="2-Maven依赖"><a href="#2-Maven依赖" class="headerlink" title="2.Maven依赖"></a>2.Maven依赖</h4><p>假如项目中有依赖本地Moven中的类库时，需要将该类库以aar或jar包的形式引入到module中，再进行打包。</p>
+<h4 id="3-注意事项"><a href="#3-注意事项" class="headerlink" title="3.注意事项"></a>3.注意事项</h4><p>假如module的libs中有aar，将module打包为aar<br>不能使用implementation fileTree(include: [‘*.aar’], dir: ‘libs’)<br>这种方式，会导致Debug版本编出来的aar中包含aar，且包含的aar为空，<br>release版本的aar，class.jar中打包了aar的class代码，但是没有aar中的资源和jni.<br>应该使用implementation(name: ‘XXX’, ext: ‘aar’)这种方式，提供sdk时，提供多个aar。</p>
+<p>目前Android Studio不支持在aar基础上二次封装成aar这个需求。</p>
+<h3 id="aar混淆"><a href="#aar混淆" class="headerlink" title="aar混淆"></a>aar混淆</h3><h4 id="1-提供混淆文件"><a href="#1-提供混淆文件" class="headerlink" title="1. 提供混淆文件"></a>1. 提供混淆文件</h4><p>当主工程需要混淆时，我们可以将混淆后的aar和它的混淆文件一同添加到主工程，并在主工程中配置混淆。release版本的aar中libs目录没有jar包文件，编译时已经将jar包中的代码合并到了class文件中。使用gradle网络引用的第三方类库不会打包到class中，仍需在主工程中进行引用。</p>
+<h4 id="2-使用consumerProgroudFile"><a href="#2-使用consumerProgroudFile" class="headerlink" title="2. 使用consumerProgroudFile"></a>2. 使用consumerProgroudFile</h4><p>在打包aar时，可以在gradle中配置consumerProgroudFile，它的作用就是可以将混淆规则打包到aar中，项目如果引用该aar，会自动找到aar中的混淆文件对aar中的代码进行混淆，省去了向主工程提供混淆文件。</p>
+<h3 id="集成aar"><a href="#集成aar" class="headerlink" title="集成aar"></a>集成aar</h3><h4 id="1-找不到资源-java-lang-NoSuchFieldError"><a href="#1-找不到资源-java-lang-NoSuchFieldError" class="headerlink" title="1. 找不到资源(java.lang.NoSuchFieldError)"></a>1. 找不到资源(java.lang.NoSuchFieldError)</h4><p>打包aar中资源文件名或者资源id和宿主工程相同。在主工程编译的时候，可能会加载在资源列表靠前的资源导致其他引用出错。在打包aar时，需要修改module中资源文件的名称，比如说统一加个前缀。</p>
+<h4 id="2-引用类库重复-Multiple-class-or-class-already-define"><a href="#2-引用类库重复-Multiple-class-or-class-already-define" class="headerlink" title="2. 引用类库重复(Multiple class, or class already define)"></a>2. 引用类库重复(Multiple class, or class already define)</h4><p>当类库重复引用或者与某个库中的引用相同时，会出现该问题。解决方法是<br>使用exclude module:’’, group:’’,去掉类库中的某些引用。</p>
+<h4 id="3-类库接口报错"><a href="#3-类库接口报错" class="headerlink" title="3. 类库接口报错"></a>3. 类库接口报错</h4><p>aar和主工程使用了不同版本的类库，并且该类库在这两个版本中修改了接口，导致接口报错。在集成时，aar应与主工程约定类库的版本，协调更新，防止接口不一致。</p>
+<h4 id="4-DataBinding-NoClassDefFoundError"><a href="#4-DataBinding-NoClassDefFoundError" class="headerlink" title="4. DataBinding(NoClassDefFoundError)"></a>4. DataBinding(NoClassDefFoundError)</h4><p>很奇怪的问题，修改了gradle tools的版本就可以了。</p>
+<p><strong>本文参考：</strong><br><a href="https://developer.android.google.cn/studio/projects/android-library?hl=zh-cn" target="_blank" rel="external">https://developer.android.google.cn/studio/projects/android-library?hl=zh-cn</a></p>
+
       
     </div>
 
@@ -153,7 +167,8 @@
   </div>
 
   
-                <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+                <!-- 添加Valine评论 -->
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
 <script src="//cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
 <script src="//cdn.jsdelivr.net/npm/leancloud-storage/dist/av-min.js"></script>
 <script src='//cdn.jsdelivr.net/npm/valine/dist/Valine.min.js'></script>
@@ -173,6 +188,7 @@
 						placeholder: '请输入评论~'
 				})
 		</script>
+<!-- 添加Valine评论 -->
 
               
 </article>

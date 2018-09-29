@@ -4,8 +4,50 @@
 
     
   <url>
+    <loc>http://goverse.me/tech/goodcode.html</loc>
+    <lastmod>2018-09-29T07:04:08.893Z</lastmod>
+    <data>
+        <display>
+        <title>Clean Code</title>
+        <pubTime>2018-07-15T01:03:00.000Z</pubTime>
+        
+        <tag>工作</tag>
+         
+        <tag>代码</tag>
+         
+         
+           
+             
+              <breadCrumb title="技术" url="http://goverse.me/categories/tech/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://goverse.me/tech/proguard.html</loc>
+    <lastmod>2018-09-28T12:28:36.113Z</lastmod>
+    <data>
+        <display>
+        <title>Proguard</title>
+        <pubTime>2017-08-01T10:30:00.000Z</pubTime>
+        
+        <tag>工作</tag>
+         
+         
+           
+             
+              <breadCrumb title="技术" url="http://goverse.me/categories/tech/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://goverse.me/tech/0XFF.html</loc>
-    <lastmod>2018-09-27T02:19:11.316Z</lastmod>
+    <lastmod>2018-09-28T12:20:20.438Z</lastmod>
     <data>
         <display>
         <title>0XFF</title>
@@ -13,6 +55,44 @@
         
         <tag>工作</tag>
          
+         
+           
+             
+              <breadCrumb title="技术" url="http://goverse.me/categories/tech/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://goverse.me/tech/aar.html</loc>
+    <lastmod>2018-09-28T12:19:49.422Z</lastmod>
+    <data>
+        <display>
+        <title>AAR</title>
+        <pubTime>2018-03-31T20:47:00.000Z</pubTime>
+        
+        <tag>打包</tag>
+         
+         
+           
+             
+              <breadCrumb title="技术" url="http://goverse.me/categories/tech/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://goverse.me/tech/architecture.html</loc>
+    <lastmod>2018-09-28T12:18:51.968Z</lastmod>
+    <data>
+        <display>
+        <title>Architecture</title>
+        <pubTime>2017-12-18T03:43:00.000Z</pubTime>
+        
          
            
              
@@ -426,44 +506,6 @@
 
     
   <url>
-    <loc>http://goverse.me/tech/aar.html</loc>
-    <lastmod>2018-04-22T09:42:51.963Z</lastmod>
-    <data>
-        <display>
-        <title>AAR</title>
-        <pubTime>2018-03-31T20:47:00.000Z</pubTime>
-        
-        <tag>打包</tag>
-         
-         
-           
-             
-              <breadCrumb title="技术" url="http://goverse.me/categories/tech/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://goverse.me/tech/mvp.html</loc>
-    <lastmod>2018-04-22T09:42:22.345Z</lastmod>
-    <data>
-        <display>
-        <title>MVP</title>
-        <pubTime>2017-12-18T03:43:00.000Z</pubTime>
-        
-         
-           
-             
-              <breadCrumb title="技术" url="http://goverse.me/categories/tech/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://goverse.me/tech/ble.html</loc>
     <lastmod>2018-04-22T09:40:16.102Z</lastmod>
     <data>
@@ -568,26 +610,6 @@
         <display>
         <title>Bluetooth</title>
         <pubTime>2017-07-10T15:00:00.000Z</pubTime>
-        
-        <tag>工作</tag>
-         
-         
-           
-             
-              <breadCrumb title="技术" url="http://goverse.me/categories/tech/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://goverse.me/tech/asr.html</loc>
-    <lastmod>2018-04-22T09:09:29.157Z</lastmod>
-    <data>
-        <display>
-        <title>ASR</title>
-        <pubTime>2017-02-01T10:30:00.000Z</pubTime>
         
         <tag>工作</tag>
          
