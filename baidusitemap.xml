@@ -4,6 +4,48 @@
 
     
   <url>
+    <loc>http://goverse.me/tech/gradle.html</loc>
+    <lastmod>2018-10-02T11:34:00.914Z</lastmod>
+    <data>
+        <display>
+        <title>Gradle</title>
+        <pubTime>2018-09-30T08:45:00.000Z</pubTime>
+        
+        <tag>工作</tag>
+         
+        <tag>代码</tag>
+         
+         
+           
+             
+              <breadCrumb title="技术" url="http://goverse.me/categories/tech/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://goverse.me/life/fitness.html</loc>
+    <lastmod>2018-10-02T08:34:50.928Z</lastmod>
+    <data>
+        <display>
+        <title>健身</title>
+        <pubTime>2017-01-22T03:56:00.000Z</pubTime>
+        
+        <tag>健身</tag>
+         
+         
+           
+             
+              <breadCrumb title="随感" url="http://goverse.me/categories/life/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://goverse.me/life/graduation1year.html</loc>
     <lastmod>2018-09-29T09:50:32.866Z</lastmod>
     <data>
@@ -155,26 +197,6 @@
            
              
               <breadCrumb title="技术" url="http://goverse.me/categories/tech/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://goverse.me/life/fitness.html</loc>
-    <lastmod>2018-09-11T15:49:27.133Z</lastmod>
-    <data>
-        <display>
-        <title>健身</title>
-        <pubTime>2017-01-22T03:56:00.000Z</pubTime>
-        
-        <tag>健身</tag>
-         
-         
-           
-             
-              <breadCrumb title="随感" url="http://goverse.me/categories/life/"/>
           
         </display>
     </data>
