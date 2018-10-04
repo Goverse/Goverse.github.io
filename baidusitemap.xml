@@ -4,6 +4,48 @@
 
     
   <url>
+    <loc>http://goverse.me/tech/volatile.html</loc>
+    <lastmod>2018-10-04T12:29:39.377Z</lastmod>
+    <data>
+        <display>
+        <title>volatile</title>
+        <pubTime>2016-09-21T00:30:00.000Z</pubTime>
+        
+        <tag>工作</tag>
+         
+         
+           
+             
+              <breadCrumb title="技术" url="http://goverse.me/categories/tech/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://goverse.me/tech/goodcode.html</loc>
+    <lastmod>2018-10-03T11:16:18.808Z</lastmod>
+    <data>
+        <display>
+        <title>Good Code</title>
+        <pubTime>2018-07-15T01:03:00.000Z</pubTime>
+        
+        <tag>工作</tag>
+         
+        <tag>代码</tag>
+         
+         
+           
+             
+              <breadCrumb title="技术" url="http://goverse.me/categories/tech/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://goverse.me/tech/gradle.html</loc>
     <lastmod>2018-10-02T11:40:56.577Z</lastmod>
     <data>
@@ -113,28 +155,6 @@
         <title>BLE</title>
         <pubTime>2017-10-15T04:45:00.000Z</pubTime>
         
-         
-           
-             
-              <breadCrumb title="技术" url="http://goverse.me/categories/tech/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://goverse.me/tech/goodcode.html</loc>
-    <lastmod>2018-09-29T09:47:08.207Z</lastmod>
-    <data>
-        <display>
-        <title>Clean Code</title>
-        <pubTime>2018-07-15T01:03:00.000Z</pubTime>
-        
-        <tag>工作</tag>
-         
-        <tag>代码</tag>
-         
          
            
              
@@ -452,26 +472,6 @@
         <display>
         <title>Git</title>
         <pubTime>2016-11-14T15:50:00.000Z</pubTime>
-        
-        <tag>工作</tag>
-         
-         
-           
-             
-              <breadCrumb title="技术" url="http://goverse.me/categories/tech/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://goverse.me/tech/volatile.html</loc>
-    <lastmod>2018-04-22T09:53:25.458Z</lastmod>
-    <data>
-        <display>
-        <title>volatile</title>
-        <pubTime>2016-09-21T00:30:00.000Z</pubTime>
         
         <tag>工作</tag>
          
