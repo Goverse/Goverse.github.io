@@ -10,7 +10,7 @@
   
   <meta name="description" content="Java语言提供了一种稍弱的同步机制，即volatile变量，用来确保将变量的更新操作通知到其他线程。
 
-在单例那篇文章中提到，双重校验锁的写法在多线程时可能会出现问题，代码如下：123456789101112131415161718//双重校验锁public class Singleton&amp;#12">
+在单例那篇文章中提到，双重校验锁的写法在多线程时可能会出现问题，代码如下：">
   
 
   
@@ -105,9 +105,8 @@
         <script src="/assets/js/APlayer.min.js"> </script><blockquote>
 <p>Java语言提供了一种稍弱的同步机制，即volatile变量，用来确保将变量的更新操作通知到其他线程。</p>
 </blockquote>
-<p>在单例那篇文章中提到，双重校验锁的写法在多线程时可能会出现问题，代码如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">//双重校验锁</div><div class="line">public class Singleton&#123;</div><div class="line"></div><div class="line">    private static Singleton mInstance = null;</div><div class="line">        </div><div class="line">    private Singleton() &#123;&#125;</div><div class="line">        </div><div class="line">    public static Singleton getInstance() &#123;</div><div class="line">        if (mInstance == null) &#123;</div><div class="line">            syncnized(Singleton.class) &#123;</div><div class="line">               if (mInstance == null) &#123;</div><div class="line">                    mInstance = new Singleton();</div><div class="line">               &#125;</div><div class="line">           &#125;</div><div class="line">        &#125;</div><div class="line">        return mInstance;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>具体的原因是：java的赋值语句“=”，包含多个过程，而且Jvm并不能保证它们的先后顺序，所以很有可能出现构造函数执行过程中，instance已经不为null，而刚好此时另一个线程getInstance()调用发生，直接返回了一个初始化不完整的instance，类似下边代码：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">//正常的顺序</div><div class="line">singleton = malloc();</div><div class="line">init(singleton);</div><div class="line">mInstance = singleton;</div><div class="line"></div><div class="line">//优化后的顺序</div><div class="line">singleton = malloc();</div><div class="line">//此时未初始化成功，mInstance已不为null。</div><div class="line">mInstance = singleton;</div><div class="line">init(singleton);</div></pre></td></tr></table></figure>
+<p>在单例那篇文章中提到，双重校验锁的写法在多线程时可能会出现问题，代码如下：<br><a id="more"></a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">//双重校验锁</div><div class="line">public class Singleton&#123;</div><div class="line"></div><div class="line">    private static Singleton mInstance = null;</div><div class="line">        </div><div class="line">    private Singleton() &#123;&#125;</div><div class="line">        </div><div class="line">    public static Singleton getInstance() &#123;</div><div class="line">        if (mInstance == null) &#123;</div><div class="line">            syncnized(Singleton.class) &#123;</div><div class="line">               if (mInstance == null) &#123;</div><div class="line">                    mInstance = new Singleton();</div><div class="line">               &#125;</div><div class="line">           &#125;</div><div class="line">        &#125;</div><div class="line">        return mInstance;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>具体的原因是：java的赋值语句“=”，包含多个过程，而且Jvm并不能保证它们的先后顺序，所以很有可能出现构造函数执行过程中，instance已经不为null，而刚好此时另一个线程getInstance()调用发生，直接返回了一个初始化不完整的instance，类似下边代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">//正常的顺序</div><div class="line">singleton = malloc();</div><div class="line">init(singleton);</div><div class="line">mInstance = singleton;</div><div class="line"></div><div class="line">//优化后的顺序</div><div class="line">singleton = malloc();</div><div class="line">//此时未初始化成功，mInstance已不为null。</div><div class="line">mInstance = singleton;</div><div class="line">init(singleton);</div></pre></td></tr></table></figure></p>
 <p>解决这个问题的方法就是将mInstance定义为volatile变量。</p>
 <p>那么volatile关键字是如何做到这一点，可以保证mInstance对象在创建时候内部的顺序一致？它内在的原理是什么？</p>
 <p>接下来，我们深入的理解下volatile在多线程编程中起到的作用和影响。</p>
@@ -143,8 +142,8 @@
 <p>我的理解是使用volatile的变量应单独使用，不能和其他变量一起做判断。因为有可能多个线程读取到值后，做了不同的操作。</p>
 <h4 id="性能"><a href="#性能" class="headerlink" title="性能"></a>性能</h4><p>volatile修饰的变量在做读操作时和普通变量没有什么区别。但是对于写操作来讲，因为使用了内存屏障，不会优化指令重排序，而且像锁一样，后边的代码需要等到屏障前的操作全部完成才能执行，所以会导致性能慢一些。</p>
 <h4 id="本文参考："><a href="#本文参考：" class="headerlink" title="本文参考："></a>本文参考：</h4><ol>
-<li>Java并发编程</li>
-<li>深入理解Java虚拟机</li>
+<li>《Java并发编程》</li>
+<li>《深入理解Java虚拟机》</li>
 <li><a href="https://www.ibm.com/developerworks/cn/java/j-jtp06197.html" target="_blank" rel="external">https://www.ibm.com/developerworks/cn/java/j-jtp06197.html</a></li>
 </ol>
 
