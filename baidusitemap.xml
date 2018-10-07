@@ -5,7 +5,7 @@
     
   <url>
     <loc>http://goverse.me/life/fitness.html</loc>
-    <lastmod>2018-10-07T08:19:03.571Z</lastmod>
+    <lastmod>2018-10-07T08:20:05.707Z</lastmod>
     <data>
         <display>
         <title>健身</title>
@@ -17,6 +17,28 @@
            
              
               <breadCrumb title="随感" url="http://goverse.me/categories/life/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://goverse.me/tech/goodcode.html</loc>
+    <lastmod>2018-10-07T08:20:05.055Z</lastmod>
+    <data>
+        <display>
+        <title>Good Code</title>
+        <pubTime>2018-07-15T01:03:00.000Z</pubTime>
+        
+        <tag>工作</tag>
+         
+        <tag>代码</tag>
+         
+         
+           
+             
+              <breadCrumb title="技术" url="http://goverse.me/categories/tech/"/>
           
         </display>
     </data>
@@ -166,28 +188,6 @@
         <pubTime>2016-09-21T00:30:00.000Z</pubTime>
         
         <tag>工作</tag>
-         
-         
-           
-             
-              <breadCrumb title="技术" url="http://goverse.me/categories/tech/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://goverse.me/tech/goodcode.html</loc>
-    <lastmod>2018-10-03T11:16:18.808Z</lastmod>
-    <data>
-        <display>
-        <title>Good Code</title>
-        <pubTime>2018-07-15T01:03:00.000Z</pubTime>
-        
-        <tag>工作</tag>
-         
-        <tag>代码</tag>
          
          
            
