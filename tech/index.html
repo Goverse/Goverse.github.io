@@ -154,17 +154,17 @@ DVR基本功能DVR的功能很简单，就是录制视频并保存到硬盘中�
 
   
                 <div class="reward">
-       <div class="reward-button">赏 <span class="reward-code">
-      <span class="wechat-code"> <img class="wechat-img wdp-appear" src="https://raw.githubusercontent.com/Goverse/Goverse.github.io/master/images/wechat_donate.jpeg"><b>微信打赏</b> </span>
+       <div id="donate-btn" class="reward-button">赏 <span class="reward-code">
+      <span id="donate-code" class="wechat-code"> <img class="wechat-img wdp-appear" src="https://raw.githubusercontent.com/Goverse/Goverse.github.io/master/images/wechat_donate.jpeg"><b>微信打赏</b> </span>
        </div>
       <p class="reward-notice">打赏1元，感激不尽!</p>
 </div>
 <script type="text/javascript">
-        document.getElementById('reward-button').onclick = function(){
-            $('#reward-button').addClass('hidden');
-            $('#wechat-code').removeClass('hidden');
-        }
-    </script>
+		document.getElementById('donate-btn').onclick = function(){
+			$('#donate-btn').addClass('hidden');
+			$('#donate-code').removeClass('hidden');
+		}
+</script>
 
               
                 <!-- 添加Valine评论 -->
