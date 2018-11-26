@@ -161,9 +161,14 @@ DVR基本功能DVR的功能很简单，就是录制视频并保存到硬盘中�
 </div>
 <script type="text/javascript">
 		document.getElementById('donate-btn').onclick = function(){
-			$('#donate-btn').addClass('hidden');
-			$('#donate-code').removeClass('hidden');
-		}
+      var o =document.getElementById("donate-code").style.display; 
+      if(o=="none") //已经是隐藏状态
+      {
+        $('#donate-code').removeClass('hidden');
+      } else {
+      $('#donate-code').addClass('hidden');
+      }
+		 }
 </script>
 
               
