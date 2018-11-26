@@ -151,14 +151,13 @@
 </div>
 <script type="text/javascript">
 		document.getElementById('donate-btn').onclick = function(){
-      var o =document.getElementById("donate-code").style.display; 
-      if(o=="none") //已经是隐藏状态
+      if($("#donate-code").is(":hidden")) //已经是隐藏状态
       {
         $('#donate-code').removeClass('hidden');
       } else {
-      $('#donate-code').addClass('hidden');
+        $('#donate-code').addClass('hidden');
       }
-		 }
+		}
 </script>
 
               
