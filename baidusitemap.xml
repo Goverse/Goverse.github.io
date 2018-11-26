@@ -4,8 +4,28 @@
 
     
   <url>
+    <loc>http://goverse.me/life/redemption.html</loc>
+    <lastmod>2018-10-25T14:36:10.840Z</lastmod>
+    <data>
+        <display>
+        <title>肖申克</title>
+        <pubTime>2018-10-25T13:06:00.000Z</pubTime>
+        
+        <tag>随感</tag>
+         
+         
+           
+             
+              <breadCrumb title="随感" url="http://goverse.me/categories/life/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://goverse.me/life/fitness.html</loc>
-    <lastmod>2018-10-07T08:20:05.707Z</lastmod>
+    <lastmod>2018-10-21T16:03:51.147Z</lastmod>
     <data>
         <display>
         <title>健身</title>
@@ -24,8 +44,28 @@
 
     
   <url>
+    <loc>http://goverse.me/life/21.html</loc>
+    <lastmod>2018-10-21T08:43:36.229Z</lastmod>
+    <data>
+        <display>
+        <title>二十一</title>
+        <pubTime>2015-11-16T13:06:00.000Z</pubTime>
+        
+        <tag>随感</tag>
+         
+         
+           
+             
+              <breadCrumb title="随感" url="http://goverse.me/categories/life/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://goverse.me/tech/goodcode.html</loc>
-    <lastmod>2018-10-07T08:20:05.055Z</lastmod>
+    <lastmod>2018-10-21T08:33:16.029Z</lastmod>
     <data>
         <display>
         <title>Good Code</title>
@@ -39,6 +79,24 @@
            
              
               <breadCrumb title="技术" url="http://goverse.me/categories/tech/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://goverse.me/read/cscs.html</loc>
+    <lastmod>2018-10-14T09:59:18.823Z</lastmod>
+    <data>
+        <display>
+        <title>村上春树</title>
+        <pubTime>2018-09-28T09:55:00.000Z</pubTime>
+        
+         
+           
+             
+              <breadCrumb title="阅读" url="http://goverse.me/categories/read/"/>
           
         </display>
     </data>
@@ -349,26 +407,6 @@
         
         <tag>工作</tag>
          
-        <tag>随感</tag>
-         
-         
-           
-             
-              <breadCrumb title="随感" url="http://goverse.me/categories/life/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://goverse.me/life/21.html</loc>
-    <lastmod>2018-09-11T15:25:35.540Z</lastmod>
-    <data>
-        <display>
-        <title>二十一</title>
-        <pubTime>2015-11-16T13:06:00.000Z</pubTime>
-        
         <tag>随感</tag>
          
          

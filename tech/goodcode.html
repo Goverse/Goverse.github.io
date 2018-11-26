@@ -11,7 +11,7 @@
   <meta name="description" content="The only valid mesurement of code quality : WTFs/Minute.
 
 引言作为一只经验尚浅的程序猿，我经常会思考如何提升自己的编程水平，写出好的代码。
-在日常开发中，我们通常会接触到别人写的代码，如果这部分代码是很复杂，难以理解的，那么维护它的人无疑会带着沉重和悲怆的心情在心里面默默的诅咒。但是，如果这部分代码是清晰简单的，那么维护它的人的心情也会变得顺畅，可见好的代码不仅能够使程序提高效率更能使人舒服。">
+在日常开发中，我们通常会接触到别人写的代码，如果这部分代码是很复杂，难以理解的，那么维护它的人无疑会带着沉重和悲怆的心情在心里面默默的诅咒着。但是，如果这部分代码是清晰简单的，那么维护它的人的心情也会变得顺畅，可见好的代码不仅能够使程序提高效率更能使人舒服。">
   
 
   
@@ -109,17 +109,31 @@
 <p>The only valid mesurement of code quality : WTFs/Minute.</p>
 </blockquote>
 <h3 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h3><p>作为一只经验尚浅的程序猿，我经常会思考如何提升自己的编程水平，写出好的代码。</p>
-<p>在日常开发中，我们通常会接触到别人写的代码，如果这部分代码是很复杂，难以理解的，那么维护它的人无疑会带着沉重和悲怆的心情在心里面默默的诅咒。但是，如果这部分代码是清晰简单的，那么维护它的人的心情也会变得顺畅，可见好的代码不仅能够使程序提高效率更能使人舒服。</p>
+<p>在日常开发中，我们通常会接触到别人写的代码，如果这部分代码是很复杂，难以理解的，那么维护它的人无疑会带着沉重和悲怆的心情在心里面默默的诅咒着。但是，如果这部分代码是清晰简单的，那么维护它的人的心情也会变得顺畅，可见好的代码不仅能够使程序提高效率更能使人舒服。</p>
 <a id="more"></a>
 <p>那么，什么样的代码才是好的代码呢？对于这一点，我的认识是，好的代码必定是反复思考的结果，它不一定很复杂，但应该是逻辑清晰，结构简单的，不仅容易复用而且对未来的扩展有一定的前瞻性。</p>
 <p>也因此，我认为一个软件的构建过程应该是这样，在良好的架构下，由众多简单逻辑的小组件构成，这些小组件可以相互组合成更大的组件，同样也是逻辑简单的。不过，事实上，我们经常看到的代码要么是过度设计或者根本没有设计的，它们不仅一开始就复杂，不简洁，当与其他类似模块协同工作后其复杂度更是加倍，难以理解。</p>
-<p>那么如何才能写出好的代码呢？<br>是做出很多酷炫的功能吗？还是写个几万几十万行的代码，等待灵感的出现？肯定这些都不是。</p>
-<p>我认为最有效的方式应该是，多参考优秀的代码设计，并在此基础上，设计出满足当前需求的代码。</p>
-<p>有时候，在我们思考过后，脑袋里有了思绪，但是无法在代码中实现。就好比中学时期的语文作文，对于同样的题目我绞尽脑汁也想不出满分作文那样优美的金句。出现这个问题时，语文老师经常会给我们推荐优秀的作文或者作文片段，让我们记住并在自己的作文中加以利用。同样对于编程，我们也可以通过学习和记忆优秀的代码片段或者代码结构，提高自己的编程水平。</p>
-<p>在这篇文章中，我会不断更新自己见到的优秀的代码设计，多多总结，提高自己的代码质量。</p>
-<h3 id="设计原则-Design-Principle"><a href="#设计原则-Design-Principle" class="headerlink" title="设计原则(Design Principle)"></a>设计原则(Design Principle)</h3><p>首先我想总结下面向对象的设计原则，这些原则在编程实践中起着相当重要的作用，是我们必须掌握的基础。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">Single Responsibility Principle　 : 单一职责原则</div><div class="line">Liskov Substitution Principle     : 里氏替换原则</div><div class="line">Dependence Inversion Principle    : 依赖倒置原则</div><div class="line">Interface Segregation Principle   : 接口隔离原则</div><div class="line">Law of Demeter　　　　            : 迪米特法则</div><div class="line">Open Closed Principle             : 开闭原则</div></pre></td></tr></table></figure></p>
-<h3 id="设计模式-Design-patterns"><a href="#设计模式-Design-patterns" class="headerlink" title="设计模式(Design patterns)"></a>设计模式(Design patterns)</h3><p>设计模式正是前人对于代码设计经验的总结，站在巨人的肩膀上学习能够快速的提高我们的编程水平。这一章，我会总结部分设计模式的最佳实践代码。</p>
-<h4 id="State-Pattern"><a href="#State-Pattern" class="headerlink" title="State Pattern"></a>State Pattern</h4><h4 id="Chain-of-Responsibility-Pattern"><a href="#Chain-of-Responsibility-Pattern" class="headerlink" title="Chain of Responsibility Pattern"></a>Chain of Responsibility Pattern</h4><p><strong>本文参考：</strong> </p>
+<p>如何才能写出好的代码呢？</p>
+<p>有时候，在我们思考过后，脑袋里有了思绪，但是无法在代码中实现。就好比中学时期的语文作文，对于同样的题目我绞尽脑汁也想不出满分作文那样优美的金句。出现这个问题时，语文老师经常会给我们推荐优秀的作文或者作文片段，让我们记住并在自己的作文中加以利用。同样对于编程，我们也可以通过学习和记忆优秀的代码设计和代码结构，提高自己的编程水平。</p>
+<p>在这篇文章中，我会不断更新自己见到的好的代码，多多总结，提高自己的代码质量。</p>
+<h3 id="设计原则-Design-Principle"><a href="#设计原则-Design-Principle" class="headerlink" title="设计原则(Design Principle)"></a>设计原则(Design Principle)</h3><p>首先总结下面向对象的设计原则，这些原则在编程实践中起着相当重要的作用。</p>
+<h4 id="1-单一职责原则-Single-Responsibility-Principle"><a href="#1-单一职责原则-Single-Responsibility-Principle" class="headerlink" title="1. 单一职责原则(Single Responsibility Principle)"></a>1. 单一职责原则(Single Responsibility Principle)</h4><p>一个类应该只有一个发生变化的原因。</p>
+<p>如果一个类承担的职责过多，就等于把这些职责耦合在一起了。一个职责的变化可能会削弱或者抑制这个类完成其他职责的能力。这种耦合会导致脆弱的设计，当发生变化时，设计会遭受到意想不到的破坏。而如果想要避免这种现象的发生，就要尽可能的遵守单一职责原则。此原则的核心就是解耦和增强内聚性。</p>
+<h4 id="2-里氏替换原则-Liskov-Substitution-Principle"><a href="#2-里氏替换原则-Liskov-Substitution-Principle" class="headerlink" title="2. 里氏替换原则(Liskov Substitution Principle)"></a>2. 里氏替换原则(Liskov Substitution Principle)</h4><p>所有引用基类的地方必须能透明地使用其子类的对象。</p>
+<p>里氏替换原则包含以下4层含义：</p>
+<ol>
+<li>子类可以实现父类的抽象方法，但是不能覆盖父类的非抽象方法。</li>
+<li>子类中可以增加自己特有的方法。</li>
+<li>当子类覆盖或实现父类的方法时，方法的前置条件（即方法的形参）要比父类方法的输入参数更宽松。</li>
+<li>当子类的方法实现父类的抽象方法时，方法的后置条件（即方法的返回值）要比父类更严格。</li>
+</ol>
+<h4 id="3-依赖倒置原则-Dependence-Inversion-Principle"><a href="#3-依赖倒置原则-Dependence-Inversion-Principle" class="headerlink" title="3. 依赖倒置原则(Dependence Inversion Principle)"></a>3. 依赖倒置原则(Dependence Inversion Principle)</h4><p>高层次的模块不应该依赖于低层次的模块，他们都应该依赖于抽象。抽象不应该依赖于具体实现，具体实现应该依赖于抽象。</p>
+<h4 id="4-接口隔离原则-Interface-Segregation-Principle"><a href="#4-接口隔离原则-Interface-Segregation-Principle" class="headerlink" title="4. 接口隔离原则(Interface Segregation Principle )"></a>4. 接口隔离原则(Interface Segregation Principle )</h4><p>客户端不应该依赖它不需要的接口；一个类对另一个类的依赖应该建立在最小的接口上。接口设计应该尽可能精简。</p>
+<h4 id="5-迪米特法则-Law-of-Demeter"><a href="#5-迪米特法则-Law-of-Demeter" class="headerlink" title="5. 迪米特法则(Law of Demeter)"></a>5. 迪米特法则(Law of Demeter)</h4><p>一个对象应该对其他对象保持最少的了解。每个类尽量减少对其他类的依赖。</p>
+<h4 id="6-开闭原则-Open-Closed-Principle"><a href="#6-开闭原则-Open-Closed-Principle" class="headerlink" title="6. 开闭原则(Open Closed Principle )"></a>6. 开闭原则(Open Closed Principle )</h4><p>一个软件实体如类、模块和函数应该对扩展开放，对修改关闭。</p>
+<h3 id="设计模式-Design-patterns"><a href="#设计模式-Design-patterns" class="headerlink" title="设计模式(Design patterns)"></a>设计模式(Design patterns)</h3><p>设计模式是前人对于代码设计经验的总结，应该作为我们学习编码的基础，站在巨人的肩膀上才能看的更远。</p>
+<h4 id="State-Pattern"><a href="#State-Pattern" class="headerlink" title="State Pattern"></a>State Pattern</h4><h4 id="Chain-of-Responsibility-Pattern"><a href="#Chain-of-Responsibility-Pattern" class="headerlink" title="Chain of Responsibility Pattern"></a>Chain of Responsibility Pattern</h4><h3 id="双亲委派"><a href="#双亲委派" class="headerlink" title="双亲委派"></a>双亲委派</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">protected synchronized Class&lt;?&gt; loadClass(String name, boolean resolve) throws ClassNotFoundExceptiom &#123;</div><div class="line">    //首先，检查请求的类是否已经被加载过了</div><div class="line">    Class c = findLoadedClass(name);</div><div class="line">    if (c == null) &#123;</div><div class="line">        try &#123;</div><div class="line">            if (parent != null) &#123;</div><div class="line">                c = parent.loadClass(name, false);</div><div class="line">            &#125; else &#123;</div><div class="line">                c = findBootstrapClassOrNull(name);</div><div class="line">            &#125;</div><div class="line">        &#125; catch(ClassNotFoundException e) &#123;</div><div class="line">            //如果父类加载器抛出ClassNotFoundException</div><div class="line">            //说明父类加载器无法完成加载请求</div><div class="line">        &#125;</div><div class="line">        if（c == null） &#123;</div><div class="line">            //在父类加载器无法加载的时候</div><div class="line">            //再调用本身的findClass方法来进行类加载</div><div class="line">            c = findClass(name);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    if (resolve) &#123;</div><div class="line">        resolveClass(c);</div><div class="line">    &#125;</div><div class="line">    return c;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><strong>本文参考：</strong> </p>
 <ol>
 <li>《Clean Code:A Handbook of Agile Software Craftsmanship》—Robert C. Martin</li>
 </ol>
@@ -167,7 +181,7 @@
   
                 <div class="reward">
        <div class="reward-button">赏 <span class="reward-code">
-        <span class="wechat-code"> <img class="wechat-img wdp-appear" src="http://onvs4ak5i.bkt.clouddn.com/wechat_donate.jpeg?imageView2/1/w/180/h/200"><b>微信打赏</b> </span>
+      <span class="wechat-code"> <img class="wechat-img wdp-appear" src="https://raw.githubusercontent.com/Goverse/Goverse.github.io/master/wechat_donate.jpeg"><b>微信打赏</b> </span>
        </div>
       <p class="reward-notice">打赏1元，感激不尽!</p>
 </div>
