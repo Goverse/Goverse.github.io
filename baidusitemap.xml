@@ -4,19 +4,19 @@
 
     
   <url>
-    <loc>http://goverse.me/life/redemption.html</loc>
-    <lastmod>2018-10-25T14:36:10.840Z</lastmod>
+    <loc>http://goverse.me/tech/jvm.html</loc>
+    <lastmod>2019-02-14T14:01:23.611Z</lastmod>
     <data>
         <display>
-        <title>肖申克</title>
-        <pubTime>2018-10-25T13:06:00.000Z</pubTime>
+        <title>JVM</title>
+        <pubTime>2017-04-01T14:50:00.000Z</pubTime>
         
-        <tag>随感</tag>
+        <tag>工作</tag>
          
          
            
              
-              <breadCrumb title="随感" url="http://goverse.me/categories/life/"/>
+              <breadCrumb title="技术" url="http://goverse.me/categories/tech/"/>
           
         </display>
     </data>
@@ -64,46 +64,6 @@
 
     
   <url>
-    <loc>http://goverse.me/read/booklist.html</loc>
-    <lastmod>2018-10-21T15:11:38.616Z</lastmod>
-    <data>
-        <display>
-        <title>书单</title>
-        <pubTime>2017-01-01T02:36:00.000Z</pubTime>
-        
-        <tag>书单</tag>
-         
-         
-           
-             
-              <breadCrumb title="阅读" url="http://goverse.me/categories/read/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://goverse.me/life/21.html</loc>
-    <lastmod>2018-10-21T08:43:36.229Z</lastmod>
-    <data>
-        <display>
-        <title>二十一</title>
-        <pubTime>2015-11-16T13:06:00.000Z</pubTime>
-        
-        <tag>随感</tag>
-         
-         
-           
-             
-              <breadCrumb title="随感" url="http://goverse.me/categories/life/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://goverse.me/tech/goodcode.html</loc>
     <lastmod>2018-10-21T08:33:16.029Z</lastmod>
     <data>
@@ -119,42 +79,6 @@
            
              
               <breadCrumb title="技术" url="http://goverse.me/categories/tech/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://goverse.me/read/cscs.html</loc>
-    <lastmod>2018-10-14T09:59:18.823Z</lastmod>
-    <data>
-        <display>
-        <title>村上春树</title>
-        <pubTime>2018-09-28T09:55:00.000Z</pubTime>
-        
-         
-           
-             
-              <breadCrumb title="阅读" url="http://goverse.me/categories/read/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://goverse.me/read/zengguofan.html</loc>
-    <lastmod>2018-10-05T16:57:18.557Z</lastmod>
-    <data>
-        <display>
-        <title>曾国藩</title>
-        <pubTime>2018-03-01T10:00:00.000Z</pubTime>
-        
-         
-           
-             
-              <breadCrumb title="阅读" url="http://goverse.me/categories/read/"/>
           
         </display>
     </data>
