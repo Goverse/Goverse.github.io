@@ -1,0 +1,247 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>EventBus | Goverse&#39;Blog | Think more and different</title>
+
+  
+
+  
+  <meta name="description" content="EventBus事件发布/订阅框架事件传递可用于四大组件
+Handler，广播，接口回调
+EventBus 单例 构造函数是public的，多条EventBus
+粘性事件：事件消费者在事件发布之后才注册的也能接收到该事件的特殊类型
+Sticky Broadcast 在广播发送结束后会保存刚刚发送的广播">
+  
+
+  
+  
+  <meta name="keywords" content="工作">
+  
+
+  <meta id="viewport" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+  <meta property="og:title" content="EventBus"/>
+
+  <meta property="og:site_name" content="Goverse&#39;Blog"/>
+
+  
+  <meta property="og:image" content="/favicon.ico"/>
+  
+
+  <link href="/favicon.ico" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="Goverse&#39;Blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        }
+      else {
+          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+</head>
+
+
+<body>
+<div class="blog">
+  <div class="content">
+
+    <header>
+  <div class="site-branding">
+    <h1 class="site-title">
+      <a href="/">Goverse&#39;Blog</a>
+    </h1>
+    <p class="site-description">Think more and different</p>
+  </div>
+  <nav class="site-navigation">
+    <ul>
+      
+        <li><a href="/">主页</a></li>
+      
+        <li><a href="/archives">归档</a></li>
+      
+        <li><a href="/categories">分类</a></li>
+      
+        <li><a href="/about">关于</a></li>
+      
+    </ul>
+  </nav>
+</header>
+
+    <main class="site-main posts-loop">
+    <article>
+
+  
+    
+    <h3 class="article-title"><span>EventBus</span></h3>
+    
+  
+
+  <div class="article-top-meta">
+    <span class="posted-on">
+      <a href="/tech/eventbud.html" rel="bookmark">
+        <time class="entry-date published" datetime="2017-07-08T03:23:00.000Z">
+          2017-07-08
+        </time>
+      </a>
+    </span>
+  </div>
+
+
+  
+
+  <div class="article-content">
+    <div class="entry">
+      
+        <script src="/assets/js/APlayer.min.js"> </script><h3 id="EventBus"><a href="#EventBus" class="headerlink" title="EventBus"></a>EventBus</h3><p>事件发布/订阅框架<br>事件传递可用于四大组件</p>
+<p>Handler，广播，接口回调</p>
+<p>EventBus 单例 构造函数是public的，多条EventBus</p>
+<p>粘性事件：事件消费者在事件发布之后才注册的也能接收到该事件的特殊类型</p>
+<p>Sticky Broadcast 在广播发送结束后会保存刚刚发送的广播</p>
+<a id="more"></a>
+<h4 id="三要素："><a href="#三要素：" class="headerlink" title="三要素："></a>三要素：</h4><p>Event:事件，可以为任意类型</p>
+<p>Subscriber:事件订阅者，<br>@subscribe注解，可以指定线程模型，默认为POSTING; sticky; 优先级</p>
+<p>Publisher:事件的发布者。</p>
+<p>EventBus构造函数是public，不止一条事件总线。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">//该集合会保存事件类和它继承的接口以及其父类和父类继承的接口。hasSubscriberForEvent方法中使用。</div><div class="line">private static final Map&lt;Class&lt;?&gt;, List&lt;Class&lt;?&gt;&gt;&gt; eventTypesCache = new HashMap();</div><div class="line"></div><div class="line">//通过event找到对应的订阅者</div><div class="line">private final Map&lt;Class&lt;?&gt;, CopyOnWriteArrayList&lt;Subscription&gt;&gt; subscriptionsByEventType;</div><div class="line"></div><div class="line">//保存订阅者订阅的事件类型，在isRegistered(subscriber)方法中使用。</div><div class="line">private final Map&lt;Object, List&lt;Class&lt;?&gt;&gt;&gt; typesBySubscriber;</div><div class="line"></div><div class="line">//缓存粘性事件，如果有订阅该事件的类，在订阅的时候发送。</div><div class="line">private final Map&lt;Class&lt;?&gt;, Object&gt; stickyEvents;</div><div class="line"></div><div class="line">//每个线程的事件总线</div><div class="line">private final ThreadLocal&lt;EventBus.PostingThreadState&gt; currentPostingThreadState;</div></pre></td></tr></table></figure>
+<p>SubscriberMethodFinder</p>
+<p>register(subscriber)<br>会通过反射取到订阅者类中有注解的所有订阅方法，通过SubscriberMethod进行包装，并调用subscribe进行订阅。</p>
+<p>subscribe(subscriber, subscriberMethod)<br>首先会在subscriptionsByEventType进行搜索，该方法是否有没有被订阅，如果有抛出异常。</p>
+<p>checkAddWithMethodSignature()<br> Class&lt;?&gt; methodClass = method.getDeclaringClass();<br>​            Class&lt;?&gt; methodClassOld = (Class)this.subscriberClassByMethodKey.put(methodKey, methodClass);<br>​<br>​            if (methodClassOld != null &amp;&amp; !methodClassOld.isAssignableFrom(methodClass)) {<br>​                this.subscriberClassByMethodKey.put(methodKey, methodClassOld);<br>​                return false;<br>​            } else {<br>​                return true;<br>​            }</p>
+<p>该方法会检查同一个类中是否有订阅两次相同事件或者父类中有订阅相同的事件，如果有就只添加子类的订阅方法。</p>
+<p>然后调整订阅事件所有订阅类的优先级。</p>
+<p>检查新订阅的方法中，有没有属于粘性方法，有的话发送。</p>
+<p>post<br>获取本线程的ThreadLocal类型对象PostingThreadState，并且取出事件队列eventQueue。如果此时没有正在发送，那么循环post队列中的事件。<br>d<br>lookupAllEventTypes(eventClass)<br>会返回该事件的父类以及接口</p>
+<p>线程模型：<br>POSTING (默认)表示事件处理函数的线程跟发布事件的线程在同一个线程。<br>MAIN 表示事件处理函数的线程在主线程(UI)线程，因此在这里不能进行耗时操作。<br>BACKGROUND 表示事件处理函数的线程在后台线程，因此不能进行UI操作。如果发布事件的线程是主线程(UI线程)，那么事件处理函数将会开启一个后台线程，如果发布事件的线程是在后台线程，那么事件处理函数就使用该线程。<br>ASYNC 表示无论事件发布的线程是哪一个，事件处理函数始终会新建一个子线程运行，同样不能进行UI操作。</p>
+<p>HandlerPoster</p>
+<p>BackgroundPoster</p>
+<p>AsyncPoster</p>
+<p>Thread  PostingThreadState</p>
+
+      
+    </div>
+
+  </div>
+
+  <!-- id 将作为查询条件 -->
+  
+  <div align="right" hidden=true>
+    <span id="tech/eventbud.html" class="leancloud-visitors" data-flag-title="EventBus">
+        <em class="post-meta-item-text">阅读量: </em>
+        <i class="leancloud-visitors-count">10</i>
+    </span>
+    </script>
+  </div>
+  
+
+
+  <div class="article-footer">
+    <div class="article-meta pull-left">
+
+    
+      
+
+    <span class="post-categories">
+      <i class="icon-categories"></i>
+        <a href="/categories/tech/">技术</a>
+    </span>
+    
+
+    
+    
+
+    <span class="post-tags">
+      <i class="icon-tags"></i>
+        <a href="/tags/work/">工作</a>
+    </span>
+    
+    </div>
+  </div>
+
+  
+                <div class="reward">
+       <div id="donate-btn" class="reward-button">赏 <span class="reward-code">
+      <span id="donate-code" class="wechat-code"> <img class="wechat-img wdp-appear" src="https://raw.githubusercontent.com/Goverse/Goverse.github.io/master/images/wechat_donate.jpeg"><b>微信打赏</b> </span>
+       </div>
+      <p class="reward-notice">打赏1元，感激不尽!</p>
+</div>
+<script type="text/javascript">
+		document.getElementById('donate-btn').onclick = function(){
+      if($("#donate-code").is(":hidden")) //已经是隐藏状态
+      {
+        $('#donate-code').removeClass('hidden');
+      } else {
+        $('#donate-code').addClass('hidden');
+      }
+		}
+</script>
+
+              
+                <!-- 添加Valine评论 -->
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/leancloud-storage/dist/av-min.js"></script>
+<script src='//cdn.jsdelivr.net/npm/valine/dist/Valine.min.js'></script>
+<div
+		id="vcomments"
+		style="margin-top:20px;"
+		></div>
+		<script>
+				new Valine({
+						el: '#vcomments',
+						appId: 'zqMC1nUx49CRvrVNiC2i5jMz-gzGzoHsz',
+						appKey: 'KNWfOWw8fHOfdmHFQdkKa8C7',
+						notify: false,
+						verify: false,
+						visitor: true, // 阅读量统计
+						avatar: 'mm',
+						placeholder: '来吧，一起讨论讨论，共同进步~~~'
+				})
+		</script>
+<!-- 添加Valine评论 -->
+
+              
+</article>
+
+    </main>
+
+    <footer class="site-footer">
+  <p class="site-info">
+    Proudly powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and
+    Theme by <a href="https://github.com/CodeDaraW/Hacker" target="_blank">Hacker</a>
+    </br>
+    
+    &copy; 2019 Goverse&#39;Blog
+    
+  </p>
+  <p>Hosted by <a href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a></p>
+</footer>
+
+    
+  <script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?bf97bef94fa19c674f5640f47e01d001";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+  })();
+  </script>
+
+
+
+  </div>
+</div>
+</body>
+</html>

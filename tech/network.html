@@ -1,0 +1,256 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>NetWork | Goverse&#39;Blog | Think more and different</title>
+
+  
+
+  
+  <meta name="description" content="TCPTCP首部的最小长度是20字节。
+tcp是面向字节流的，应用传下来的的报文，tcp并不认识，tcp只将其看做是字节流，如果字节流大了就分段，如果小了可以先缓存等累计到一定大小后再发送。接收方tcp同样只认识字节流，将收到的字节流传至应用进程。">
+  
+
+  
+  
+  <meta name="keywords" content="计算机网络">
+  
+
+  <meta id="viewport" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+  <meta property="og:title" content="NetWork"/>
+
+  <meta property="og:site_name" content="Goverse&#39;Blog"/>
+
+  
+  <meta property="og:image" content="/favicon.ico"/>
+  
+
+  <link href="/favicon.ico" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="Goverse&#39;Blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        }
+      else {
+          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+</head>
+
+
+<body>
+<div class="blog">
+  <div class="content">
+
+    <header>
+  <div class="site-branding">
+    <h1 class="site-title">
+      <a href="/">Goverse&#39;Blog</a>
+    </h1>
+    <p class="site-description">Think more and different</p>
+  </div>
+  <nav class="site-navigation">
+    <ul>
+      
+        <li><a href="/">主页</a></li>
+      
+        <li><a href="/archives">归档</a></li>
+      
+        <li><a href="/categories">分类</a></li>
+      
+        <li><a href="/about">关于</a></li>
+      
+    </ul>
+  </nav>
+</header>
+
+    <main class="site-main posts-loop">
+    <article>
+
+  
+    
+    <h3 class="article-title"><span>NetWork</span></h3>
+    
+  
+
+  <div class="article-top-meta">
+    <span class="posted-on">
+      <a href="/tech/network.html" rel="bookmark">
+        <time class="entry-date published" datetime="2016-10-08T11:11:00.000Z">
+          2016-10-08
+        </time>
+      </a>
+    </span>
+  </div>
+
+
+  
+
+  <div class="article-content">
+    <div class="entry">
+      
+        <script src="/assets/js/APlayer.min.js"> </script><h3 id="TCP"><a href="#TCP" class="headerlink" title="TCP"></a>TCP</h3><p>TCP首部的最小长度是20字节。</p>
+<p>tcp是面向字节流的，应用传下来的的报文，tcp并不认识，tcp只将其看做是字节流，如果字节流大了就分段，如果小了可以先缓存等累计到一定大小后再发送。接收方tcp同样只认识字节流，将收到的字节流传至应用进程。</p>
+<a id="more"></a>
+<h4 id="三次握手"><a href="#三次握手" class="headerlink" title="三次握手"></a>三次握手</h4><h4 id="四次挥手"><a href="#四次挥手" class="headerlink" title="四次挥手"></a>四次挥手</h4><p>ACK=1表示该报文段包含确认序号（ack），只有在tcp三次握手的首次请求中ACK=0；</p>
+<p>SYN=1表示该报文段用于同步序号，只有在tcp三次握手的前两次握手中SYN=1（两次握手之后，双方就会各持有一对序号，一个是自己的，另一个是对端的）；</p>
+<p>FIN=1表示该报文段为终止报文段，即向对端表示我不再发送数据给你了（但我还可以接收你发送的数据）；</p>
+<p>窗口字段表示当前可接收的最大字节数，是动态变化的；</p>
+<p>确认号ack表示已收到对端到ack-1为止的所有数据；</p>
+<h4 id="可靠传输的实现"><a href="#可靠传输的实现" class="headerlink" title="可靠传输的实现"></a>可靠传输的实现</h4><p>TCP丢包和重发机制<br>数据包重发：保证ACK的值和发送方下次发送数据包的序列号相等。</p>
+<p>可靠传输的工作原理<br>TCP发送的报文段是交给IP层传送的。但IP层只能提供尽最大努力服务。所以TCP必须采用适当的措施才能使两个运输层之间的通信变得可靠。<br>理想的传输条件：<br>（1）传输信道不产生差错。<br>（2）不管发送方以多快的速度发送数据，接收方总是来得及处理收到的数据。<br>措施：当出现差错时让发送方重传出现差错的数据，同时在接收方来不及处理收到的数据时，及时告诉发送方适当降低发送数据的速度。由此用不可靠的传输信道实现可靠传输。</p>
+<p>最简单的协议：停止等待协议<br>“停止等待”就是每发送完一个分组就停止发送，等待对方的确认。在收到确认后再发送下一个分组。(因为讨论可靠传输的原理，因此把传送的数据单元都称为分组)<br>全双工通信的双方既是发送方也是接收方。仅考虑A发送数据而B接收数据并发送确认。称为A叫做发送方，而B叫做接收方。<br>可靠传输协议的设计：A只要超过了一段时间仍然没用收到确认，就认为刚才发送的分组丢失了，因而重传前面发送过的分组。这就叫做超时重传。<br>超时重传的实现：在每发送完一个分组设置一个超时计时器。如果在超时计时器到期之前收到了对方的确认，就撤销已设置的超时计时器。<br>注意三点：<br>第一，A在发送完一个分组后，必须暂时保留已发送的分组的副本（为发生超时重传时使用）。只有在收到相对应的确认后才能清除暂时保留的分组副本。<br>第二，分组和确认分组都必须进行编号。这样才能明确是哪一个发送出去的分组收到了确认，而哪一个分组还没有收到确认。<br>第三，超时计时器设置的重传时间应当比数据在分组传输的平均往返时间更长一些。</p>
+<p>A在设定的超时重传时间内没有收到确认，情况有两种：<br>1）A发送的分组出错、丢失。<br>2）B发送的确认丢失了。<br>超时重传的情况有两种：<br>无论上述哪种情况，B收到重传的分组后，向A发送确认。若分组重复就丢弃，否则上交。（即B每次收到分组检测无误后，就向A发送确认，无论该分组是否重复。但重复的分组会被丢弃）<br>若B发送的确认迟到了（无论它是否在重传后收到B发送的第二份确认），A会收下重复的确认后丢弃。<br>像上述的这种可靠传输协议常称为自动重传请求ARQ(Automatic Repeat reQuest)。意思是重传的请求是自动进行的。接收方不需要请求发送方重传某个出错的分组。<br>停止等待协议的优点是简单，缺点是信道利用率太低。</p>
+<p>为了提高传输效率，发送方采用流水线传输。当使用流水线传输时，就要使用下面介绍的连续ARQ协议和滑动窗口协议。</p>
+<h4 id="连续ARQ协议"><a href="#连续ARQ协议" class="headerlink" title="连续ARQ协议"></a>连续ARQ协议</h4><p>ARQ协议，即自动重传请求（Automatic Repeat-reQuest），是OSI模型中数据链路层和传输层的错误纠正协议之一。它通过使用确认和超时这两个机制，在不可靠服务的基础上实现可靠的信息传输。如果发送方在发送后一段时间之内没有收到确认帧，它通常会重新发送。ARQ包括停止等待ARQ协议和连续ARQ协议，拥有错误检测（Error<br> Detection）、正面确认（Positive Acknowledgment）、超时重传（Retransmission after Timeout）和 负面确认及重传（Negative Acknowledgment and Retransmission）等机制。</p>
+<p> 连续ARQ协议规定，发送方每收到一个确认，就把发送窗口向前滑动一个分组的位置。例如上面的图（b），当发送方收到第一个分组的确认，就把发送窗口向前移动一个分组的位置。如果原来已经发送了前5个分组，则现在可以发送窗口内的第6个分组。</p>
+<p>接收方一般都是采用累积确认的方式。也就是说接收方不必对收到的分组逐个发送确认。而是在收到几个分组后，对按序到达的最后一个分组发送确认。如果收到了这个分组确认信息，则表示到这个分组为止的所有分组都已经正确接收到了。</p>
+<p>累积确认的优点是容易实现，即使确认丢失也不必重传。但缺点是，不能正确的向发送方反映出接收方已经正确收到的所以分组的信息。比如发送方发送了前5个分组，而中间的第3个分组丢失了，这时候接收方只能对前2个发出确认。而不知道后面3个分组的下落，因此只能把后面的3个分组都重传一次，这种机制叫Go-back-N（回退N），表示需要再退回来重传已发送过的N个分组。</p>
+<h4 id="流量控制"><a href="#流量控制" class="headerlink" title="流量控制"></a>流量控制</h4><p>滑动窗口</p>
+<h4 id="拥塞控制"><a href="#拥塞控制" class="headerlink" title="拥塞控制"></a>拥塞控制</h4><p>所谓拥塞控制，就是防止过多的数据注入到网络中，从而使网络中的路由器或链路不致过载。要注意用拥塞控制与流量控制的区别，拥塞控制是一个全局性的过程，涉及到所有的主机、路由器，以及以太网。<br>一般有四个算法：慢开始、拥塞避免、快重传、快恢复</p>
+<p>流量控制与其的区别主要是：流量控制是指发送端和接收端之间点对点通信量的控制，即抑制发送端发送的速率，以便接收端来得及接收。而拥塞控制则必须保证子网能承载待发送的数据，一般有静态预防的并环控制阀和检测发生拥塞的动态的闭环控制法。<br>计算机网络中的带宽、交换节点中的缓存和处理机等，都是网络的资源，在某段时间内，若对网络中某一资源的需求超过了该资源所能提供的可用部分，网络的性能就要变坏，这种情况就叫做拥塞。</p>
+<p>发送方维持一个拥塞窗口 cwnd ( congestion window )的状态变量。拥塞窗口的大小取决于网络的拥塞程度，并且动态地在变化。发送方让自己的发送窗口等于拥塞窗口。<br>​    发送方控制拥塞窗口的原则是：只要网络没有出现拥塞，拥塞窗口就再增大一些，以便把更多的分组发送出去。但只要网络出现拥塞，拥塞窗口就减小一些，以减少注入到网络中的分组数。</p>
+<h3 id="UDP"><a href="#UDP" class="headerlink" title="UDP"></a>UDP</h3><p>(1) UDP是无连接的，即发送数据之前不需要建立连接，因此减少了开销和发送数据之前的时延。<br>(2) UDP使用尽最大努力交付，即不保证可靠交付，因此主机不需要维持复杂的连接状态表。<br>(3) UDP是面向报文的。发送方的UDP对应用程序交下来的报文，在添加首部后就向下交付IP层。UDP对应用层交下来的报文，既不合并，也不拆分，而是保留这些报文的边界。因此，应用程序必须选择合适大小的报文。</p>
+<p>(4) UDP没有拥塞控制，因此网络出现的拥塞不会使源主机的发送速率降低。很多的实时应用（如IP电话、实时视频会议等）要去源主机以恒定的速率发送数据，并且允许在网络发生拥塞时丢失一些数据，但却不允许数据有太多的时延。UDP正好符合这种要求。<br>(5) UDP支持一对一、一对多、多对一和多对多的交互通信。<br>(6) UDP的首部开销小，只有8个字节，比TCP的20个字节的首部要短。</p>
+<h3 id="Http和Https"><a href="#Http和Https" class="headerlink" title="Http和Https"></a>Http和Https</h3><p>HTTP协议传输的数据都是未加密的，也就是明文的，因此使用HTTP协议传输隐私信息非常不安全，为了保证这些隐私数据能加密传输，于是网景公司设计了SSL（Secure Sockets Layer）协议用于对HTTP协议传输的数据进行加密，从而就诞生了HTTPS。简单来说，HTTPS协议是由SSL+HTTP协议构建的可进行加密传输、身份认证的网络协议，要比http协议安全。</p>
+<p>　　HTTPS和HTTP的区别主要如下：</p>
+<p>　　1、https协议需要到ca申请证书，一般免费证书较少，因而需要一定费用。</p>
+<p>　　2、http是超文本传输协议，信息是明文传输，https则是具有安全性的ssl加密传输协议。</p>
+<p>　　3、http和https使用的是完全不同的连接方式，用的端口也不一样，前者是80，后者是443。</p>
+<p>　　4、http的连接很简单，是无状态的；HTTPS协议是由SSL+HTTP协议构建的可进行加密传输、身份认证的网络协议，比http协议安全。</p>
+<h3 id="Cookie和Session"><a href="#Cookie和Session" class="headerlink" title="Cookie和Session"></a>Cookie和Session</h3><p>1、cookie数据存放在客户的浏览器上，session数据放在服务器上。</p>
+<p>2、cookie不是很安全，别人可以分析存放在本地的COOKIE并进行COOKIE欺骗<br>   考虑到安全应当使用session。</p>
+<p>3、session会在一定时间内保存在服务器上。当访问增多，会比较占用你服务器的性能<br>   考虑到减轻服务器性能方面，应当使用COOKIE。</p>
+<p>4、单个cookie保存的数据不能超过4K，很多浏览器都限制一个站点最多保存20个cookie。</p>
+<h3 id="https是如何保证安全的，证书如何校验"><a href="#https是如何保证安全的，证书如何校验" class="headerlink" title="https是如何保证安全的，证书如何校验"></a>https是如何保证安全的，证书如何校验</h3><p>数字签名技术就和对“非对称密钥加解密”和“数字摘要”两项技术的应用，它将摘要信息用发送者的私钥加密，与原文一起传送给接收者。接收者只有用发送者的公钥才能解密被加密的摘要信息，然后用HASH函数对收到的原文产生一个摘要信息，与解密的摘要信息对比。如果相同，则说明收到的信息是完整的，在传输过程中没有被修改，否则说明信息被修改过，因此数字签名能够验证信息的完整性。</p>
+<p>一、能确定消息确实是由发送方签名并发出来的，因为别人假冒不了发送方的签名。<br>二、数字签名能确定消息的完整性。</p>
+<p>1.浏览器将自己支持的一套加密规则发送给网站。<br>2.网站从中选出一组加密算法与HASH算法，并将自己的身份信息以证书的形式发回给浏览器。证书里面包含了网站地址，加密公钥，以及证书的颁发机构等信息。<br>3.浏览器获得网站证书之后浏览器要做以下工作：<br>a) 验证证书的合法性（颁发证书的机构是否合法，证书中包含的网站地址是否与正在访问的地址一致等），如果证书受信任，则浏览器栏里面会显示一个小锁头，否则会给出证书不受信的提示。<br>b) 如果证书受信任，或者是用户接受了不受信的证书，浏览器会生成一串随机数的密码，并用证书中提供的公钥加密。<br>c) 使用约定好的HASH算法计算握手消息，并使用生成的随机数对消息进行加密，最后将之前生成的所有信息发送给网站。<br>4.网站接收浏览器发来的数据之后要做以下的操作：<br>a) 使用自己的私钥将信息解密取出密码，使用密码解密浏览器发来的握手消息，并验证HASH是否与浏览器发来的一致。<br>b) 使用密码加密一段握手消息，发送给浏览器。<br>5.浏览器解密并计算握手消息的HASH，如果与服务端发来的HASH一致，此时握手过程结束，之后所有的通信数据将由之前浏览器生成的随机密码并利用对称加密算法进行加密。</p>
+
+      
+    </div>
+
+  </div>
+
+  <!-- id 将作为查询条件 -->
+  
+  <div align="right" hidden=true>
+    <span id="tech/network.html" class="leancloud-visitors" data-flag-title="NetWork">
+        <em class="post-meta-item-text">阅读量: </em>
+        <i class="leancloud-visitors-count">10</i>
+    </span>
+    </script>
+  </div>
+  
+
+
+  <div class="article-footer">
+    <div class="article-meta pull-left">
+
+    
+      
+
+    <span class="post-categories">
+      <i class="icon-categories"></i>
+        <a href="/categories/tech/">技术</a>
+    </span>
+    
+
+    
+    
+
+    <span class="post-tags">
+      <i class="icon-tags"></i>
+        <a href="/tags/计算机网络/">计算机网络</a>
+    </span>
+    
+    </div>
+  </div>
+
+  
+                <div class="reward">
+       <div id="donate-btn" class="reward-button">赏 <span class="reward-code">
+      <span id="donate-code" class="wechat-code"> <img class="wechat-img wdp-appear" src="https://raw.githubusercontent.com/Goverse/Goverse.github.io/master/images/wechat_donate.jpeg"><b>微信打赏</b> </span>
+       </div>
+      <p class="reward-notice">打赏1元，感激不尽!</p>
+</div>
+<script type="text/javascript">
+		document.getElementById('donate-btn').onclick = function(){
+      if($("#donate-code").is(":hidden")) //已经是隐藏状态
+      {
+        $('#donate-code').removeClass('hidden');
+      } else {
+        $('#donate-code').addClass('hidden');
+      }
+		}
+</script>
+
+              
+                <!-- 添加Valine评论 -->
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/leancloud-storage/dist/av-min.js"></script>
+<script src='//cdn.jsdelivr.net/npm/valine/dist/Valine.min.js'></script>
+<div
+		id="vcomments"
+		style="margin-top:20px;"
+		></div>
+		<script>
+				new Valine({
+						el: '#vcomments',
+						appId: 'zqMC1nUx49CRvrVNiC2i5jMz-gzGzoHsz',
+						appKey: 'KNWfOWw8fHOfdmHFQdkKa8C7',
+						notify: false,
+						verify: false,
+						visitor: true, // 阅读量统计
+						avatar: 'mm',
+						placeholder: '来吧，一起讨论讨论，共同进步~~~'
+				})
+		</script>
+<!-- 添加Valine评论 -->
+
+              
+</article>
+
+    </main>
+
+    <footer class="site-footer">
+  <p class="site-info">
+    Proudly powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and
+    Theme by <a href="https://github.com/CodeDaraW/Hacker" target="_blank">Hacker</a>
+    </br>
+    
+    &copy; 2019 Goverse&#39;Blog
+    
+  </p>
+  <p>Hosted by <a href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a></p>
+</footer>
+
+    
+  <script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?bf97bef94fa19c674f5640f47e01d001";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+  })();
+  </script>
+
+
+
+  </div>
+</div>
+</body>
+</html>

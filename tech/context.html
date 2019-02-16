@@ -1,0 +1,243 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Context | Goverse&#39;Blog | Think more and different</title>
+
+  
+
+  
+  <meta name="description" content="Context与ApplicationContextContext一共有三种类型，分别是Application、Activity和Service。
+在绝大多数场景下，Activity、Service和Application这三种类型的Context都是可以通用的。不过有几种场景比较特殊，比如启动Activity，还有弹出Dialog。出于安全原因的考虑，Android是不允许Activity或Dialog凭空出现的，一个Activity的启动必须要建立在另一个Activity的基础之上，也就是以此形成的返回栈。而Dialog则必须在一个Activity上面弹出（除非是System Alert类型的Dialog），因此在这种场景下，我们只能使用Activity类型的Context，否则将会出错。">
+  
+
+  
+  
+  <meta name="keywords" content="工作">
+  
+
+  <meta id="viewport" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+  <meta property="og:title" content="Context"/>
+
+  <meta property="og:site_name" content="Goverse&#39;Blog"/>
+
+  
+  <meta property="og:image" content="/favicon.ico"/>
+  
+
+  <link href="/favicon.ico" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="Goverse&#39;Blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        }
+      else {
+          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+</head>
+
+
+<body>
+<div class="blog">
+  <div class="content">
+
+    <header>
+  <div class="site-branding">
+    <h1 class="site-title">
+      <a href="/">Goverse&#39;Blog</a>
+    </h1>
+    <p class="site-description">Think more and different</p>
+  </div>
+  <nav class="site-navigation">
+    <ul>
+      
+        <li><a href="/">主页</a></li>
+      
+        <li><a href="/archives">归档</a></li>
+      
+        <li><a href="/categories">分类</a></li>
+      
+        <li><a href="/about">关于</a></li>
+      
+    </ul>
+  </nav>
+</header>
+
+    <main class="site-main posts-loop">
+    <article>
+
+  
+    
+    <h3 class="article-title"><span>Context</span></h3>
+    
+  
+
+  <div class="article-top-meta">
+    <span class="posted-on">
+      <a href="/tech/context.html" rel="bookmark">
+        <time class="entry-date published" datetime="2017-02-13T10:30:00.000Z">
+          2017-02-13
+        </time>
+      </a>
+    </span>
+  </div>
+
+
+  
+
+  <div class="article-content">
+    <div class="entry">
+      
+        <script src="/assets/js/APlayer.min.js"> </script><h4 id="Context与ApplicationContext"><a href="#Context与ApplicationContext" class="headerlink" title="Context与ApplicationContext"></a>Context与ApplicationContext</h4><p>Context一共有三种类型，分别是Application、Activity和Service。</p>
+<p>在绝大多数场景下，Activity、Service和Application这三种类型的Context都是可以通用的。不过有几种场景比较特殊，比如启动Activity，还有弹出Dialog。出于安全原因的考虑，Android是不允许Activity或Dialog凭空出现的，一个Activity的启动必须要建立在另一个Activity的基础之上，也就是以此形成的返回栈。而Dialog则必须在一个Activity上面弹出（除非是System Alert类型的Dialog），因此在这种场景下，我们只能使用Activity类型的Context，否则将会出错。</p>
+<a id="more"></a>
+<p>访问资源，调用getAssets和getResources。</p>
+<p>一个非Activity的Context可以用于启动一个Activity，但这样启动的Activity需要新创建一个Activity堆叠栈。这个在某些特定情形下或许会适用，一般情况不推荐。这个其实也是可以的，但是这样导入的布局会用当前系统的默认主题来设置，若是自定义了某些样式可能不会被使用。</p>
+<p>应用程序创建Context实例的情况有如下几种情况：</p>
+<ol>
+<li>创建Application对象时，而且整个App共一个Application对象</li>
+<li>创建Service对象时</li>
+<li>创建Activity对象时</li>
+</ol>
+<p>因此应用程序App共有的Context数目公式为：</p>
+<p>总Context实例个数 = Service个数 + Activity个数 + 1（Application对应的Context实例）</p>
+<h4 id="对Application类的理解"><a href="#对Application类的理解" class="headerlink" title="对Application类的理解"></a>对Application类的理解</h4><p>每个Android App运行时，会首先自动创建Application 类并实例化 Application 对象，且只有一个。即 Application类 是单例模式（singleton）类</p>
+<p>在构造方法中调用Context的方法就会崩溃，在onCreate()方法中调用Context的方法就一切正常，回顾一下ContextWrapper类的源码，ContextWrapper中有一个attachBaseContext()方法，这个方法会将传入的一个Context参数赋值给mBase对象，之后mBase对象就有值了。而我们又知道，所有Context的方法都是调用这个mBase对象的同名方法，那么也就是说如果在mBase对象还没赋值的情况下就去调用Context中的任何一个方法时，就会出现空指针异常.</p>
+<p>Application中在onCreate()方法里去初始化各种全局的变量数据是一种比较推荐的做法，但是如果你想把初始化的时间点提前到极致，也可以去重写attachBaseContext()方法</p>
+<p>Application加载顺序： 构造函数—&gt;attachBaseContext—&gt;OnCreate</p>
+<p>全局实例 即不同的组件（如Activity、Service）都可获得Application对象且都是同一个对象</p>
+<p>Application 对象的生命周期是整个程序中最长的，即等于Android App的生命周期</p>
+<p>初始化资源 由于Application类是在APP启动的时候就启动，启动在所有Activity之前，所以可以使用它做资源的初始化操作，如图片资源初始化，WebView的预加载，推送服务的注册等等，注意不要执行耗时操作，会拖慢APP启动速度。</p>
+<p><a href="https://developer.android.com/reference/android/app/Application" target="_blank" rel="external">https://developer.android.com/reference/android/app/Application</a></p>
+<h4 id="Context源码解析"><a href="#Context源码解析" class="headerlink" title="Context源码解析"></a>Context源码解析</h4><p>Context ContextWrapper,ContextImpl ContextTheme,Service,Application Activity</p>
+<p>ContextImpl静态方法会创建ContextImpl，Service，Activity调用attach方法与ContextImpl关联起来。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">ActivityManagerService</div><div class="line">ActivityThread</div><div class="line">    scheduleLaunchActivity</div><div class="line">    handleLaunchActivity</div><div class="line">    performLaunchActivity</div><div class="line">LoadedAPK</div><div class="line">    makeApplication</div><div class="line">ContextImpl</div><div class="line">    createAppContext</div><div class="line">    setOutContext</div><div class="line">Application</div><div class="line">    attach</div><div class="line">ContextWrapper</div><div class="line">    attachBaseContext</div></pre></td></tr></table></figure>
+      
+    </div>
+
+  </div>
+
+  <!-- id 将作为查询条件 -->
+  
+  <div align="right" hidden=true>
+    <span id="tech/context.html" class="leancloud-visitors" data-flag-title="Context">
+        <em class="post-meta-item-text">阅读量: </em>
+        <i class="leancloud-visitors-count">10</i>
+    </span>
+    </script>
+  </div>
+  
+
+
+  <div class="article-footer">
+    <div class="article-meta pull-left">
+
+    
+      
+
+    <span class="post-categories">
+      <i class="icon-categories"></i>
+        <a href="/categories/tech/">技术</a>
+    </span>
+    
+
+    
+    
+
+    <span class="post-tags">
+      <i class="icon-tags"></i>
+        <a href="/tags/work/">工作</a>
+    </span>
+    
+    </div>
+  </div>
+
+  
+                <div class="reward">
+       <div id="donate-btn" class="reward-button">赏 <span class="reward-code">
+      <span id="donate-code" class="wechat-code"> <img class="wechat-img wdp-appear" src="https://raw.githubusercontent.com/Goverse/Goverse.github.io/master/images/wechat_donate.jpeg"><b>微信打赏</b> </span>
+       </div>
+      <p class="reward-notice">打赏1元，感激不尽!</p>
+</div>
+<script type="text/javascript">
+		document.getElementById('donate-btn').onclick = function(){
+      if($("#donate-code").is(":hidden")) //已经是隐藏状态
+      {
+        $('#donate-code').removeClass('hidden');
+      } else {
+        $('#donate-code').addClass('hidden');
+      }
+		}
+</script>
+
+              
+                <!-- 添加Valine评论 -->
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/leancloud-storage/dist/av-min.js"></script>
+<script src='//cdn.jsdelivr.net/npm/valine/dist/Valine.min.js'></script>
+<div
+		id="vcomments"
+		style="margin-top:20px;"
+		></div>
+		<script>
+				new Valine({
+						el: '#vcomments',
+						appId: 'zqMC1nUx49CRvrVNiC2i5jMz-gzGzoHsz',
+						appKey: 'KNWfOWw8fHOfdmHFQdkKa8C7',
+						notify: false,
+						verify: false,
+						visitor: true, // 阅读量统计
+						avatar: 'mm',
+						placeholder: '来吧，一起讨论讨论，共同进步~~~'
+				})
+		</script>
+<!-- 添加Valine评论 -->
+
+              
+</article>
+
+    </main>
+
+    <footer class="site-footer">
+  <p class="site-info">
+    Proudly powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and
+    Theme by <a href="https://github.com/CodeDaraW/Hacker" target="_blank">Hacker</a>
+    </br>
+    
+    &copy; 2019 Goverse&#39;Blog
+    
+  </p>
+  <p>Hosted by <a href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a></p>
+</footer>
+
+    
+  <script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?bf97bef94fa19c674f5640f47e01d001";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+  })();
+  </script>
+
+
+
+  </div>
+</div>
+</body>
+</html>

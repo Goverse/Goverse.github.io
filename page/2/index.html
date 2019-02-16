@@ -76,15 +76,15 @@
 
   
     
-    <h3 class="article-title"><a href="/tech/architecture.html"><span>Architecture</span></a></h3>
+    <h3 class="article-title"><a href="/tech/mediacodec.html"><span>MediaCodec</span></a></h3>
     
   
 
   <div class="article-top-meta">
     <span class="posted-on">
-      <a href="/tech/architecture.html" rel="bookmark">
-        <time class="entry-date published" datetime="2017-12-18T03:43:00.000Z">
-          2017-12-18
+      <a href="/tech/mediacodec.html" rel="bookmark">
+        <time class="entry-date published" datetime="2018-03-18T22:30:00.000Z">
+          2018-03-19
         </time>
       </a>
     </span>
@@ -96,15 +96,7 @@
   <div class="article-content">
     <div class="entry">
       
-        <script src="/assets/js/APlayer.min.js"> </script><blockquote>
-<p>Model–view–presenter (MVP) is a derivation of the model–view–controller (MVC) architectural pattern, and is used mostly for building user interfaces.<br>In MVP, the presenter assumes the functionality of the “middle-man”. In MVP, all presentation logic is pushed to the presenter. </p>
-</blockquote>
-<h3 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h3><h3 id="MVC与MVP"><a href="#MVC与MVP" class="headerlink" title="MVC与MVP"></a>MVC与MVP</h3><h3 id="优-缺点"><a href="#优-缺点" class="headerlink" title="优/缺点"></a>优/缺点</h3><h3 id="架构"><a href="#架构" class="headerlink" title="架构"></a>架构</h3><ol>
-<li>分包</li>
-<li>框架</li>
-<li></li>
-</ol>
-<h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3>
+        <h2 id="MediaCodec工作原理"><a href="#MediaCodec工作原理" class="headerlink" title="MediaCodec工作原理"></a>MediaCodec工作原理</h2><p>MediaCodec类Android提供的用于访问低层多媒体编/解码器接口，它是Android低层多媒体架构的一部分，通常与MediaExtractor、MediaMuxer、AudioTrack结合使用，能够编解码诸如H.264、H.265、AAC、3gp等常见的音视频格式。广义而言，MediaCodec的工作原理就是处理输入数据以产生输出数据。具体来说，MediaCodec在编解码的过程中使用了一组输入/输出缓存区来同步或异步处理数据：首先，客户端向获取到的编解码器输入缓存区写入要编解码的数据并将其提交给编解码器，待编解码器处理完毕后将其转存到编码器的输出缓存区，同时收回客户端对输入缓存区的所有权；然后，客户端从获取到编解码输出缓存区读取编码好的数据进行处理，待处理完毕后编解码器收回客户端对输出缓存区的所有权。不断重复整个过程，直至编码器停止工作或者异常退出。 </p>
       
     </div>
 
@@ -126,6 +118,269 @@
     </span>
     
 
+    
+    
+
+    <span class="post-tags">
+      <i class="icon-tags"></i>
+        <a href="/tags/编解码/">编解码</a>
+    </span>
+    
+    </div>
+  </div>
+
+  
+</article>
+
+
+  <article>
+
+  
+    
+    <h3 class="article-title"><a href="/tech/broadcastreceiver.html"><span>BroadCastReceiver</span></a></h3>
+    
+  
+
+  <div class="article-top-meta">
+    <span class="posted-on">
+      <a href="/tech/broadcastreceiver.html" rel="bookmark">
+        <time class="entry-date published" datetime="2018-03-05T10:30:00.000Z">
+          2018-03-05
+        </time>
+      </a>
+    </span>
+  </div>
+
+
+  
+
+  <div class="article-content">
+    <div class="entry">
+      
+        <h3 id="广播的注册方式分为两种："><a href="#广播的注册方式分为两种：" class="headerlink" title="广播的注册方式分为两种："></a>广播的注册方式分为两种：</h3><ol>
+<li>静态注册，也就是说在AndroidManifest文件中对BroadcastReceiver进行注册，通常还会加上action用来过滤。静态注册的广播，即使Activity销毁了，仍然可以收到广播。 在Android 8.0的平台上，应用不能对大部分的广播进行静态注册，也就是说，不能在AndroidManifest文件对有些广播进行静态注册，这里必须强调是有些广播，因为有些广播还是能够注册的。</li>
+<li><p>动态注册，调用Context中的registerReceiver对广播进行动态注册，使用unRegisterReceiver方法对广播进行取消注册的操作。动态注册的广播会受Activity的生命周期的影响， 当Activity销毁的时候，广播就失效了。 动态广播如果设置了优先级会优先于静态广播被接收到。 </p></li></ol>
+      
+    </div>
+
+  </div>
+
+  <!-- id 将作为查询条件 -->
+  
+
+
+  <div class="article-footer">
+    <div class="article-meta pull-left">
+
+    
+      
+
+    <span class="post-categories">
+      <i class="icon-categories"></i>
+        <a href="/categories/tech/">技术</a>
+    </span>
+    
+
+    
+    
+
+    <span class="post-tags">
+      <i class="icon-tags"></i>
+        <a href="/tags/work/">工作</a>
+    </span>
+    
+    </div>
+  </div>
+
+  
+</article>
+
+
+  <article>
+
+  
+    
+    <h3 class="article-title"><a href="/tech/proguard.html"><span>Proguard</span></a></h3>
+    
+  
+
+  <div class="article-top-meta">
+    <span class="posted-on">
+      <a href="/tech/proguard.html" rel="bookmark">
+        <time class="entry-date published" datetime="2018-02-10T07:32:00.000Z">
+          2018-02-10
+        </time>
+      </a>
+    </span>
+  </div>
+
+
+  
+
+  <div class="article-content">
+    <div class="entry">
+      
+        <h3 id="oom"><a href="#oom" class="headerlink" title="oom"></a>oom</h3><p>内存溢出：占用的内存加上申请的内存资源超过了虚拟机的最大内存限制。</p>
+<p>内存抖动：短时间内创建大量对象，又被大量释放，触发GC。</p>
+<p>内存泄漏：导致无法垃圾回收。</p>
+      
+    </div>
+
+  </div>
+
+  <!-- id 将作为查询条件 -->
+  
+
+
+  <div class="article-footer">
+    <div class="article-meta pull-left">
+
+    
+      
+
+    <span class="post-categories">
+      <i class="icon-categories"></i>
+        <a href="/categories/tech/">技术</a>
+    </span>
+    
+
+    
+    
+
+    <span class="post-tags">
+      <i class="icon-tags"></i>
+        <a href="/tags/内存/">内存</a>
+    </span>
+    
+    </div>
+  </div>
+
+  
+</article>
+
+
+  <article>
+
+  
+    
+    <h3 class="article-title"><a href="/tech/ble.html"><span>BLE</span></a></h3>
+    
+  
+
+  <div class="article-top-meta">
+    <span class="posted-on">
+      <a href="/tech/ble.html" rel="bookmark">
+        <time class="entry-date published" datetime="2018-01-03T09:15:00.000Z">
+          2018-01-03
+        </time>
+      </a>
+    </span>
+  </div>
+
+
+  
+
+  <div class="article-content">
+    <div class="entry">
+      
+        <h3 id="为什么会产生ANR"><a href="#为什么会产生ANR" class="headerlink" title="为什么会产生ANR"></a>为什么会产生ANR</h3><p>在Android里，应用程序的响应是由ActivityManager和WindowManager服务系统服务监视的，当检测到下面三种情况的任何一种时，Android就会针对特定的应用程序显示ANR对话框。</p>
+<ol>
+<li>Activity的UI在5秒内没有响应输入事件（例如，按键按下，屏幕触摸）–主要类型</li>
+<li>BroadcastReceiver在10秒内没有执行完毕</li>
+<li>Service在特定时间内（20秒内）无法处理完成–小概率类型</li>
+</ol>
+      
+    </div>
+
+  </div>
+
+  <!-- id 将作为查询条件 -->
+  
+
+
+  <div class="article-footer">
+    <div class="article-meta pull-left">
+
+    
+      
+
+    <span class="post-categories">
+      <i class="icon-categories"></i>
+        <a href="/categories/tech/">技术</a>
+    </span>
+    
+
+    
+    
+
+    <span class="post-tags">
+      <i class="icon-tags"></i>
+        <a href="/tags/work/">工作</a>
+    </span>
+    
+    </div>
+  </div>
+
+  
+</article>
+
+
+  <article>
+
+  
+    
+    <h3 class="article-title"><a href="/life/ontheroad.html"><span>在路上</span></a></h3>
+    
+  
+
+  <div class="article-top-meta">
+    <span class="posted-on">
+      <a href="/life/ontheroad.html" rel="bookmark">
+        <time class="entry-date published" datetime="2018-01-01T05:17:00.000Z">
+          2018-01-01
+        </time>
+      </a>
+    </span>
+  </div>
+
+
+  
+
+  <div class="article-content">
+    <div class="entry">
+      
+        <script src="/assets/js/APlayer.min.js"> </script><blockquote>
+<p>我一辈子都喜欢跟着让我有感觉有兴趣的人，<br>因为在我心目中，真正的人都是疯疯癫癫的，<br>他们热爱生活，爱聊天，不露锋芒，希望拥有一切，他们从不疲倦，从不讲些平凡的东西，<br>而是像奇妙的黄色罗马烟火那样不停地喷发火球，火花。<br>——凯鲁亚克《在路上》</p>
+</blockquote>
+
+      
+    </div>
+
+  </div>
+
+  <!-- id 将作为查询条件 -->
+  
+
+
+  <div class="article-footer">
+    <div class="article-meta pull-left">
+
+    
+      
+
+    <span class="post-categories">
+      <i class="icon-categories"></i>
+        <a href="/categories/life/">随感</a>
+    </span>
+    
+
+    
+    
+
+    <span class="post-tags">
+      <i class="icon-tags"></i>
+        <a href="/tags/essay/">随感</a>
+    </span>
     
     </div>
   </div>
@@ -158,7 +413,8 @@
   <div class="article-content">
     <div class="entry">
       
-        <script src="/assets/js/APlayer.min.js"> </script>
+        <p>JNI是什么？</p>
+<p>JNI的全称就是Java Native Interface，顾名思义，就是Java和C/C++相互通信的接口，就好比买卖房子都需要找中介一样，这里的JNI就是Java和C/C++通信的中介，一个中间人。<br></p>
       
     </div>
 
@@ -245,6 +501,13 @@
     
 
     
+    
+
+    <span class="post-tags">
+      <i class="icon-tags"></i>
+        <a href="/tags/蓝牙/">蓝牙</a>
+    </span>
+    
     </div>
   </div>
 
@@ -315,6 +578,68 @@
 
   
     
+    <h3 class="article-title"><a href="/tech/ipc.html"><span>IPC</span></a></h3>
+    
+  
+
+  <div class="article-top-meta">
+    <span class="posted-on">
+      <a href="/tech/ipc.html" rel="bookmark">
+        <time class="entry-date published" datetime="2017-09-01T02:20:00.000Z">
+          2017-09-01
+        </time>
+      </a>
+    </span>
+  </div>
+
+
+  
+
+  <div class="article-content">
+    <div class="entry">
+      
+        <h3 id="为何要使用多进程"><a href="#为何要使用多进程" class="headerlink" title="为何要使用多进程"></a>为何要使用多进程</h3><p>1.分散内存的占用</p>
+<p>我们知道Android系统对每个应用进程的内存占用是有限制的，而且占用内存越大的进程，通常被系统杀死的可能性越大。让一个组件运行在单独的进程中，可以减少主进程所占用的内存，避免OOM问题，降低被系统杀死的概率。</p>
+      
+    </div>
+
+  </div>
+
+  <!-- id 将作为查询条件 -->
+  
+
+
+  <div class="article-footer">
+    <div class="article-meta pull-left">
+
+    
+      
+
+    <span class="post-categories">
+      <i class="icon-categories"></i>
+        <a href="/categories/tech/">技术</a>
+    </span>
+    
+
+    
+    
+
+    <span class="post-tags">
+      <i class="icon-tags"></i>
+        <a href="/tags/多进程/">多进程</a>
+    </span>
+    
+    </div>
+  </div>
+
+  
+</article>
+
+
+  <article>
+
+  
+    
     <h3 class="article-title"><a href="/tech/proguard.html"><span>Proguard</span></a></h3>
     
   
@@ -368,318 +693,7 @@
 
     <span class="post-tags">
       <i class="icon-tags"></i>
-        <a href="/tags/work/">工作</a>
-    </span>
-    
-    </div>
-  </div>
-
-  
-</article>
-
-
-  <article>
-
-  
-    
-    <h3 class="article-title"><a href="/tech/bluetooth.html"><span>Bluetooth</span></a></h3>
-    
-  
-
-  <div class="article-top-meta">
-    <span class="posted-on">
-      <a href="/tech/bluetooth.html" rel="bookmark">
-        <time class="entry-date published" datetime="2017-07-10T15:00:00.000Z">
-          2017-07-10
-        </time>
-      </a>
-    </span>
-  </div>
-
-
-  
-
-  <div class="article-content">
-    <div class="entry">
-      
-        <h3 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h3><p>这是第一次开发蓝牙相关项目，遇到了很多问题，也走了很多弯路。特以此文，总结自己在蓝牙开发中学到的知识和经验。</p>
-<h3 id="项目简介："><a href="#项目简介：" class="headerlink" title="项目简介："></a>项目简介：</h3><p>国外定制的便携式导航产品，系统为安卓系统，功能包括DVR，蓝牙，地图，导航等。我们只负责硬件以及DVR和蓝牙模块。（吐槽一下，客户的UI设计真是丑，还有它的地图，感觉是10年前的产品，真怀疑这东西能卖出去，看来老外和咱们的思维还是差别蛮大的。）其中蓝牙的功能需求：连接/断开设备，单人/多人通话，获取通讯录等。</p>
-      
-    </div>
-
-  </div>
-
-  <!-- id 将作为查询条件 -->
-  
-
-
-  <div class="article-footer">
-    <div class="article-meta pull-left">
-
-    
-      
-
-    <span class="post-categories">
-      <i class="icon-categories"></i>
-        <a href="/categories/tech/">技术</a>
-    </span>
-    
-
-    
-    
-
-    <span class="post-tags">
-      <i class="icon-tags"></i>
-        <a href="/tags/work/">工作</a>
-    </span>
-    
-    </div>
-  </div>
-
-  
-</article>
-
-
-  <article>
-
-  
-    
-    <h3 class="article-title"><a href="/read/wangxiaobo.html"><span>王小波</span></a></h3>
-    
-  
-
-  <div class="article-top-meta">
-    <span class="posted-on">
-      <a href="/read/wangxiaobo.html" rel="bookmark">
-        <time class="entry-date published" datetime="2017-07-08T03:00:00.000Z">
-          2017-07-08
-        </time>
-      </a>
-    </span>
-  </div>
-
-
-  
-
-  <div class="article-content">
-    <div class="entry">
-      
-        <script src="/assets/js/APlayer.min.js"> </script><blockquote>
-<p>一想到你，我这张丑脸上就泛起微笑。</p>
-</blockquote>
-<p>大学的时候读过王小波的《黄金时代》，书里的内容很有趣，有点像文革时期的“吐槽”。一直想有时间再读读他的书，不过过了这么久，之前看过的也忘了很多，所以打算重新读一遍《黄金时代》，然后再读他的《白银时代》、《青铜时代》、《黑铁时代》。</p>
-<h3 id="《黄金时代》"><a href="#《黄金时代》" class="headerlink" title="《黄金时代》"></a>《黄金时代》</h3><h3 id="《白银时代》"><a href="#《白银时代》" class="headerlink" title="《白银时代》"></a>《白银时代》</h3><h3 id="《青铜时代》"><a href="#《青铜时代》" class="headerlink" title="《青铜时代》"></a>《青铜时代》</h3><h3 id="《黑铁时代》"><a href="#《黑铁时代》" class="headerlink" title="《黑铁时代》"></a>《黑铁时代》</h3>
-      
-    </div>
-
-  </div>
-
-  <!-- id 将作为查询条件 -->
-  
-
-
-  <div class="article-footer">
-    <div class="article-meta pull-left">
-
-    
-      
-
-    <span class="post-categories">
-      <i class="icon-categories"></i>
-        <a href="/categories/read/">阅读</a>
-    </span>
-    
-
-    
-    </div>
-  </div>
-
-  
-</article>
-
-
-  <article>
-
-  
-    
-    <h3 class="article-title"><a href="/life/graduation1year.html"><span>毕业一年</span></a></h3>
-    
-  
-
-  <div class="article-top-meta">
-    <span class="posted-on">
-      <a href="/life/graduation1year.html" rel="bookmark">
-        <time class="entry-date published" datetime="2017-06-29T16:00:00.000Z">
-          2017-06-30
-        </time>
-      </a>
-    </span>
-  </div>
-
-
-  
-
-  <div class="article-content">
-    <div class="entry">
-      
-        <blockquote>
-<p>如果一个人不知道自己所要驶向的码头，那么任何风向都是不顺的。</p>
-</blockquote>
-<p>这一年过得真快，比想象中还要快，快到似乎想让你感觉不到。</p>
-<p>自己总有一种仪式感，一年了要写点东西纪念下。</p>
-      
-    </div>
-
-  </div>
-
-  <!-- id 将作为查询条件 -->
-  
-
-
-  <div class="article-footer">
-    <div class="article-meta pull-left">
-
-    
-      
-
-    <span class="post-categories">
-      <i class="icon-categories"></i>
-        <a href="/categories/life/">随感</a>
-    </span>
-    
-
-    
-    
-
-    <span class="post-tags">
-      <i class="icon-tags"></i>
-        <a href="/tags/work/">工作</a><a href="/tags/essay/">随感</a>
-    </span>
-    
-    </div>
-  </div>
-
-  
-</article>
-
-
-  <article>
-
-  
-    
-    <h3 class="article-title"><a href="/tech/0XFF.html"><span>0XFF</span></a></h3>
-    
-  
-
-  <div class="article-top-meta">
-    <span class="posted-on">
-      <a href="/tech/0XFF.html" rel="bookmark">
-        <time class="entry-date published" datetime="2017-06-03T10:30:00.000Z">
-          2017-06-03
-        </time>
-      </a>
-    </span>
-  </div>
-
-
-  
-
-  <div class="article-content">
-    <div class="entry">
-      
-        <blockquote>
-<p>在处理字节数据时，我们经常会看到’&amp; 0xFF’的操作</p>
-</blockquote>
-<p>比如下边的代码：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">//将二进制数组转换成十六进制字符串</div><div class="line">public static String parseBytesToHexStr(byte buf[]) &#123;</div><div class="line">    StringBuffer sb = new StringBuffer();</div><div class="line">    for (int i = 0; i &lt; buf.length; i++) &#123;</div><div class="line">        int num = buf[i] &amp; 0xFF;</div><div class="line">        String hex = Integer.toHexString(num);</div><div class="line">        if (hex.length() == 1) &#123;</div><div class="line">            hex = &apos;0&apos; + hex;</div><div class="line">        &#125;</div><div class="line">            sb.append(hex.toUpperCase());</div><div class="line">        &#125;</div><div class="line">        return sb.toString();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-      
-    </div>
-
-  </div>
-
-  <!-- id 将作为查询条件 -->
-  
-
-
-  <div class="article-footer">
-    <div class="article-meta pull-left">
-
-    
-      
-
-    <span class="post-categories">
-      <i class="icon-categories"></i>
-        <a href="/categories/tech/">技术</a>
-    </span>
-    
-
-    
-    
-
-    <span class="post-tags">
-      <i class="icon-tags"></i>
-        <a href="/tags/work/">工作</a>
-    </span>
-    
-    </div>
-  </div>
-
-  
-</article>
-
-
-  <article>
-
-  
-    
-    <h3 class="article-title"><a href="/tech/androidutils.html"><span>AndroidUtils</span></a></h3>
-    
-  
-
-  <div class="article-top-meta">
-    <span class="posted-on">
-      <a href="/tech/androidutils.html" rel="bookmark">
-        <time class="entry-date published" datetime="2017-05-08T04:30:00.000Z">
-          2017-05-08
-        </time>
-      </a>
-    </span>
-  </div>
-
-
-  
-
-  <div class="article-content">
-    <div class="entry">
-      
-        <h3 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h3><p>这是我个人开发的Andorid开发的工具类库。虽然网上有很多开源的工具类库，但大多用起来总差点意思，有的功能太简单，有的封装的又太复杂，无法完全满足自己的定制化需求，所以干脆自己写个方便使用的工具类库。<br></p>
-      
-    </div>
-
-  </div>
-
-  <!-- id 将作为查询条件 -->
-  
-
-
-  <div class="article-footer">
-    <div class="article-meta pull-left">
-
-    
-      
-
-    <span class="post-categories">
-      <i class="icon-categories"></i>
-        <a href="/categories/tech/">技术</a>
-    </span>
-    
-
-    
-    
-
-    <span class="post-tags">
-      <i class="icon-tags"></i>
-        <a href="/tags/work/">工作</a>
+        <a href="/tags/混淆/">混淆</a>
     </span>
     
     </div>

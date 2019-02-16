@@ -1,0 +1,229 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Bitmap | Goverse&#39;Blog | Think more and different</title>
+
+  
+
+  
+  <meta name="description" content="recycle/*​      Free the native object associated with this bitmap, and clear the​      reference to the pixel data. This will not free the pixel data synchronously;​      it simply allows it to be garbage collected if there are no other references.​      The bitmap is marked as “dead”, meaning it will throw an exception if​      getPixels() or setPixels() is called, and will draw nothing. This operation​      cannot be reversed, so it should only be called if you are sure there are no​      further uses for the bitmap. This is an advanced call, and normally need​      not be called, since the normal GC process will free up this memory when​      there are no more references to this bitmap.​     */">
+  
+
+  
+  
+  <meta name="keywords" content="工作">
+  
+
+  <meta id="viewport" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+  <meta property="og:title" content="Bitmap"/>
+
+  <meta property="og:site_name" content="Goverse&#39;Blog"/>
+
+  
+  <meta property="og:image" content="/favicon.ico"/>
+  
+
+  <link href="/favicon.ico" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="Goverse&#39;Blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        }
+      else {
+          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+</head>
+
+
+<body>
+<div class="blog">
+  <div class="content">
+
+    <header>
+  <div class="site-branding">
+    <h1 class="site-title">
+      <a href="/">Goverse&#39;Blog</a>
+    </h1>
+    <p class="site-description">Think more and different</p>
+  </div>
+  <nav class="site-navigation">
+    <ul>
+      
+        <li><a href="/">主页</a></li>
+      
+        <li><a href="/archives">归档</a></li>
+      
+        <li><a href="/categories">分类</a></li>
+      
+        <li><a href="/about">关于</a></li>
+      
+    </ul>
+  </nav>
+</header>
+
+    <main class="site-main posts-loop">
+    <article>
+
+  
+    
+    <h3 class="article-title"><span>Bitmap</span></h3>
+    
+  
+
+  <div class="article-top-meta">
+    <span class="posted-on">
+      <a href="/tech/bitmap.html" rel="bookmark">
+        <time class="entry-date published" datetime="2018-09-29T03:22:00.000Z">
+          2018-09-29
+        </time>
+      </a>
+    </span>
+  </div>
+
+
+  
+
+  <div class="article-content">
+    <div class="entry">
+      
+        <script src="/assets/js/APlayer.min.js"> </script><h3 id="recycle"><a href="#recycle" class="headerlink" title="recycle"></a>recycle</h3><p>/<em>*<br>​     </em> Free the native object associated with this bitmap, and clear the<br>​     <em> reference to the pixel data. This will not free the pixel data synchronously;<br>​     </em> it simply allows it to be garbage collected if there are no other references.<br>​     <em> The bitmap is marked as “dead”, meaning it will throw an exception if<br>​     </em> getPixels() or setPixels() is called, and will draw nothing. This operation<br>​     <em> cannot be reversed, so it should only be called if you are sure there are no<br>​     </em> further uses for the bitmap. This is an advanced call, and normally need<br>​     <em> not be called, since the normal GC process will free up this memory when<br>​     </em> there are no more references to this bitmap.<br>​     */<br><a id="more"></a></p>
+<h3 id="使用lru"><a href="#使用lru" class="headerlink" title="使用lru"></a>使用lru</h3><p>内部是用LinkedHashMap保存对象，如果缓存存满了后使用trimToSize方法移除较早缓存对象添加新的对象。内部为循环直到size小于缓存大小。<br>提供了get, remove, put方法。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line">public void trimToSize(int maxSize) &#123;</div><div class="line">        while (true) &#123;</div><div class="line">            K key;</div><div class="line">            V value;</div><div class="line">            synchronized (this) &#123;</div><div class="line">                if (size &lt; 0 || (map.isEmpty() &amp;&amp; size != 0)) &#123;</div><div class="line">                    throw new IllegalStateException(getClass().getName()</div><div class="line">                            + &quot;.sizeOf() is reporting inconsistent results!&quot;);</div><div class="line">                &#125;</div><div class="line"></div><div class="line">                if (size &lt;= maxSize) &#123;</div><div class="line">                    break;</div><div class="line">                &#125;</div><div class="line"></div><div class="line">                Map.Entry&lt;K, V&gt; toEvict = map.eldest();</div><div class="line">                if (toEvict == null) &#123;</div><div class="line">                    break;</div><div class="line">                &#125;</div><div class="line"></div><div class="line">                key = toEvict.getKey();</div><div class="line">                value = toEvict.getValue();</div><div class="line">                map.remove(key);</div><div class="line">                size -= safeSizeOf(key, value);</div><div class="line">                evictionCount++;</div><div class="line">            &#125;</div><div class="line"></div><div class="line">            entryRemoved(true, key, value, null);</div><div class="line">        &#125;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<h3 id="计算inSampleSize"><a href="#计算inSampleSize" class="headerlink" title="计算inSampleSize"></a>计算inSampleSize</h3><p>如果设置BitmapFactory.Optionis.inSampleSize为4,那么最终图片所占用的像素数是原先图片像素数的/16。设置的inSampleSize只是设置宽和高是相对于原先的宽和高的比例。设置为4,那么相当于宽原尺寸宽的1/4,高亦是如此。</p>
+<p>图片原本长宽除以 目的宽高，取较小的值。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">public static int calculateInSampleSize(BitmapFactory.Options options, int reqWidth, int reqHeight) &#123;</div><div class="line">    // Raw height and width of image</div><div class="line">    final int height = options.outHeight;</div><div class="line">    final int width = options.outWidth;</div><div class="line">    int inSampleSize = 1;</div><div class="line"> </div><div class="line">    if (height &gt; reqHeight || width &gt; reqWidth) &#123;</div><div class="line"> </div><div class="line">        // Calculate ratios of height and width to requested height and width</div><div class="line">        final int heightRatio = Math.round((float) height / (float) reqHeight);</div><div class="line">        final int widthRatio = Math.round((float) width / (float) reqWidth);</div><div class="line"> </div><div class="line">        // Choose the smallest ratio as inSampleSize value, this will guarantee</div><div class="line">        // a final image with both dimensions(尺寸) larger than or equal to the requested height and width.</div><div class="line">        inSampleSize = heightRatio &lt; widthRatio ? heightRatio : widthRatio;</div><div class="line">    &#125;</div><div class="line"> </div><div class="line">    return inSampleSize;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="缩略图"><a href="#缩略图" class="headerlink" title="缩略图"></a>缩略图</h4><p>inJustDecodeBounds = true</p>
+<p>如果inJustDecoedBounds设置为true的话，解码bitmap时可以只返回其高、宽和Mime类型，而不必为其申请内存，从而节省了内存空间。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">public static Bitmap getSmallBitmap(String filePath, int w, int h) &#123;</div><div class="line">        final BitmapFactory.Options options = new BitmapFactory.Options();</div><div class="line"> </div><div class="line">        //该值设为true那么将不返回实际的bitmap不给其分配内存空间而里面只包括一些解码边界信息即图片大小信息</div><div class="line">        options.inJustDecodeBounds = true;//inJustDecodeBounds设置为true，可以不把图片读到内存中,但依然可以计算出图片的大小</div><div class="line">        BitmapFactory.decodeFile(filePath, options);</div><div class="line"> </div><div class="line">        // Calculate inSampleSize</div><div class="line">        options.inSampleSize = calculateInSampleSize(options, w, h);</div><div class="line"> </div><div class="line">        // Decode bitmap with inSampleSize set</div><div class="line">        options.inJustDecodeBounds = false;//重新读入图片，注意这次要把options.inJustDecodeBounds 设为 false</div><div class="line">        Bitmap bitmap = BitmapFactory.decodeFile(filePath, options);// BitmapFactory.decodeFile()按指定大小取得图片缩略图</div><div class="line">        return bitmap;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<h4 id="三级缓存"><a href="#三级缓存" class="headerlink" title="三级缓存"></a>三级缓存</h4><p>网络，本地，内存<br>减少用户流量。</p>
+
+      
+    </div>
+
+  </div>
+
+  <!-- id 将作为查询条件 -->
+  
+  <div align="right" hidden=true>
+    <span id="tech/bitmap.html" class="leancloud-visitors" data-flag-title="Bitmap">
+        <em class="post-meta-item-text">阅读量: </em>
+        <i class="leancloud-visitors-count">10</i>
+    </span>
+    </script>
+  </div>
+  
+
+
+  <div class="article-footer">
+    <div class="article-meta pull-left">
+
+    
+      
+
+    <span class="post-categories">
+      <i class="icon-categories"></i>
+        <a href="/categories/tech/">技术</a>
+    </span>
+    
+
+    
+    
+
+    <span class="post-tags">
+      <i class="icon-tags"></i>
+        <a href="/tags/work/">工作</a>
+    </span>
+    
+    </div>
+  </div>
+
+  
+                <div class="reward">
+       <div id="donate-btn" class="reward-button">赏 <span class="reward-code">
+      <span id="donate-code" class="wechat-code"> <img class="wechat-img wdp-appear" src="https://raw.githubusercontent.com/Goverse/Goverse.github.io/master/images/wechat_donate.jpeg"><b>微信打赏</b> </span>
+       </div>
+      <p class="reward-notice">打赏1元，感激不尽!</p>
+</div>
+<script type="text/javascript">
+		document.getElementById('donate-btn').onclick = function(){
+      if($("#donate-code").is(":hidden")) //已经是隐藏状态
+      {
+        $('#donate-code').removeClass('hidden');
+      } else {
+        $('#donate-code').addClass('hidden');
+      }
+		}
+</script>
+
+              
+                <!-- 添加Valine评论 -->
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/leancloud-storage/dist/av-min.js"></script>
+<script src='//cdn.jsdelivr.net/npm/valine/dist/Valine.min.js'></script>
+<div
+		id="vcomments"
+		style="margin-top:20px;"
+		></div>
+		<script>
+				new Valine({
+						el: '#vcomments',
+						appId: 'zqMC1nUx49CRvrVNiC2i5jMz-gzGzoHsz',
+						appKey: 'KNWfOWw8fHOfdmHFQdkKa8C7',
+						notify: false,
+						verify: false,
+						visitor: true, // 阅读量统计
+						avatar: 'mm',
+						placeholder: '来吧，一起讨论讨论，共同进步~~~'
+				})
+		</script>
+<!-- 添加Valine评论 -->
+
+              
+</article>
+
+    </main>
+
+    <footer class="site-footer">
+  <p class="site-info">
+    Proudly powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and
+    Theme by <a href="https://github.com/CodeDaraW/Hacker" target="_blank">Hacker</a>
+    </br>
+    
+    &copy; 2019 Goverse&#39;Blog
+    
+  </p>
+  <p>Hosted by <a href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a></p>
+</footer>
+
+    
+  <script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?bf97bef94fa19c674f5640f47e01d001";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+  })();
+  </script>
+
+
+
+  </div>
+</div>
+</body>
+</html>

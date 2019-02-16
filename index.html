@@ -138,6 +138,192 @@
 
   
     
+    <h3 class="article-title"><a href="/tech/bitmap.html"><span>Bitmap</span></a></h3>
+    
+  
+
+  <div class="article-top-meta">
+    <span class="posted-on">
+      <a href="/tech/bitmap.html" rel="bookmark">
+        <time class="entry-date published" datetime="2018-09-29T03:22:00.000Z">
+          2018-09-29
+        </time>
+      </a>
+    </span>
+  </div>
+
+
+  
+
+  <div class="article-content">
+    <div class="entry">
+      
+        <h3 id="recycle"><a href="#recycle" class="headerlink" title="recycle"></a>recycle</h3><p>/<em>*<br>​     </em> Free the native object associated with this bitmap, and clear the<br>​     <em> reference to the pixel data. This will not free the pixel data synchronously;<br>​     </em> it simply allows it to be garbage collected if there are no other references.<br>​     <em> The bitmap is marked as “dead”, meaning it will throw an exception if<br>​     </em> getPixels() or setPixels() is called, and will draw nothing. This operation<br>​     <em> cannot be reversed, so it should only be called if you are sure there are no<br>​     </em> further uses for the bitmap. This is an advanced call, and normally need<br>​     <em> not be called, since the normal GC process will free up this memory when<br>​     </em> there are no more references to this bitmap.<br>​     */<br></p>
+      
+    </div>
+
+  </div>
+
+  <!-- id 将作为查询条件 -->
+  
+
+
+  <div class="article-footer">
+    <div class="article-meta pull-left">
+
+    
+      
+
+    <span class="post-categories">
+      <i class="icon-categories"></i>
+        <a href="/categories/tech/">技术</a>
+    </span>
+    
+
+    
+    
+
+    <span class="post-tags">
+      <i class="icon-tags"></i>
+        <a href="/tags/work/">工作</a>
+    </span>
+    
+    </div>
+  </div>
+
+  
+</article>
+
+
+  <article>
+
+  
+    
+    <h3 class="article-title"><a href="/tech/index.html"><span>DVR</span></a></h3>
+    
+  
+
+  <div class="article-top-meta">
+    <span class="posted-on">
+      <a href="/tech/index.html" rel="bookmark">
+        <time class="entry-date published" datetime="2018-09-07T08:23:00.000Z">
+          2018-09-07
+        </time>
+      </a>
+    </span>
+  </div>
+
+
+  
+
+  <div class="article-content">
+    <div class="entry">
+      
+        <h3 id="Glide"><a href="#Glide" class="headerlink" title="Glide"></a>Glide</h3><p>Model:表示数据来源<br>Data:原始数据<br>Resource:解码后的资源<br>TransformedResource:转换后的资源<br>TranscodedResource:转码后的资源<br>Target:</p>
+<p>Model-ModelLoader-&gt;Data-Decoder-&gt;Resource-Transform-&gt;TransformedResource-Transcode-&gt;Target</p>
+<p>可以传入context，activity，fragment使用空的RequestManagerFragment获得Activity的生命周期的监听<br>with 获取RequestManager,管理请求</p>
+      
+    </div>
+
+  </div>
+
+  <!-- id 将作为查询条件 -->
+  
+
+
+  <div class="article-footer">
+    <div class="article-meta pull-left">
+
+    
+      
+
+    <span class="post-categories">
+      <i class="icon-categories"></i>
+        <a href="/categories/tech/">技术</a>
+    </span>
+    
+
+    
+    
+
+    <span class="post-tags">
+      <i class="icon-tags"></i>
+        <a href="/tags/图片/">图片</a>
+    </span>
+    
+    </div>
+  </div>
+
+  
+</article>
+
+
+  <article>
+
+  
+    
+    <h3 class="article-title"><a href="/tech/index.html"><span>Handler</span></a></h3>
+    
+  
+
+  <div class="article-top-meta">
+    <span class="posted-on">
+      <a href="/tech/index.html" rel="bookmark">
+        <time class="entry-date published" datetime="2018-08-05T05:23:00.000Z">
+          2018-08-05
+        </time>
+      </a>
+    </span>
+  </div>
+
+
+  
+
+  <div class="article-content">
+    <div class="entry">
+      
+        <h4 id="消息机制"><a href="#消息机制" class="headerlink" title="消息机制"></a>消息机制</h4><h4 id="Looper、Handler、MessageQueue"><a href="#Looper、Handler、MessageQueue" class="headerlink" title="Looper、Handler、MessageQueue"></a>Looper、Handler、MessageQueue</h4><p>Handler是android消息机制的一部分，此外还包括Looper，MessageQueue。</p>
+<p>使用Handler消息机制可以很轻松的将操作切换到Handler所在线程。通常我们会在子线程中做耗时的操作然后通过Handelr发送消息在主线程中更新UI。</p>
+      
+    </div>
+
+  </div>
+
+  <!-- id 将作为查询条件 -->
+  
+
+
+  <div class="article-footer">
+    <div class="article-meta pull-left">
+
+    
+      
+
+    <span class="post-categories">
+      <i class="icon-categories"></i>
+        <a href="/categories/tech/">技术</a>
+    </span>
+    
+
+    
+    
+
+    <span class="post-tags">
+      <i class="icon-tags"></i>
+        <a href="/tags/android/">android</a>
+    </span>
+    
+    </div>
+  </div>
+
+  
+</article>
+
+
+  <article>
+
+  
+    
     <h3 class="article-title"><a href="/tech/goodcode.html"><span>Good Code</span></a></h3>
     
   
@@ -192,6 +378,71 @@
     <span class="post-tags">
       <i class="icon-tags"></i>
         <a href="/tags/work/">工作</a><a href="/tags/代码/">代码</a>
+    </span>
+    
+    </div>
+  </div>
+
+  
+</article>
+
+
+  <article>
+
+  
+    
+    <h3 class="article-title"><a href="/tech/thread.html"><span>Thread</span></a></h3>
+    
+  
+
+  <div class="article-top-meta">
+    <span class="posted-on">
+      <a href="/tech/thread.html" rel="bookmark">
+        <time class="entry-date published" datetime="2018-06-10T11:12:00.000Z">
+          2018-06-10
+        </time>
+      </a>
+    </span>
+  </div>
+
+
+  
+
+  <div class="article-content">
+    <div class="entry">
+      
+        <h4 id="AsyncTask原理"><a href="#AsyncTask原理" class="headerlink" title="AsyncTask原理"></a>AsyncTask原理</h4><p>封装了线程池和handler的异步框架。内部集成了Handler所以能在子线程和主线程中切换。</p>
+<p>onPreExecute</p>
+<p>doInBackground</p>
+<p>onProgressUpdate</p>
+<p>onPostExecute</p>
+      
+    </div>
+
+  </div>
+
+  <!-- id 将作为查询条件 -->
+  
+
+
+  <div class="article-footer">
+    <div class="article-meta pull-left">
+
+    
+      
+
+    <span class="post-categories">
+      <i class="icon-categories"></i>
+        <a href="/categories/tech/">技术</a>
+    </span>
+    
+
+    
+    
+
+    <span class="post-tags">
+      <i class="icon-tags"></i>
+        <a href="/tags/多线程/">多线程</a>
     </span>
     
     </div>
@@ -286,7 +537,9 @@
   <div class="article-content">
     <div class="entry">
       
-        <script src="/assets/js/APlayer.min.js"> </script>
+        <blockquote>
+<p>Android 开放配件 (AOA) 支持功能可让外部 USB 硬件（Android USB 配件）与处于配件模式下的 Android 设备进行交互。当某台 Android 设备处于配件模式时，所连接的配件会充当 USB 主机（为总线供电并列举设备），而 Android 设备则充当 USB 配件。</p>
+</blockquote>
       
     </div>
 
@@ -314,67 +567,6 @@
     <span class="post-tags">
       <i class="icon-tags"></i>
         <a href="/tags/USB/">USB</a>
-    </span>
-    
-    </div>
-  </div>
-
-  
-</article>
-
-
-  <article>
-
-  
-    
-    <h3 class="article-title"><a href="/tech/linker_loader.html"><span>Linker and Loader</span></a></h3>
-    
-  
-
-  <div class="article-top-meta">
-    <span class="posted-on">
-      <a href="/tech/linker_loader.html" rel="bookmark">
-        <time class="entry-date published" datetime="2018-04-10T13:30:00.000Z">
-          2018-04-10
-        </time>
-      </a>
-    </span>
-  </div>
-
-
-  
-
-  <div class="article-content">
-    <div class="entry">
-      
-        <script src="/assets/js/APlayer.min.js"> </script>
-      
-    </div>
-
-  </div>
-
-  <!-- id 将作为查询条件 -->
-  
-
-
-  <div class="article-footer">
-    <div class="article-meta pull-left">
-
-    
-      
-
-    <span class="post-categories">
-      <i class="icon-categories"></i>
-        <a href="/categories/tech/">技术</a>
-    </span>
-    
-
-    
-    
-
-    <span class="post-tags">
-      <i class="icon-tags"></i>
-        <a href="/tags/C/">C++</a>
     </span>
     
     </div>
@@ -472,7 +664,8 @@
   <div class="article-content">
     <div class="entry">
       
-        <script src="/assets/js/APlayer.min.js"> </script>
+        <p>AudioTrack是Android中的一个类，它允许播放原始音频样本。利用该类能够播放使用AudioRecord捕获的音频，而他们并不能使用mediaPlayer对象来播放。</p>
+<p>​</p>
       
     </div>
 
@@ -500,192 +693,6 @@
     <span class="post-tags">
       <i class="icon-tags"></i>
         <a href="/tags/work/">工作</a>
-    </span>
-    
-    </div>
-  </div>
-
-  
-</article>
-
-
-  <article>
-
-  
-    
-    <h3 class="article-title"><a href="/tech/mediacodec.html"><span>MediaCodec</span></a></h3>
-    
-  
-
-  <div class="article-top-meta">
-    <span class="posted-on">
-      <a href="/tech/mediacodec.html" rel="bookmark">
-        <time class="entry-date published" datetime="2018-03-18T22:30:00.000Z">
-          2018-03-19
-        </time>
-      </a>
-    </span>
-  </div>
-
-
-  
-
-  <div class="article-content">
-    <div class="entry">
-      
-        <script src="/assets/js/APlayer.min.js"> </script>
-      
-    </div>
-
-  </div>
-
-  <!-- id 将作为查询条件 -->
-  
-
-
-  <div class="article-footer">
-    <div class="article-meta pull-left">
-
-    
-      
-
-    <span class="post-categories">
-      <i class="icon-categories"></i>
-        <a href="/categories/tech/">技术</a>
-    </span>
-    
-
-    
-    
-
-    <span class="post-tags">
-      <i class="icon-tags"></i>
-        <a href="/tags/decode/">decode</a>
-    </span>
-    
-    </div>
-  </div>
-
-  
-</article>
-
-
-  <article>
-
-  
-    
-    <h3 class="article-title"><a href="/tech/screencap.html"><span>ScreenCap</span></a></h3>
-    
-  
-
-  <div class="article-top-meta">
-    <span class="posted-on">
-      <a href="/tech/screencap.html" rel="bookmark">
-        <time class="entry-date published" datetime="2018-03-05T10:30:00.000Z">
-          2018-03-05
-        </time>
-      </a>
-    </span>
-  </div>
-
-
-  
-
-  <div class="article-content">
-    <div class="entry">
-      
-        <script src="/assets/js/APlayer.min.js"> </script>
-      
-    </div>
-
-  </div>
-
-  <!-- id 将作为查询条件 -->
-  
-
-
-  <div class="article-footer">
-    <div class="article-meta pull-left">
-
-    
-      
-
-    <span class="post-categories">
-      <i class="icon-categories"></i>
-        <a href="/categories/tech/">技术</a>
-    </span>
-    
-
-    
-    
-
-    <span class="post-tags">
-      <i class="icon-tags"></i>
-        <a href="/tags/work/">工作</a>
-    </span>
-    
-    </div>
-  </div>
-
-  
-</article>
-
-
-  <article>
-
-  
-    
-    <h3 class="article-title"><a href="/life/ontheroad.html"><span>在路上</span></a></h3>
-    
-  
-
-  <div class="article-top-meta">
-    <span class="posted-on">
-      <a href="/life/ontheroad.html" rel="bookmark">
-        <time class="entry-date published" datetime="2018-01-01T05:17:00.000Z">
-          2018-01-01
-        </time>
-      </a>
-    </span>
-  </div>
-
-
-  
-
-  <div class="article-content">
-    <div class="entry">
-      
-        <script src="/assets/js/APlayer.min.js"> </script><blockquote>
-<p>我一辈子都喜欢跟着让我有感觉有兴趣的人，<br>因为在我心目中，真正的人都是疯疯癫癫的，<br>他们热爱生活，爱聊天，不露锋芒，希望拥有一切，他们从不疲倦，从不讲些平凡的东西，<br>而是像奇妙的黄色罗马烟火那样不停地喷发火球，火花。<br>——凯鲁亚克《在路上》</p>
-</blockquote>
-
-      
-    </div>
-
-  </div>
-
-  <!-- id 将作为查询条件 -->
-  
-
-
-  <div class="article-footer">
-    <div class="article-meta pull-left">
-
-    
-      
-
-    <span class="post-categories">
-      <i class="icon-categories"></i>
-        <a href="/categories/life/">随感</a>
-    </span>
-    
-
-    
-    
-
-    <span class="post-tags">
-      <i class="icon-tags"></i>
-        <a href="/tags/essay/">随感</a>
     </span>
     
     </div>
