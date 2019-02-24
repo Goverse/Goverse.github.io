@@ -140,78 +140,6 @@
 
   
     
-    <h3 class="article-title"><a href="/tech/jvm.html"><span>JVM</span></a></h3>
-    
-  
-
-  <div class="article-top-meta">
-    <span class="posted-on">
-      <a href="/tech/jvm.html" rel="bookmark">
-        <time class="entry-date published" datetime="2017-04-01T14:50:00.000Z">
-          2017-04-01
-        </time>
-      </a>
-    </span>
-  </div>
-
-
-  
-
-  <div class="article-content">
-    <div class="entry">
-      
-        <script src="/assets/js/APlayer.min.js"> </script><blockquote>
-<p>The Java Virtual Machine is the cornerstone of the Java platform. It is the component of the technology responsible for its hardware- and operating system-independence, the small size of its compiled code, and its ability to protect users from malicious programs.</p>
-</blockquote>
-<h3 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h3><p>当谈论到Java技术时，几乎所有人都会想到它的通用性，平台移植性以及那句经典的“Write once，run anywhere”。但在日常开发中却很少有人会关注Java语言背后的技术和原理。其中，Java虚拟机是Java平台中最基础也是最重要的技术之一，因为有了它才使得Java程序能够在不同的硬件平台上运行。</p>
-<p>最早接触Jvm还是在大学校招时，为了给自己增加点装X的成本，硬是死记硬背的读了几本关于JVM方面的书，记了些关键词，虽然面试时完全没有用到，但对我理解java平台技术确实是有一些帮助，只是限于当时水平不足，读虚拟机这种进阶的书籍很难搞的明白。后续，我也偶尔会查阅JVM相关的资料，但是看过后总会忘记，浅浅的了解并不会留下深刻的印象，所以在这篇文章中我会将学到的JVM虚拟机方面的知识点记录下来，弄清楚其中的原理。</p>
-<h3 id="Java内存区域"><a href="#Java内存区域" class="headerlink" title="Java内存区域"></a>Java内存区域</h3><p>Java虚拟机在执行Java程序的过程中会把它所管理的内存划分为若干个不同的数据区域，包括：方法区，虚拟机栈，本地方法栈，堆，程序计数器等，它们有的随着虚拟机进程的启动而存在，有些区域则依赖用户线程的启动和结束而建立和销毁。<br>其中，方法区和堆是所有线程公用的区域，而虚拟机栈，本地方法栈，程序计数器为各个线程中私有的。</p>
-<h4 id="1-程序计数器"><a href="#1-程序计数器" class="headerlink" title="1. 程序计数器"></a>1. 程序计数器</h4><p>程序计数器可以当做线程所执行的字节码的行号指示器，通过它可以用来选取下一条需要执行的字节码指令。由于Java虚拟机的多线程是通过线程轮流切换并分配处理器执行时间的方式来实现的，在任何一个确定的时刻，一个处理器都只会执行一条线程中的指令。因此，为了线程切换后能恢复到正确的执行位置，每条线程都需要有一个独立的程序计数器。</p>
-<h4 id="2-Java虚拟机栈"><a href="#2-Java虚拟机栈" class="headerlink" title="2. Java虚拟机栈"></a>2. Java虚拟机栈</h4><h4 id="3-本地方法栈"><a href="#3-本地方法栈" class="headerlink" title="3. 本地方法栈"></a>3. 本地方法栈</h4><h4 id="4-Java堆"><a href="#4-Java堆" class="headerlink" title="4. Java堆"></a>4. Java堆</h4><h4 id="5-方法区"><a href="#5-方法区" class="headerlink" title="5. 方法区"></a>5. 方法区</h4><h3 id="垃圾回收"><a href="#垃圾回收" class="headerlink" title="垃圾回收"></a>垃圾回收</h3><h4 id="1-判断对象已死"><a href="#1-判断对象已死" class="headerlink" title="1. 判断对象已死"></a>1. 判断对象已死</h4><h5 id="1-引用计数算法"><a href="#1-引用计数算法" class="headerlink" title="1. 引用计数算法"></a>1. 引用计数算法</h5><h5 id="2-可达性分析算法"><a href="#2-可达性分析算法" class="headerlink" title="2. 可达性分析算法"></a>2. 可达性分析算法</h5><h5 id="3-再谈引用"><a href="#3-再谈引用" class="headerlink" title="3. 再谈引用"></a>3. 再谈引用</h5><h4 id="2-收集算法"><a href="#2-收集算法" class="headerlink" title="2. 收集算法"></a>2. 收集算法</h4><h5 id="1-标记-清除算法"><a href="#1-标记-清除算法" class="headerlink" title="1. 标记-清除算法"></a>1. 标记-清除算法</h5><h5 id="2-复制算法"><a href="#2-复制算法" class="headerlink" title="2. 复制算法"></a>2. 复制算法</h5><h5 id="3-标记-整理算法"><a href="#3-标记-整理算法" class="headerlink" title="3. 标记-整理算法"></a>3. 标记-整理算法</h5><h5 id="4-分代手机算法"><a href="#4-分代手机算法" class="headerlink" title="4. 分代手机算法"></a>4. 分代手机算法</h5><h4 id="3-垃圾收集器"><a href="#3-垃圾收集器" class="headerlink" title="3. 垃圾收集器"></a>3. 垃圾收集器</h4><h5 id="1-Serial收集器"><a href="#1-Serial收集器" class="headerlink" title="1. Serial收集器"></a>1. Serial收集器</h5><h5 id="2-ParNew收集器"><a href="#2-ParNew收集器" class="headerlink" title="2. ParNew收集器"></a>2. ParNew收集器</h5><h5 id="3-Parallel-Scavenge收集器"><a href="#3-Parallel-Scavenge收集器" class="headerlink" title="3. Parallel Scavenge收集器"></a>3. Parallel Scavenge收集器</h5><h5 id="4-Serial-Old收集器"><a href="#4-Serial-Old收集器" class="headerlink" title="4. Serial Old收集器"></a>4. Serial Old收集器</h5><h5 id="5-Parallel-Old收集器"><a href="#5-Parallel-Old收集器" class="headerlink" title="5. Parallel Old收集器"></a>5. Parallel Old收集器</h5><h5 id="6-CMS收集器"><a href="#6-CMS收集器" class="headerlink" title="6. CMS收集器"></a>6. CMS收集器</h5><h5 id="7-G1收集器"><a href="#7-G1收集器" class="headerlink" title="7. G1收集器"></a>7. G1收集器</h5><h4 id="4-回收策略"><a href="#4-回收策略" class="headerlink" title="4. 回收策略"></a>4. 回收策略</h4><h5 id="1-对象优先在Eden分配"><a href="#1-对象优先在Eden分配" class="headerlink" title="1. 对象优先在Eden分配"></a>1. 对象优先在Eden分配</h5><h5 id="2-大对象直接进入老年代"><a href="#2-大对象直接进入老年代" class="headerlink" title="2. 大对象直接进入老年代"></a>2. 大对象直接进入老年代</h5><h5 id="3-长期存活的对象将进入老年代"><a href="#3-长期存活的对象将进入老年代" class="headerlink" title="3. 长期存活的对象将进入老年代"></a>3. 长期存活的对象将进入老年代</h5><h5 id="4-动态对象年龄判定"><a href="#4-动态对象年龄判定" class="headerlink" title="4. 动态对象年龄判定"></a>4. 动态对象年龄判定</h5><h5 id="5-空间分配担保"><a href="#5-空间分配担保" class="headerlink" title="5. 空间分配担保"></a>5. 空间分配担保</h5><h3 id="类加载"><a href="#类加载" class="headerlink" title="类加载"></a>类加载</h3><h4 id="类加载的时机"><a href="#类加载的时机" class="headerlink" title="类加载的时机"></a>类加载的时机</h4><h4 id="类加载的过程"><a href="#类加载的过程" class="headerlink" title="类加载的过程"></a>类加载的过程</h4><h5 id="1-加载"><a href="#1-加载" class="headerlink" title="1. 加载"></a>1. 加载</h5><h5 id="2-验证"><a href="#2-验证" class="headerlink" title="2. 验证"></a>2. 验证</h5><h5 id="3-准备"><a href="#3-准备" class="headerlink" title="3. 准备"></a>3. 准备</h5><h5 id="4-解析"><a href="#4-解析" class="headerlink" title="4. 解析"></a>4. 解析</h5><h5 id="5-初始化"><a href="#5-初始化" class="headerlink" title="5. 初始化"></a>5. 初始化</h5><h4 id="类加载器"><a href="#类加载器" class="headerlink" title="类加载器"></a>类加载器</h4><h5 id="1-类与类加载器"><a href="#1-类与类加载器" class="headerlink" title="1. 类与类加载器"></a>1. 类与类加载器</h5><h5 id="2-双亲委派模型"><a href="#2-双亲委派模型" class="headerlink" title="2. 双亲委派模型"></a>2. 双亲委派模型</h5><h5 id="3-破坏双亲委派模型"><a href="#3-破坏双亲委派模型" class="headerlink" title="3. 破坏双亲委派模型"></a>3. 破坏双亲委派模型</h5><h3 id="Java内存模型"><a href="#Java内存模型" class="headerlink" title="Java内存模型"></a>Java内存模型</h3><h4 id="1-主内存与工作内存"><a href="#1-主内存与工作内存" class="headerlink" title="1. 主内存与工作内存"></a>1. 主内存与工作内存</h4><h4 id="2-内存间交互操作"><a href="#2-内存间交互操作" class="headerlink" title="2. 内存间交互操作"></a>2. 内存间交互操作</h4><h4 id="3-对于volatile型变量的特殊规则"><a href="#3-对于volatile型变量的特殊规则" class="headerlink" title="3. 对于volatile型变量的特殊规则"></a>3. 对于volatile型变量的特殊规则</h4><h4 id="4-对于long和double型变量的特殊规则"><a href="#4-对于long和double型变量的特殊规则" class="headerlink" title="4. 对于long和double型变量的特殊规则"></a>4. 对于long和double型变量的特殊规则</h4><h4 id="5-原子性，可见性与有序性"><a href="#5-原子性，可见性与有序性" class="headerlink" title="5. 原子性，可见性与有序性"></a>5. 原子性，可见性与有序性</h4><h4 id="6-先行发生原则"><a href="#6-先行发生原则" class="headerlink" title="6. 先行发生原则"></a>6. 先行发生原则</h4><h3 id="本文参考"><a href="#本文参考" class="headerlink" title="本文参考"></a>本文参考</h3><ol>
-<li>周志明.深入理解Java虚拟机[M].机械工业出版社,2015</li>
-<li><a href="https://docs.oracle.com/javase/specs/jvms/se8/html/index.html" target="_blank" rel="external">The Java® Virtual Machine Specification Java SE 8 Edition</a></li>
-</ol>
-
-      
-    </div>
-
-  </div>
-
-  <!-- id 将作为查询条件 -->
-  
-
-
-  <div class="article-footer">
-    <div class="article-meta pull-left">
-
-    
-      
-
-    <span class="post-categories">
-      <i class="icon-categories"></i>
-        <a href="/categories/tech/">技术</a>
-    </span>
-    
-
-    
-    
-
-    <span class="post-tags">
-      <i class="icon-tags"></i>
-        <a href="/tags/work/">工作</a>
-    </span>
-    
-    </div>
-  </div>
-
-  
-</article>
-
-
-  <article>
-
-  
-    
     <h3 class="article-title"><a href="/tech/eventdispatch.html"><span>Event Dispatch</span></a></h3>
     
   
@@ -712,6 +640,68 @@
     <span class="post-tags">
       <i class="icon-tags"></i>
         <a href="/tags/版本控制/">版本控制</a>
+    </span>
+    
+    </div>
+  </div>
+
+  
+</article>
+
+
+  <article>
+
+  
+    
+    <h3 class="article-title"><a href="/tech/network.html"><span>NetWork</span></a></h3>
+    
+  
+
+  <div class="article-top-meta">
+    <span class="posted-on">
+      <a href="/tech/network.html" rel="bookmark">
+        <time class="entry-date published" datetime="2016-10-08T11:11:00.000Z">
+          2016-10-08
+        </time>
+      </a>
+    </span>
+  </div>
+
+
+  
+
+  <div class="article-content">
+    <div class="entry">
+      
+        <h3 id="TCP"><a href="#TCP" class="headerlink" title="TCP"></a>TCP</h3><p>TCP首部的最小长度是20字节。</p>
+<p>tcp是面向字节流的，应用传下来的的报文，tcp并不认识，tcp只将其看做是字节流，如果字节流大了就分段，如果小了可以先缓存等累计到一定大小后再发送。接收方tcp同样只认识字节流，将收到的字节流传至应用进程。</p>
+      
+    </div>
+
+  </div>
+
+  <!-- id 将作为查询条件 -->
+  
+
+
+  <div class="article-footer">
+    <div class="article-meta pull-left">
+
+    
+      
+
+    <span class="post-categories">
+      <i class="icon-categories"></i>
+        <a href="/categories/tech/">技术</a>
+    </span>
+    
+
+    
+    
+
+    <span class="post-tags">
+      <i class="icon-tags"></i>
+        <a href="/tags/计算机网络/">计算机网络</a>
     </span>
     
     </div>

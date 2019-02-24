@@ -4,6 +4,46 @@
 
     
   <url>
+    <loc>http://goverse.me/tech/thread.html</loc>
+    <lastmod>2019-02-24T10:29:38.778Z</lastmod>
+    <data>
+        <display>
+        <title>Thread</title>
+        <pubTime>2018-06-10T11:12:00.000Z</pubTime>
+        
+        <tag>多线程</tag>
+         
+         
+           
+             
+              <breadCrumb title="技术" url="http://goverse.me/categories/tech/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://goverse.me/tech/index.html</loc>
+    <lastmod>2019-02-24T10:25:50.113Z</lastmod>
+    <data>
+        <display>
+        <title>Glide</title>
+        <pubTime>2018-09-07T08:23:00.000Z</pubTime>
+        
+        <tag>图片</tag>
+         
+         
+           
+             
+              <breadCrumb title="技术" url="http://goverse.me/categories/tech/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://goverse.me/tech/ble.html</loc>
     <lastmod>2019-02-21T12:55:06.809Z</lastmod>
     <data>
@@ -72,26 +112,6 @@
         <pubTime>2018-09-29T03:22:00.000Z</pubTime>
         
         <tag>工作</tag>
-         
-         
-           
-             
-              <breadCrumb title="技术" url="http://goverse.me/categories/tech/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://goverse.me/tech/thread.html</loc>
-    <lastmod>2019-02-16T14:32:56.353Z</lastmod>
-    <data>
-        <display>
-        <title>Thread</title>
-        <pubTime>2018-06-10T11:12:00.000Z</pubTime>
-        
-        <tag>多线程</tag>
          
          
            
@@ -210,26 +230,6 @@
         <pubTime>2017-09-01T02:20:00.000Z</pubTime>
         
         <tag>多进程</tag>
-         
-         
-           
-             
-              <breadCrumb title="技术" url="http://goverse.me/categories/tech/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://goverse.me/tech/index.html</loc>
-    <lastmod>2019-02-16T14:31:26.747Z</lastmod>
-    <data>
-        <display>
-        <title>DVR</title>
-        <pubTime>2018-09-07T08:23:00.000Z</pubTime>
-        
-        <tag>图片</tag>
          
          
            
@@ -415,26 +415,6 @@
            
              
               <breadCrumb title="随感" url="http://goverse.me/categories/life/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://goverse.me/tech/jvm.html</loc>
-    <lastmod>2019-02-16T14:10:42.979Z</lastmod>
-    <data>
-        <display>
-        <title>JVM</title>
-        <pubTime>2017-04-01T14:50:00.000Z</pubTime>
-        
-        <tag>工作</tag>
-         
-         
-           
-             
-              <breadCrumb title="技术" url="http://goverse.me/categories/tech/"/>
           
         </display>
     </data>
